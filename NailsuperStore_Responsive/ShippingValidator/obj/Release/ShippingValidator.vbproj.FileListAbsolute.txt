@@ -1,0 +1,11 @@
+D:\Project\NailsuperStore_Responsive\ShippingValidator\bin\Release\ShippingValidator.dll.config
+D:\Project\NailsuperStore_Responsive\ShippingValidator\bin\Release\ShippingValidator.dll
+D:\Project\NailsuperStore_Responsive\ShippingValidator\bin\Release\ShippingValidator.XmlSerializers.dll
+D:\Project\NailsuperStore_Responsive\ShippingValidator\bin\Release\ShippingValidator.pdb
+D:\Project\NailsuperStore_Responsive\ShippingValidator\bin\Release\ShippingValidator.xml
+D:\Project\NailsuperStore_Responsive\ShippingValidator\obj\Release\ShippingValidator.Resources.resources
+D:\Project\NailsuperStore_Responsive\ShippingValidator\obj\Release\ShippingValidator.vbproj.GenerateResource.Cache
+D:\Project\NailsuperStore_Responsive\ShippingValidator\obj\Release\ShippingValidator.dll
+D:\Project\NailsuperStore_Responsive\ShippingValidator\obj\Release\ShippingValidator.xml
+D:\Project\NailsuperStore_Responsive\ShippingValidator\obj\Release\ShippingValidator.pdb
+D:\Project\NailsuperStore_Responsive\ShippingValidator\obj\Release\ShippingValidator.XmlSerializers.dll

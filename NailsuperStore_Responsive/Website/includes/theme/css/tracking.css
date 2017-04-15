@@ -1,0 +1,198 @@
+﻿
+.form .title
+{
+	color: White;
+	font: bold 16px Arial;
+	xtext-shadow: 1px 1px 1px #3a3a3a;
+	text-align: left;
+	padding-top: 6px;
+	padding-bottom: 2px;
+	padding-left: 20px;
+	height: 30px;
+	background-color:#59595B
+}
+
+/*********ordertracking************/
+.exceptionSection
+{
+    background-color: #FAFAFA;
+    font-family: Arial, Helvetica, sans-serif;
+    clear: both;
+}
+.exceptionSectionHeaderBar
+{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #EC0000;
+    text-align: left;
+    min-height: 29px;
+}
+.exceptionHolder
+{
+    padding-top: 10px;
+    text-align: left;
+    padding-bottom: 10px;
+}
+#ordertracking
+{
+    width: 100%;
+    vertical-align: middle;
+   border: solid 1px #dadada;
+   padding-bottom:15px
+}
+#ordertracking ul
+{
+    padding: 0;
+    list-style: none;
+    margin-bottom: 0;
+}
+#ordertracking ul li
+{
+    /*height:30px;*/
+    padding: 7px 10px 0px 10px;
+    border-right: 2px solid #fff;
+    text-align:left;
+}
+#ordertracking ul li.info
+{
+    font-weight: bold;
+}
+.ship-status
+{
+    text-align: center;
+    font-weight: bold;
+    padding-right: 20px;
+}
+.delivered
+{
+    color: green;
+    font-size: 16px;
+    font-weight: bold;
+}
+.intransit
+{
+    color: Purple;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+#ordertracking td
+{
+    height: 30px;
+    vertical-align: middle;
+}
+.ship-status-italic
+{
+    text-align: center;
+    font-style: italic;
+    font-size: 11px;
+    padding-right: 20px;
+}
+
+#ordertracking table
+{
+    width: 97%;
+}
+.line-track
+{
+    border-bottom: 1px solid #DADADA;
+    width: auto;
+    color: #be048d;
+    font-weight: bold;
+}
+.header-time
+{
+    background-color: #f5f5f5;
+}
+
+.h-middle
+{
+    width: 40%;
+    float: left;
+    text-align: center;
+
+}
+.h-right
+{
+    width: 28%;
+    float: left;
+}
+.h-left
+{
+    width: 31%;
+    float: left;
+}
+.h-info
+{
+    height: 80px;
+    padding: 15px 0px 15px 10px;
+    background-color: #F5F5F5;
+}
+.view-fedex
+{
+    float: right;
+    padding-right: 10px;
+    font-size: 11px;
+    font-weight: normal;
+}
+.view-fedex a
+{
+    color: #fff;
+    text-decoration: underline;
+}
+#dNorecord
+{
+    padding: 20px;
+}
+.no-record
+{
+    padding: 20px;
+}
+.no-record a
+{
+    color: #454545;
+}
+.list-info
+{
+    padding-left: 13px;
+}
+.HTitle h1
+{
+    color: #A9A9A9;
+    padding-top: 0px;
+    font: italic bold 16px Calibri Verdana Arial;
+    line-height: 1;
+    margin-top: -7px;
+}
+.estimateship1
+{
+    vertical-align: top;
+    padding-left: 6px;
+}
+.estimateship1 .name
+{
+    cursor: pointer;
+}
+.estimateship1 .name1
+{
+    cursor: default;
+}
+.estimateship1 input
+{
+    float: left;
+    margin-top: 2px;
+}
+.estimateship2
+{
+    vertical-align: top;
+    padding-right: 9px;
+    padding-bottom: 10px;
+}
+.lazy
+{
+    display: none;
+}

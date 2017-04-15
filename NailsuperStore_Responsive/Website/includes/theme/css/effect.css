@@ -1,0 +1,177 @@
+﻿/*--qtip--*/
+.qtip-error .qtip-title{background:#f9fafb!important;font-size:24px;color:Red;padding:0!important;font-weight:normal!important;border-bottom:1px solid #dddddd;text-align:left;width:100%;margin:25px 0 0 0;padding:0 20px 20px 25px!important}.qtip-msg .qtip-title,.qtip-paypal .qtip-title,.qtip-signature-confirm .qtip-title,.qtip-card-security .qtip-title,.qtip-address .qtip-title{background:#f9fafb!important;font-size:24px;color:#333;padding:0!important;font-weight:normal!important;border-bottom:1px solid #dddddd;text-align:left;width:100%;margin:25px 0 0 0;padding:0 20px 20px 25px!important;line-height:26px}.qtip-error{width:600px!important;max-width:100%}.qtip-msg{width:600px!important;max-width:100%}.qtip-error .error-row{float:inherit;width:100%;margin-bottom:10px}.qtip-signature-confirm{width:500px!important;max-width:100%}.qtip-card-security{width:560px!important;max-width:100%}.qtip-card-security .contentsign img{max-width:100%}.qtip-contentWrapper{-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;background-color:#f9fafb!important;padding:0!important;x-moz-box-shadow:1px 2px 3px 1px #b9b9b9;x-webkit-box-shadow:1px 2px 3px 1px #b9b9b9;xbox-shadow:1px 2px 3px 1px #b9b9b9;text-shadow:none;border:2px solid #ecf0f1;xfilter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#f7f7f7',GradientType=0);x-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";-webkit-transition:opacity .2s ease-out;-moz-transition:opacity .2s ease-out;-ms-transition:opacity .2s ease-out;-o-transition:opacity .2s ease-out;transition:opacity .2s ease-out}
+.qtip-button{background:url("/includes/theme/images/close.png") no-repeat;width:15px;height:15px;float:right;margin:3px 0 0 0;cursor:pointer}.qtip-content{padding:10px;color:#333;font-size:14px;padding:25px!important}.qtip-content a{text-decoration:underline}.qtip-wrapper{position:relative;overflow:hidden;text-align:left}.qtip-paypal{width:630px!important;max-width:100%}.qtip-paypal .qtip-footer{background-color:#f3f4f5;float:left;width:100%;text-align:right;padding:20px}.qtip-paypal .qtip-content{padding:0!important}.qtip-paypal .qtip-content .msg{padding:25px 25px 15px 25px;float:left;width:100%}.qtip-paypal .qtip-content .checkbox{padding:0 25px 0 50px;float:left;width:100%}.qtip-paypal .qtip-footer .btn-cancel{background-color:#c7c8c8;color:#fff;width:154px}.qtip-paypal .qtip-content .error-msg{padding:0 25px 0 25px;float:left;width:100%;color:Red;display:none}.qtip-paypal .qtip-footer{margin-top:25px}.qtip-paypal .qtip-footer .cancelLink{float:left;display:none}.qtip-paypal .qtip-footer .cancelLink a{text-decoration:underline;color:#f79159}.qtip-address{width:630px!important;max-width:100%}.qtip-address ul.list-addess{margin:10px 0 0 0;padding:0;list-style-type:none}.qtip-address ul.list-addess li{margin:0;padding:0;display:inline;float:left;width:50%}.qtip-address ul.list-addess li ul{margin:0 10px 0 10px;padding:10px;background-color:#dcdcdc;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;overflow:hidden}.qtip-address ul.list-addess li ul li{float:left;width:100%;margin:0;padding:4px 0 0 0}.qtip-address ul.list-addess li ul li a{color:#3b76ba;text-decoration:underline;padding-bottom:6px}.qtip-address .bottom-row{float:left;width:100%;margin:10px 0 0 0;padding:0;list-style-type:none}.qtip-address .bottom-row li{margin:0;padding:0 20px 0 0;display:inline}@media(max-width:991px){.qtip-error{width:400px!important}.qtip-msg{width:400px!important}}@media(max-width:650px){.qtip-address ul.list-addess li{display:block;float:left;width:100%;margin-top:10px}}@media(max-width:500px){.qtip-address .bottom-row li{display:block;padding-right:0;padding-top:12px}}@media(max-width:450px){.qtip-paypal .qtip-footer .cancelLink{display:inline;margin-top:10px}.qtip-paypal .qtip-footer .btn-cancel{display:none}}
+/*--qtip--*/
+/*--nyroModal--*/
+div#nyroModalFull {
+	font-size: 12px;
+	color: #777;
+}
+div#nyroModalFull div#nyroModalLoading {
+	border: 4px solid #777;
+	width: 150px;
+	height: 150px;
+	text-indent: -9999em;
+	background: #fff url(../images/ajaxLoader.gif) no-repeat;
+	background-position: center;
+}
+div#nyroModalFull div#nyroModalLoading.error {
+	border: 4px solid #f66;
+	line-height: 20px;
+	padding: 20px;
+	width: 300px;
+	height: 100px;
+	text-indent: 0;
+	background: #fff;
+}
+div#nyroModalFull div#nyroModalWrapper {
+	background: #fff;
+	border: 4px solid #777;
+}
+div#nyroModalFull div#nyroModalWrapper a#closeBut {
+	position: absolute;
+	display: block;
+	top: -30px;
+	right: -30px;
+	width: 30px;
+	height: 30px;
+	text-indent: -9999em;
+	background: url(../images/pop-up-closed.png) no-repeat;
+	outline: 0;
+}
+div#nyroModalFull div#nyroModalWrapper h1#nyroModalTitle {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: -22px;
+	left: 5px;
+	font-size: 12px;
+	color: #ddd;
+}
+div#nyroModalFull div#nyroModalWrapper div#nyroModalContent {
+	overflow: auto;
+}
+div#nyroModalFull div#nyroModalWrapper div.wrapper div#nyroModalContent {
+	padding: 5px;
+}
+div#nyroModalFull div#nyroModalWrapper div.wrapperImg div#nyroModalContent {
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+div#nyroModalFull div#nyroModalWrapper div.wrapperImg div#nyroModalContent img {
+	vertical-align: baseline;
+}
+div#nyroModalFull div#nyroModalWrapper div.wrapperImg div#nyroModalContent div {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: black;
+	padding: 10px;
+	margin: 10px;
+	border: 1px white dotted;
+	overflow: hidden;
+	opacity: 0.2;
+	filter: alpha(opacity=20);
+}
+div#nyroModalFull div#nyroModalWrapper div.wrapperImg div#nyroModalContent div:hover {
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	cursor: help;
+}
+div#nyroModalFull div#nyroModalWrapper a.nyroModalPrev, div#nyroModalFull div#nyroModalWrapper a.nyroModalNext {
+	z-index: 105;
+	outline: none;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 40%;
+	cursor: pointer;
+	text-indent: -9999em;
+	background: left 20% no-repeat;
+	background-image: url(data:image/gif;base64,AAAA); /* Trick IE6 */
+}
+div#nyroModalFull div#nyroModalWrapper div.wrapperSwf a.nyroModalPrev, div#nyroModalFull div#nyroModalWrapper div.wrapperSwf a.nyroModalNext, div#nyroModalFull div#nyroModalWrapper div.wrapper a.nyroModalPrev, div#nyroModalFull div#nyroModalWrapper div.wrapper a.nyroModalNext {
+	height: 60%;
+	width: 20%;
+}
+div#nyroModalFull div#nyroModalWrapper div#nyroModalContent a.nyroModalPrev {
+	left: 0;
+}
+div#nyroModalFull div#nyroModalWrapper div#nyroModalContent a.nyroModalPrev:hover {
+	background-image: url(../images/prev.gif);
+}
+div#nyroModalFull div#nyroModalWrapper div#nyroModalContent a.nyroModalNext {
+	right: 0;
+	background-position: right 20%;
+}
+div#nyroModalFull div#nyroModalWrapper div#nyroModalContent a.nyroModalNext:hover {
+	background-image: url(../images/next.gif);
+}
+#bodyVideo
+{
+    padding:10px !important;
+ }
+div#nyroModalFull *
+ {
+      -webkit-box-sizing: content-box !important;
+     -moz-box-sizing: content-box !important;
+          box-sizing: content-box !important;
+    }
+    
+/*--nyroModal--*/
+/*--zoom--*/
+/* This is the moving lens square underneath the mouse pointer. */
+.cloud-zoom-lens {
+	border: 1px solid #888;
+	margin: -1px;
+	/* Set this to minus the border thickness. */
+	background-color: #fff;
+	cursor: move;
+}
+
+/* This is for the title text. */
+.cloud-zoom-title {
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute !important;
+	background-color: #000;
+	color: #fff;
+	padding: 3px;
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+	font-size: 10px;
+	top: 0;
+}
+
+/* This is the zoom window. */
+.cloud-zoom-big {
+	border: 1px solid #CCC;
+	overflow: hidden;
+}
+
+/* This is the loading message. */
+.cloud-zoom-loading {
+	background: #eee;
+	color: #999;
+	left: 34%;
+	padding: 3px;
+	position: absolute;
+	top: 34%;
+	width: 200px;
+}
+.imgZoomTip
+{
+	position:absolute; 
+	left:0px; 
+	top:0px;
+	z-index:999; 
+	background-color:Transparent;
+}
+#zoom-wrap
+{
+    top: 0px; 
+    z-index: 9;
+     position: relative;
+ }
+/*--zoom--*/

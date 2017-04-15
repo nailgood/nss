@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{98B6090B-4267-4FE2-A79C-6B1046132775}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>Common</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Common.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Common.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.0.30714, Culture=neutral, PublicKeyToken=b32731d11ce58905">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\NailSuperStore_VB\Common\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Configuration.Design, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\NailSuperStore_VB\Common\bin\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\NailSuperStore_VB\Common\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\NailSuperStore_VB\Common\bin\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="paypal_base, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b37401294aaf5617">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\paypal_base.dll</HintPath>
+    </Reference>
+    <Reference Include="SgmlReaderDll, Version=1.7.3614.29444, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\SgmlReaderDll.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions.Design, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.Extensions.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActiveDirectory.vb" />
+    <Compile Include="BaseShoppingCart.vb" />
+    <Compile Include="CacheUtils.vb" />
+    <Compile Include="CloneObject.vb" />
+    <Compile Include="Common.vb" />
+    <Compile Include="ConfigData.vb" />
+    <Compile Include="ConfigFile.vb" />
+    <Compile Include="Controls\CheckBoxList.vb" />
+    <Compile Include="Controls\CheckBoxListEx.vb" />
+    <Compile Include="Controls\ConfirmButton.vb" />
+    <Compile Include="Controls\ConfirmLink.vb" />
+    <Compile Include="Controls\DatePicker.vb" />
+    <Compile Include="Controls\DropDownList.vb" />
+    <Compile Include="Controls\DropDownListEx.vb" />
+    <Compile Include="Controls\ExpDate.vb" />
+    <Compile Include="Controls\FileUpload.vb" />
+    <Compile Include="Controls\GridView.vb" />
+    <Compile Include="Controls\Navigator.vb" />
+    <Compile Include="Controls\OneClickButton.vb" />
+    <Compile Include="Controls\Phone.vb" />
+    <Compile Include="Controls\RadioButtonEx.vb" />
+    <Compile Include="Controls\TimePicker.vb" />
+    <Compile Include="Controls\Validators.vb" />
+    <Compile Include="Controls\Zip.vb" />
+    <Compile Include="CookieUtil.vb" />
+    <Compile Include="Core\BaseControl.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Core\BasePage.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Core\Core.vb" />
+    <Compile Include="Core\Database.vb" />
+    <Compile Include="Core\Email.vb" />
+    <Compile Include="Core\ErrorHandler.vb" />
+    <Compile Include="Core\FilterFields.vb" />
+    <Compile Include="Core\Param.vb" />
+    <Compile Include="Core\URLParameters.vb" />
+    <Compile Include="Core\XTemplate.vb" />
+    <Compile Include="CryptoUtil.vb" />
+    <Compile Include="DataLayer\Admin.vb" />
+    <Compile Include="DataLayer\AdminAccess.vb" />
+    <Compile Include="DataLayer\AdminAdminGroup.vb" />
+    <Compile Include="DataLayer\AdminGroup.vb" />
+    <Compile Include="DataLayer\AdminIdentity.vb" />
+    <Compile Include="DataLayer\AdminIPAccess.vb" />
+    <Compile Include="DataLayer\AdminLog.vb" />
+    <Compile Include="DataLayer\AdminLogDetail.vb" />
+    <Compile Include="DataLayer\AdminMenu.vb" />
+    <Compile Include="DataLayer\AdminPrincipal.vb" />
+    <Compile Include="DataLayer\AdminSection.vb" />
+    <Compile Include="DataLayer\Album.vb" />
+    <Compile Include="DataLayer\Article.vb" />
+    <Compile Include="DataLayer\Audio.vb" />
+    <Compile Include="DataLayer\AutoRespone.vb" />
+    <Compile Include="DataLayer\Banner.vb" />
+    <Compile Include="DataLayer\CardType.vb" />
+    <Compile Include="DataLayer\CashPoint.vb" />
+    <Compile Include="DataLayer\Category.vb" />
+    <Compile Include="DataLayer\Classified.vb" />
+    <Compile Include="DataLayer\ClassifiedCategory.vb" />
+    <Compile Include="DataLayer\ContactSkype.vb" />
+    <Compile Include="DataLayer\ContactUs.vb" />
+    <Compile Include="DataLayer\ContactUsSubject.vb" />
+    <Compile Include="DataLayer\ContactUsSubjectDetail.vb" />
+    <Compile Include="DataLayer\ContactUsSubjectEmail.vb" />
+    <Compile Include="DataLayer\ContentToolControl.vb" />
+    <Compile Include="DataLayer\ContentToolNavigation.vb" />
+    <Compile Include="DataLayer\ContentToolPage.vb" />
+    <Compile Include="DataLayer\ContentToolPageRegionControl.vb" />
+    <Compile Include="DataLayer\KeywordFilter.vb" />
+    <Compile Include="DataLayer\SaveCart.vb" />
+    <Compile Include="DataLayer\CssPage.vb" />
+    <Compile Include="DataLayer\Policy.vb" />
+    <Compile Include="DataLayer\DealDay.vb" />
+    <Compile Include="DataLayer\DepartmentOld.vb" />
+    <Compile Include="DataLayer\DepartmentSlideEffect.vb" />
+    <Compile Include="DataLayer\Document.vb" />
+    <Compile Include="DataLayer\Ebay_ItemSell.vb" />
+    <Compile Include="DataLayer\ExportCustomerLog.vb" />
+    <Compile Include="DataLayer\ExportLog.vb" />
+    <Compile Include="DataLayer\FacebookPage.vb" />
+    <Compile Include="DataLayer\FeeShippingState.vb" />
+    <Compile Include="DataLayer\FreeGiftLevel.vb" />
+    <Compile Include="DataLayer\Image.vb" />
+    <Compile Include="DataLayer\InforBanner.vb" />
+    <Compile Include="DataLayer\ItemRelatedVideo.vb" />
+    <Compile Include="DataLayer\Keyword.vb" />
+    <Compile Include="DataLayer\KeywordAction.vb" />
+    <Compile Include="DataLayer\KeywordIgnore.vb" />
+    <Compile Include="DataLayer\KeywordIPExclude.vb" />
+    <Compile Include="DataLayer\KeywordItem.vb" />
+    <Compile Include="DataLayer\KeywordRedirect.vb" />
+    <Compile Include="DataLayer\KeywordSearch.vb" />
+    <Compile Include="DataLayer\KeywordSynonym.vb" />
+    <Compile Include="DataLayer\LandingPage.vb" />
+    <Compile Include="DataLayer\LevelPoint.vb" />
+    <Compile Include="DataLayer\LikeReview.vb" />
+    <Compile Include="DataLayer\MemberRefer.vb" />
+    <Compile Include="DataLayer\MemberSubmission.vb" />
+    <Compile Include="DataLayer\MemberSubmissionFile.vb" />
+    <Compile Include="DataLayer\Menu.vb" />
+    <Compile Include="DataLayer\News.vb" />
+    <Compile Include="DataLayer\NewsAudio.vb" />
+    <Compile Include="DataLayer\NewsDocument.vb" />
+    <Compile Include="DataLayer\NewsFeed.vb" />
+    <Compile Include="DataLayer\NewsImage.vb" />
+    <Compile Include="DataLayer\PolicyItem.vb" />
+    <Compile Include="DataLayer\RelatedArticle.vb" />
+    <Compile Include="DataLayer\ReplyReview.vb" />
+    <Compile Include="DataLayer\Review.vb" />
+    <Compile Include="DataLayer\ScriptPage.vb" />
+    <Compile Include="DataLayer\SessionPage.vb" />
+    <Compile Include="DataLayer\ShippingFedEx.vb" />
+    <Compile Include="DataLayer\ShippingFedExFee.vb" />
+    <Compile Include="DataLayer\ShopDesign.vb" />
+    <Compile Include="DataLayer\ShopDesignItem.vb" />
+    <Compile Include="DataLayer\ShopDesignMedia.vb" />
+    <Compile Include="DataLayer\ShopSaveItem.vb" />
+    <Compile Include="DataLayer\DepartmentTabItem.vb" />
+    <Compile Include="DataLayer\DepartmentTab.vb" />
+    <Compile Include="DataLayer\Country.vb" />
+    <Compile Include="DataLayer\Coupon.vb" />
+    <Compile Include="DataLayer\Customer.vb" />
+    <Compile Include="DataLayer\CustomerComment.vb" />
+    <Compile Include="DataLayer\CustomerContact.vb" />
+    <Compile Include="DataLayer\CustomerNoGen.vb" />
+    <Compile Include="DataLayer\CustomerPostingGroup.vb" />
+    <Compile Include="DataLayer\CustomerPriceGroup.vb" />
+    <Compile Include="DataLayer\CustomerShipTo.vb" />
+    <Compile Include="DataLayer\DeliverySetting.vb" />
+    <Compile Include="DataLayer\Discount.vb" />
+    <Compile Include="DataLayer\EmailLanguage.vb" />
+    <Compile Include="DataLayer\EmailTemplet.vb" />
+    <Compile Include="DataLayer\Employer.vb" />
+    <Compile Include="DataLayer\Faq.vb" />
+    <Compile Include="DataLayer\FaqCategory.vb" />
+    <Compile Include="DataLayer\FaqReply.vb" />
+    <Compile Include="DataLayer\FreeGift.vb" />
+    <Compile Include="DataLayer\Homepage.vb" />
+    <Compile Include="DataLayer\ImExLog.vb" />
+    <Compile Include="DataLayer\InventoryInfo.vb" />
+    <Compile Include="DataLayer\InventoryMessage.vb" />
+    <Compile Include="DataLayer\ItemFeature.vb" />
+    <Compile Include="DataLayer\Job.vb" />
+    <Compile Include="DataLayer\JobCategory.vb" />
+    <Compile Include="DataLayer\Location.vb" />
+    <Compile Include="DataLayer\LookupItem.vb" />
+    <Compile Include="DataLayer\Lyris.vb" />
+    <Compile Include="DataLayer\MailingGroup.vb" />
+    <Compile Include="DataLayer\MailingHelper.vb" />
+    <Compile Include="DataLayer\MailingList.vb" />
+    <Compile Include="DataLayer\MailingLyrisLookupCompletionStatus.vb" />
+    <Compile Include="DataLayer\MailingMember.vb" />
+    <Compile Include="DataLayer\MailingMessage.vb" />
+    <Compile Include="DataLayer\MailingMessageSlot.vb" />
+    <Compile Include="DataLayer\MailingTemplate.vb" />
+    <Compile Include="DataLayer\MailingTemplateSlot.vb" />
+    <Compile Include="DataLayer\Member.vb" />
+    <Compile Include="DataLayer\MemberAddress.vb" />
+    <Compile Include="DataLayer\MemberReminderRow.vb" />
+    <Compile Include="DataLayer\MemberResume.vb" />
+    <Compile Include="DataLayer\MemberSlidingScaleRow.vb" />
+    <Compile Include="DataLayer\MemberType.vb" />
+    <Compile Include="DataLayer\MemberWishlistItem.vb" />
+    <Compile Include="DataLayer\MixMatch.vb" />
+    <Compile Include="DataLayer\MixMatchLine.vb" />
+    <Compile Include="DataLayer\NavisionAddress.vb" />
+    <Compile Include="DataLayer\NavisionCodes.vb" />
+    <Compile Include="DataLayer\NavisionCustomer.vb" />
+    <Compile Include="DataLayer\NavisionCustomerCommentsRow.vb" />
+    <Compile Include="DataLayer\NavisionCustomerContactsRow.vb" />
+    <Compile Include="DataLayer\NavisionCustomerPriceGroup.vb" />
+    <Compile Include="DataLayer\NavisionCustomerShipTo.vb" />
+    <Compile Include="DataLayer\NavisionImport.vb" />
+    <Compile Include="DataLayer\NavisionItem.vb" />
+    <Compile Include="DataLayer\NavisionItemCategory.vb" />
+    <Compile Include="DataLayer\NavisionItemDiscountGroup.vb" />
+    <Compile Include="DataLayer\NavisionMixMatch.vb" />
+    <Compile Include="DataLayer\NavisionMixMatchLines.vb" />
+    <Compile Include="DataLayer\NavisionOrderComments.vb" />
+    <Compile Include="DataLayer\NavisionOrderLines.vb" />
+    <Compile Include="DataLayer\NavisionOrders.vb" />
+    <Compile Include="DataLayer\NavisionOrderShipmentLines.vb" />
+    <Compile Include="DataLayer\NavisionOrderShipments.vb" />
+    <Compile Include="DataLayer\NavisionSalesCreditMemoHeader.vb" />
+    <Compile Include="DataLayer\NavisionSalesCreditMemoLine.vb" />
+    <Compile Include="DataLayer\NavisionSalesLineDiscount.vb" />
+    <Compile Include="DataLayer\NavisionSalesPrice.vb" />
+    <Compile Include="DataLayer\NavisionSalesShipmentTrackingNo.vb" />
+    <Compile Include="DataLayer\NavisionShippingRates.vb" />
+    <Compile Include="DataLayer\Occasion.vb" />
+    <Compile Include="DataLayer\PostJobApplication.vb" />
+    <Compile Include="DataLayer\PriceMatch.vb" />
+    <Compile Include="DataLayer\PriceMatchItem.vb" />
+    <Compile Include="DataLayer\PriceRange.vb" />
+    <Compile Include="DataLayer\Promotion.vb" />
+    <Compile Include="DataLayer\PromotionSalesprice.vb" />
+    <Compile Include="DataLayer\Referral.vb" />
+    <Compile Include="DataLayer\ReferralClick.vb" />
+    <Compile Include="DataLayer\Registry.vb" />
+    <Compile Include="DataLayer\RegistryAddress.vb" />
+    <Compile Include="DataLayer\RegistryItem.vb" />
+    <Compile Include="DataLayer\RequestCallBackLanguage.vb" />
+    <Compile Include="DataLayer\SalesCategory.vb" />
+    <Compile Include="DataLayer\SalesCategoryItem.vb" />
+    <Compile Include="DataLayer\SalesCreditMemoHeader.vb" />
+    <Compile Include="DataLayer\SalesCreditMemoLine.vb" />
+    <Compile Include="DataLayer\SalesLineDiscount.vb" />
+    <Compile Include="DataLayer\SalesPrice.vb" />
+    <Compile Include="DataLayer\ShipmentMethod.vb" />
+    <Compile Include="DataLayer\ShippingRange.vb" />
+    <Compile Include="DataLayer\ShippingRangeInt.vb" />
+    <Compile Include="DataLayer\ShippingRegion.vb" />
+    <Compile Include="DataLayer\ShopSave.vb" />
+    <Compile Include="DataLayer\Song.vb" />
+    <Compile Include="DataLayer\SplashPage.vb" />
+    <Compile Include="DataLayer\State.vb" />
+    <Compile Include="DataLayer\StoreAttribute.vb" />
+    <Compile Include="DataLayer\StoreBaseColor.vb" />
+    <Compile Include="DataLayer\StoreBrand.vb" />
+    <Compile Include="DataLayer\StoreCartItem.vb" />
+    <Compile Include="DataLayer\StoreCatalog.vb" />
+    <Compile Include="DataLayer\StoreCatalogRequest.vb" />
+    <Compile Include="DataLayer\StoreCollection.vb" />
+    <Compile Include="DataLayer\StoreCusionColor.vb" />
+    <Compile Include="DataLayer\StoreDepartment.vb" />
+    <Compile Include="DataLayer\StoreDepartmentReview.vb" />
+    <Compile Include="DataLayer\StoreFeature.vb" />
+    <Compile Include="DataLayer\StoreItem.vb" />
+    <Compile Include="DataLayer\StoreItemCategory.vb" />
+    <Compile Include="DataLayer\StoreItemDiscountGroup.vb" />
+    <Compile Include="DataLayer\StoreItemEnable.vb" />
+    <Compile Include="DataLayer\StoreItemFeatureFilter.vb" />
+    <Compile Include="DataLayer\StoreItemGroup.vb" />
+    <Compile Include="DataLayer\StoreItemGroupChoice.vb" />
+    <Compile Include="DataLayer\StoreItemGroupOption.vb" />
+    <Compile Include="DataLayer\StoreItemImage.vb" />
+    <Compile Include="DataLayer\StoreItemInspired.vb" />
+    <Compile Include="DataLayer\StoreItemReview.vb" />
+    <Compile Include="DataLayer\StoreItemSpecialHandlingFee.vb" />
+    <Compile Include="DataLayer\StoreItemStatus.vb" />
+    <Compile Include="DataLayer\StoreItemVideo.vb" />
+    <Compile Include="DataLayer\StoreLaminateTrim.vb" />
+    <Compile Include="DataLayer\StoreMember.vb" />
+    <Compile Include="DataLayer\StoreMemberAddressBook.vb" />
+    <Compile Include="DataLayer\StoreMemberPaymentInfo.vb" />
+    <Compile Include="DataLayer\StoreOrder.vb" />
+    <Compile Include="DataLayer\StoreOrderComment.vb" />
+    <Compile Include="DataLayer\StoreOrderLog.vb" />
+    <Compile Include="DataLayer\StoreOrderPayflow.vb" />
+    <Compile Include="DataLayer\StoreOrderRecipient.vb" />
+    <Compile Include="DataLayer\StoreOrderReview.vb" />
+    <Compile Include="DataLayer\StoreOrderShipment.vb" />
+    <Compile Include="DataLayer\StoreOrderShipmentLine.vb" />
+    <Compile Include="DataLayer\StoreOrderShipmentTracking.vb" />
+    <Compile Include="DataLayer\StoreOrderShipping.vb" />
+    <Compile Include="DataLayer\StorePromotion.vb" />
+    <Compile Include="DataLayer\StorePromotionItem.vb" />
+    <Compile Include="DataLayer\StoreShade.vb" />
+    <Compile Include="DataLayer\StoreTone.vb" />
+    <Compile Include="DataLayer\Survey.vb" />
+    <Compile Include="DataLayer\SurveyAnswer.vb" />
+    <Compile Include="DataLayer\SurveyQuestion.vb" />
+    <Compile Include="DataLayer\SurveyResult.vb" />
+    <Compile Include="DataLayer\SurveyResultDetail.vb" />
+    <Compile Include="DataLayer\Sweepstake.vb" />
+    <Compile Include="DataLayer\SysParam.vb" />
+    <Compile Include="DataLayer\Theme.vb" />
+    <Compile Include="DataLayer\Tip.vb" />
+    <Compile Include="DataLayer\TipCategory.vb" />
+    <Compile Include="DataLayer\TrackingInfo.vb" />
+    <Compile Include="DataLayer\Video.vb" />
+    <Compile Include="DataLayer\VideoRelated.vb" />
+    <Compile Include="DataLayer\ViewedItem.vb" />
+    <Compile Include="DataLayer\WishListEmailTemplate.vb" />
+    <Compile Include="DataLayer\ZipCode.vb" />
+    <Compile Include="Fedex.vb" />
+    <Compile Include="File.vb" />
+    <Compile Include="LanguageCode.vb" />
+    <Compile Include="MasterPages\ContentRegion.vb" />
+    <Compile Include="MasterPages\ErrorMessage.vb" />
+    <Compile Include="MasterPages\IModule.vb" />
+    <Compile Include="MasterPages\ModuleControl.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\NavigationRegion.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RegExUrlMapping\RegExUrlMappingBaseModule.vb" />
+    <Compile Include="RegExUrlMapping\RegExUrlMappingConfigHandler.vb" />
+    <Compile Include="RegExUrlMapping\RegExUrlMappingModule.vb" />
+    <Compile Include="Settings.vb" />
+    <Compile Include="UPS.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="bin\AV_Check.tlb" />
+    <None Include="bin\Debug\AjaxControlToolkit.dll.refresh" />
+    <None Include="bin\Debug\FredCK.FCKeditorV2.dll.refresh" />
+    <None Include="bin\Debug\log4net.dll.refresh" />
+    <None Include="bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll.refresh" />
+    <None Include="bin\Debug\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.dll.refresh" />
+    <None Include="bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll.refresh" />
+    <None Include="bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll.refresh" />
+    <None Include="bin\Debug\PayPalHandler.dll.refresh" />
+    <None Include="bin\Debug\paypal_base.dll.refresh" />
+    <None Include="bin\Debug\sdk-seller.pem" />
+    <None Include="bin\Debug\ThunderMain.URLRewriter.dll.refresh" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\log4net.dll" />
+    <Content Include="bin\paypal_base.dll" />
+    <Content Include="bin\System.Web.Extensions.Design.dll" />
+    <Content Include="bin\System.Web.Extensions.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CryptData\CryptData.vbproj">
+      <Project>{0B83DB41-0AD5-4AA9-A111-F54062869CF1}</Project>
+      <Name>CryptData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShippingValidator\ShippingValidator.vbproj">
+      <Project>{0CFB5BBC-6FC1-4D54-B89A-BA257CAADF05}</Project>
+      <Name>ShippingValidator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

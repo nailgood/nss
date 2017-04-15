@@ -1,0 +1,257 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/includes/masterpage/checkout.master" AutoEventWireup="false" CodeFile="reward-point.aspx.vb" Inherits="Store_RewardPoint" %>
+
+<%@ Register Src="~/controls/checkout/tab.ascx" TagName="tab" TagPrefix="uc1" %>
+<%@ Register Src="~/controls/product/product-list.ascx" TagName="product" TagPrefix="uc2" %>
+<%@ Register Src="~/controls/checkout/buy-point.ascx" TagName="buy" TagPrefix="uc3" %>
+<%@ Register Src="~/controls/checkout/reward-point-summary.ascx" TagName="reward" TagPrefix="uc4" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="cphContent" runat="Server">
+    <uc1:tab ID="tab1" runat="server" />
+    <div class="list-item-point">
+        <h4>
+            * Products bought with reward points cannot be combined with any other promotion
+        </h4>
+        <%--<uc2:product ID="ucProduct" runat="server" />--%>
+        <asp:PlaceHolder ID="phListItem" runat="server"></asp:PlaceHolder>
+    </div>
+    <script type="text/javascript">
+        var methodHandlers = {};
+        methodHandlers.AddCartRewardPointCallBack = function (htmlReturn, maxqty, itemId, cartItemId, linkredirect,cartItemCount) {
+            if (linkredirect != '') {
+                window.location.href = linkredirect;
+                return;
+            }
+            var htmlPointSummary = '';
+            var htmlError = '';
+            if (htmlReturn != null) {
+                if (htmlReturn.length > 0) {
+                    htmlError = htmlReturn[0];
+                    htmlPointSummary = htmlReturn[1];
+                }
+            }
+            if (htmlError != '') {
+                ShowError(htmlError);
+                maxqty = parseInt(maxqty);
+                if (maxqty > 0) {
+                    if (document.getElementById('txtQtyItem' + itemId)) {
+                        $('#txtQtyItem' + itemId).val(maxqty);
+                    }
+                }
+                return;
+            }
+            if (document.getElementById('secPointSummary')) {
+                $('#secPointSummary').replaceWith(htmlPointSummary);
+            }
+            if (document.getElementById('divCartWrapper' + itemId)) {
+                $('#divCartWrapper' + itemId).css('display', 'none');
+                document.getElementById("lblInCart" + itemId).innerHTML = 'Added to your cart';
+                $("#lblInCart" + itemId).css("padding-top", "0px");
+            }
+            if (document.getElementById('divRemoveCart' + itemId)) {
+                $("#divRemoveCart" + itemId).html('<a href="javascript:void(0)" onclick=RemoveCartItemRewardPoint(' + cartItemId + ',' + itemId + ')>Remove</a>');
+                $('#divRemoveCart' + itemId).css('display', '');
+            }
+            ResetHeaderCartItemcount(cartItemCount);
+        }
+        function GetQty(id) {
+            try {
+                return document.getElementById("txtQtyItem" + id).value;
+            }
+            catch (err) {
+                return 0;
+            }
+        }
+        function RemoveCartItemRewardPoint(cartItemId, itemid) {
+
+            mainScreen.ExecuteCommand('RemoveCartItemRewardPoint', 'methodHandlers.RemoveCartItemRewardPointCallBack', [cartItemId, itemid]);
+        }
+        methodHandlers.RemoveCartItemRewardPointCallBack = function (htmlReturn, itemid, linkredirect, cartCount) {
+            if (linkredirect != '') {
+                window.location.href = linkredirect;
+                return;
+            }
+            var htmlPointSummary = '';
+            var htmlError = '';
+            if (htmlReturn != null) {
+                if (htmlReturn.length > 0) {
+                    htmlError = htmlReturn[0];
+                    htmlPointSummary = htmlReturn[1];
+                }
+            }
+            if (htmlError != '') {
+                ShowError(htmlError);
+                return;
+            }
+            if (document.getElementById('secPointSummary')) {
+                $('#secPointSummary').replaceWith(htmlPointSummary);
+            }
+            if (document.getElementById('divCartWrapper' + itemid)) {
+                $('#divCartWrapper' + itemid).css('display', '');
+                document.getElementById("lblInCart" + itemid).innerHTML = '';
+                $('#txtQtyItem' + itemid).val('1');
+            }
+            if (document.getElementById('divRemoveCart' + itemid)) {
+
+                $('#divRemoveCart' + itemid).css('display', 'none');
+            }
+            ResetHeaderCartItemcount(cartCount);
+            
+        }
+        function BuyPoint() {
+
+            if (document.getElementById('drpPoint').value == '') {
+                ShowError('Please select one item');
+                return;
+            }
+            var itemId = document.getElementById('drpPoint').value;
+            itemId = parseInt(itemId);
+            mainScreen.ExecuteCommand('BuyItemPoint', 'methodHandlers.BuyItemPointCallBack', [itemId]);
+        }
+
+        methodHandlers.BuyItemPointCallBack = function (htmlReturn, itemid, linkredirect, lstItemPointDelete, cartCount) {
+            if (linkredirect != '') {
+                window.location.href = linkredirect;
+                return;
+            }
+            var htmlPointSummary = '';
+            var htmlError = '';
+            if (htmlReturn != null) {
+                if (htmlReturn.length > 0) {
+                    htmlError = htmlReturn[0];
+                    htmlPointSummary = htmlReturn[1];
+                }
+            }
+            if (htmlError != '') {
+                ShowError(htmlError);
+                return;
+            }
+            if (document.getElementById('secPointSummary')) {
+                $('#secPointSummary').replaceWith(htmlPointSummary);
+            }
+            ResetHeaderCartItemcount(cartCount);
+            document.getElementById('drpPoint').value = itemid;
+            if (lstItemPointDelete != '') {
+                var arr = new Array();
+                arr = lstItemPointDelete.split(',');
+                if (arr.length > 0) {
+                    var itemPointId = '';
+                    for (var i = 0; i < arr.length; i++) {
+                        itemPointId = arr[i].toString();
+                        if (itemPointId != '') {
+                            if (document.getElementById('divCartWrapper' + itemPointId)) {
+                                $('#divCartWrapper' + itemPointId).css('display', '');
+                                document.getElementById("lblInCart" + itemPointId).innerHTML = '';
+                                $('#txtQtyItem' + itemPointId).val('1');
+                            }
+                            if (document.getElementById('divRemoveCart' + itemPointId)) {
+
+                                $('#divRemoveCart' + itemPointId).css('display', 'none');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        function GoFreeSample() {
+            mainScreen.ExecuteCommand('GoFreeSamplePage', 'methodHandlers.GoFreeSamplePageCallBack', []);
+        }
+        methodHandlers.GoFreeSamplePageCallBack = function (htmlReturn, linkredirect) {
+
+            if (linkredirect != '') {
+                window.location.href = linkredirect;
+                return;
+            }
+            var htmlError = '';
+            if (htmlReturn != null) {
+                if (htmlReturn.length > 0) {
+                    htmlError = htmlReturn[0];
+                }
+            }
+            if (htmlError != '') {
+                ShowError(htmlError);
+                return;
+            }
+        }        
+
+        $(document).ready(function () {
+            $("#line-fix").height($("#list-item").height());
+        });
+
+		function OnRemoveBuyPointOrder() {
+            var url = window.location.href;
+            mainScreen.ExecuteCommand('RemoveBuyPointItem', 'methodHandlers.RemoveBuyPointItemCallBack', [url]);
+        }
+        methodHandlers.RemoveBuyPointItemCallBack = function (html, cartItemCount, linkredirect, currentPage, lstItemPointDelete) {
+
+            if (linkredirect != '') {
+                window.location.href = linkredirect;
+                return;
+            }
+            var htmlCart = '';
+            var htmlSumaryBox = '';
+            var htmlFreeGift = '';
+            var htmlError = '';
+            var htmlPointSummary = '';
+            if (html) {
+                htmlCart = html[0];
+                htmlSumaryBox = html[1];
+                htmlFreeGift = html[2];
+                htmlPointSummary = html[3];
+                htmlError = html[4];
+            }
+            if (htmlError != '') {
+                ShowError(htmlError);
+                return;
+            }
+            if (currentPage.indexOf('store/reward-point.aspx') > 0) {
+
+                if (document.getElementById('secPointSummary')) {
+                    $('#secPointSummary').replaceWith(htmlPointSummary);
+                }
+                document.getElementById('drpPoint').value = '';
+                if (lstItemPointDelete != '') {
+                    var arr = new Array();
+                    arr = lstItemPointDelete.split(',');
+                    if (arr.length > 0) {
+                        var itemPointId = '';
+                        for (var i = 0; i < arr.length; i++) {
+                            itemPointId = arr[i].toString();
+                            if (itemPointId != '') {
+                                if (document.getElementById('divCartWrapper' + itemPointId)) {
+                                    $('#divCartWrapper' + itemPointId).css('display', '');
+                                    document.getElementById("lblInCart" + itemPointId).innerHTML = '';
+                                    $('#txtQtyItem' + itemPointId).val('1');
+                                }
+                                if (document.getElementById('divRemoveCart' + itemPointId)) {
+
+                                    $('#divRemoveCart' + itemPointId).css('display', 'none');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                if (document.getElementById('secFreeGift')) {
+                    $('#secFreeGift').replaceWith(htmlFreeGift);
+                }
+                if (document.getElementById('secCartList')) {
+                    $('#secCartList').replaceWith(htmlCart);
+                }
+                if (document.getElementById('secOrderSummary')) {
+                    $('#secOrderSummary').replaceWith(htmlSumaryBox);
+                }
+                if (document.getElementById('cart-count')) {
+                    document.getElementById("cart-count").innerHTML = cartItemCount;
+                    $(".xs-cart-count").text(cartItemCount);
+                }
+                ResetEstimateShippingDefault();
+            }
+
+            ResetHeaderCartItemcount(cartItemCount);
+
+        }
+    </script>
+    <asp:Button ID="btnCheckOutRewardPoint" ClientIDMode="Static" CssClass="hiddenButton"
+        runat="server" Text="Check Out" />
+</asp:Content>

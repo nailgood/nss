@@ -1,0 +1,6 @@
+D:\Projects\NailsuperStore_Responsive\Twitter\bin\Debug\Twitter.dll
+D:\Projects\NailsuperStore_Responsive\Twitter\bin\Debug\Twitter.pdb
+D:\Projects\NailsuperStore_Responsive\Twitter\bin\Debug\Hammock.dll
+D:\Projects\NailsuperStore_Responsive\Twitter\bin\Debug\Hammock.Extras.dll
+D:\Projects\NailsuperStore_Responsive\Twitter\obj\Debug\Twitter.dll
+D:\Projects\NailsuperStore_Responsive\Twitter\obj\Debug\Twitter.pdb

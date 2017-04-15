@@ -1,0 +1,10 @@
+﻿{0} replied on your comments.
+Hi {0},
+
+You have just received a reply for your comment.
+
+<a href="{1}">Click here to view</a>
+
+<b>Reply:</b> {2}
+
+Thank you. 

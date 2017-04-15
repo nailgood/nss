@@ -1,0 +1,34 @@
+﻿#pager
+{
+	clear:both;
+	float:right;	
+	padding:10px 0;
+	margin:5px 0 10px;
+}
+#pager .pageindexText,#pager #lbtnPrevPostBack,#pager #lbtnNextPostBack,.viewallss a
+{
+	background-color:#ccc;
+	padding:7px 15px;
+	color:#fff;
+}
+#pager #lbtnPrevPostBack
+{
+	border-radius:3px 0 0 3px;
+	border-right:3px solid #fff;
+}
+#pager #lbtnNextPostBack
+{
+	border-radius:0 3px 3px 0;
+	border-left:3px solid #fff;
+}
+#pager .pageindexTextActive,#pager a:hover,#pager a#lbtnPrevPostBack:hover ,#pager a#lbtnNextPostBack:hover
+{
+	background-color:#f79159;
+	padding:7px 15px;
+	color:#fff; 
+}
+#pager a:hover{ text-decoration:none;}
+#pager .totalpages
+{
+    padding:0px 10px 0px 10px;
+ }

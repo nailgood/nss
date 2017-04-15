@@ -1,0 +1,493 @@
+Imports Components
+Imports Controls
+Imports System.Data
+Imports DataLayer
+
+Partial Class admin_store_items_Index
+    Inherits AdminPage
+
+    Protected Overrides Sub OnInit(ByVal e As System.EventArgs)
+        MyBase.OnInit(e)
+
+    End Sub
+    Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        If Not IsPostBack Then
+            InitPager()
+            F_BrandId.DataSource = StoreBrandRow.GetAllStoreBrands(DB)
+            F_BrandId.DataValueField = "BrandId"
+            F_BrandId.DataTextField = "BrandName"
+            F_BrandId.DataBind()
+            F_BrandId.Items.Insert(0, New ListItem("-- ALL --", ""))
+
+            F_GroupName.DataSource = StoreItemGroupRow.GetAllItemGroups(DB)
+            F_GroupName.DataValueField = "ItemGroupId"
+            F_GroupName.DataTextField = "GroupName"
+            F_GroupName.DataBind()
+            F_GroupName.Items.Insert(0, New ListItem("-- ALL --", ""))
+            F_BrandId.SelectedValue = Request("F_BrandId")
+            F_ItemName.Text = Request("F_ItemName")
+            F_SKU.Text = Request("F_SKU")
+
+            Dim itemType As String = Request("F_ItemType")
+            If Not String.IsNullOrEmpty(itemType) Then
+                F_ItemType.Text = itemType
+            End If
+
+            F_IsActive.Text = Request("F_IsActive")
+            F_IsNew.SelectedValue = Request("F_IsNew")
+            F_DepartmentId.SelectedValue = Request("F_DepartmentId")
+            'F_IsEbay.SelectedValue = Request("F_IsEbay")
+            F_IsItemSelling.SelectedValue = Request("F_IsItemSelling")
+            F_HasSalesPrice.SelectedValue = Request("F_HasSalesPrice")
+            F_IsFreeSample.SelectedValue = Request("F_IsFreeSample")
+            F_IsRewardPoint.SelectedValue = Request("F_IsRewardPoint")
+            F_IsFreeShipping.SelectedValue = Request("F_IsFreeShipping")
+            F_IsFeatured.SelectedValue = Request("F_IsFeatured")
+            F_BestSeller.SelectedValue = Request("F_BestSeller")
+            F_HasSalesPrice.SelectedValue = Request("F_HasSalesPrice")
+            F_PromotionCode.SelectedValue = Request("F_PromotionCode")
+            F_IsFlammableInternational.SelectedValue = Request("F_IsFlammableInternational")
+            F_IsFlammableUS.SelectedValue = Request("F_IsFlammableUS")
+            F_IsHot.SelectedValue = Request("F_IsHot")
+            F_IsSpecialOrder.SelectedValue = Request("F_IsSpecialOrder")
+
+            gvList.SortBy = Core.ProtectParam(Request("F_SortBy"))
+            gvList.SortOrder = Core.ProtectParam(Request("F_SortOrder"))
+            If gvList.SortBy = String.Empty Then gvList.SortBy = "ItemId"
+
+            BindDepartmentsDropDown(DB, F_DepartmentId, 2, "-- ALL --")
+
+            'BindList()
+            btnSearch_Click(sender, e)
+        End If
+    End Sub
+    Public Sub SortList(ByVal F_SortField As String)
+        If (F_SortField = ViewState("F_SortBy")) Then
+            If ViewState("F_SortOrder") = "ASC" Then
+                ViewState("F_SortOrder") = "DESC"
+            Else
+                ViewState("F_SortOrder") = "ASC"
+            End If
+        Else
+            ViewState("F_SortBy") = F_SortField
+            ViewState("F_SortOrder") = "ASC"
+        End If
+        BindList()
+    End Sub
+
+    Private Sub BindQuery()
+        Dim SQL As String = " 1=1 "
+        If String.IsNullOrEmpty(ViewState("F_SortBy")) Then
+            ViewState("F_SortBy") = "si.ModifyDate"
+        End If
+        If String.IsNullOrEmpty(ViewState("F_SortOrder")) Then
+            ViewState("F_SortOrder") = "DESC"
+        End If
+        hidSortField.Value = ViewState("F_SortBy")
+        If Not F_BrandId.SelectedValue = String.Empty Then
+            SQL = SQL & " and si.brandid = " & DB.Quote(F_BrandId.SelectedValue)
+        End If
+        If Not F_ItemName.Text = String.Empty Then
+            SQL = SQL & " and ItemName LIKE " & DB.FilterQuote(F_ItemName.Text)
+        End If
+        If Not String.IsNullOrEmpty(F_ItemType.SelectedValue) Then
+            If F_ItemType.SelectedValue = "3" Then
+                SQL = SQL & " and (caseprice is not null and  isnull(caseqty, 0) > 0 ) "
+            End If
+        End If
+
+        'disable --------
+        'If Not F_ItemType.Text = String.Empty Then
+        '    If F_ItemType.Text = "0" Then
+        '        SQL = SQL & " and si.itemgroupid is null "
+        '    End If
+        'Else SQL = SQL & " and si.itemgroupid is not null "
+        'End If
+        If Not F_SKU.Text = String.Empty Then
+                SQL = SQL & "and SKU LIKE " & DB.FilterQuote(F_SKU.Text)
+            End If
+            If Not F_IsActive.SelectedValue = String.Empty Then
+            SQL = SQL & " and si.IsActive  = " & DB.Number(F_IsActive.SelectedValue)
+        End If
+        If F_IsRewardPoint.SelectedValue = "1" Then
+            SQL = SQL & " and si.IsRewardPoints  = 1"
+        ElseIf F_IsRewardPoint.SelectedValue = "0" Then
+            SQL = SQL & " and (si.IsRewardPoints  = 0 or si.IsRewardPoints is null)"
+        End If
+
+        If Not F_IsFeatured.SelectedValue = String.Empty Then
+            SQL = SQL & "and IsFeatured  = " & DB.Number(F_IsFeatured.SelectedValue)
+        End If
+        If Not F_IsNew.SelectedValue = String.Empty Then
+            SQL = SQL & " and IsNew = " & DB.Number(F_IsNew.SelectedValue)
+        End If
+        If Not DB.IsEmpty(F_DepartmentId.SelectedValue) Then
+            SQL = SQL & " and si.ItemId IN (SELECT ItemId FROM StoreDepartmentItem WHERE DepartmentId = " & DB.Quote(F_DepartmentId.SelectedValue) & ")"
+        End If
+        If Not F_GroupName.SelectedValue = String.Empty Then
+            SQL &= " and si.itemgroupid = " & DB.Number(F_GroupName.SelectedValue)
+        End If
+        If Not F_HasSalesPrice.SelectedValue = Nothing Then
+            SQL &= " and " & IIf(F_HasSalesPrice.SelectedValue = "0", "not ", "") & " exists(select top 1 itemid from salesprice sp where sp.itemid = si.itemid) "
+        End If
+        If Not F_IsFreeSample.SelectedValue = Nothing Then
+            SQL = SQL & " and IsFreeSample  = " & DB.Number(F_IsFreeSample.SelectedValue)
+        End If
+        If Not F_IsEbay.SelectedValue = String.Empty Then
+            If F_IsEbay.SelectedValue = "1" Then
+                SQL = SQL & " and (IsEbay = 1 or IsEbayAllow = 1)"
+            Else
+                SQL = SQL & " and IsEbay = 0 and IsEbayAllow = 0"
+            End If
+        End If
+        If F_IsItemSelling.SelectedValue = "1" Then
+            SQL = SQL & " and si.Sku in (Select Sku From Ebay_ItemSell Where NailIsEbay = 1) "
+        ElseIf F_IsItemSelling.SelectedValue = "0" Then
+            SQL = SQL & " and (IsEbayAllow = 1 or IsEbay = 1) and si.Sku not in (Select Sku From Ebay_ItemSell Where NailIsEbay = 1) "
+        End If
+        If F_IsFreeShipping.SelectedValue = "1" Then
+            SQL = SQL & " and si.IsFreeShipping  = " & DB.Number(F_IsFreeShipping.SelectedValue)
+        End If
+        If F_IsRewardPoint.SelectedValue = "1" Then
+            SQL = SQL & " and IsRewardPoints  = " & DB.Number(F_IsRewardPoint.SelectedValue)
+        End If
+        If F_IsFlammableUS.SelectedValue = "1" Then
+            SQL = SQL & " and IsHazMat  = " & DB.Number(F_IsFlammableUS.SelectedValue)
+        End If
+        If F_IsFlammableInternational.SelectedValue = "1" Then
+            SQL = SQL & " and IsFlammable  = " & DB.Number(F_IsFlammableInternational.SelectedValue)
+        ElseIf F_IsFlammableInternational.SelectedValue = "0" Then
+            SQL = SQL & " and (IsFlammable  = " & DB.Number(F_IsFlammableInternational.SelectedValue) & " or IsFlammable is NULL)"
+        End If
+        If F_IsAcceptingOrder_InStock.SelectedValue <> "0" Then
+            SQL = SQL & " and AcceptingOrder  = " & DB.Number(F_IsAcceptingOrder_InStock.SelectedValue)
+        End If
+        If F_BestSeller.SelectedValue = "1" Then
+            SQL = SQL & " and IsBestSeller = " & DB.Number(F_BestSeller.SelectedValue)
+        End If
+        If F_IsSpecialOrder.SelectedValue = "1" Then
+            SQL = SQL & " and IsSpecialOrder = " & DB.Number(F_IsSpecialOrder.SelectedValue)
+        End If
+        If F_IsHot.SelectedValue = "1" Then
+            SQL = SQL & " and IsHot = " & DB.Number(F_IsHot.SelectedValue)
+        End If
+        If Not F_PromotionCode.SelectedValue = String.Empty Then
+            ' If F_PromotionCode.SelectedValue = "1" Then
+            'SQL = SQL & " and PromotionCode is not null and sp.IsActive='1' and getdate() between coalesce(sp.startdate,getdate()) and coalesce(sp.enddate + 1,getdate() + 1) " ' & DB.Number(F_IsFeatured.SelectedValue)
+            SQL = SQL & IIf(F_PromotionCode.SelectedValue = "1", " and (si.PromotionId IS NOT NULL AND si.PromotionId <> 0)", " and (si.PromotionId IS NULL OR si.PromotionId = 0)")
+            ' Else
+            ' SQL = SQL & " and sp.IsActive is null or sp.IsActive='0' "
+            'End If
+        End If
+        hidCon.Value = SQL
+    End Sub
+
+    Private Sub BindList()
+        Dim total As Integer = 0
+        Dim selectRow As Integer = 36
+        Dim sic As StoreItemCollection = StoreItemRow.GetListAdmin(pagerTop.PageIndex, pagerTop.PageSize, hidCon.Value, ViewState("F_SortBy"), ViewState("F_SortOrder"), total)
+        gvList.DataSource = sic
+        gvList.DataBind()
+        pagerTop.SetPaging(selectRow, total)
+        pagerBottom.SetPaging(selectRow, total)
+    End Sub
+    Private Sub InitPager()
+        pagerTop.ShowTwoLine = False
+        pagerTop.PageSize = 36
+        pagerTop.PageIndex = 1
+        pagerTop.ShowViewAll = False
+        pagerTop.ShowPageSize = False
+
+        pagerBottom.ShowTwoLine = False
+        pagerBottom.PageSize = 36
+        pagerBottom.PageIndex = 1
+        pagerBottom.ShowViewAll = False
+        pagerBottom.ShowPageSize = False
+
+
+    End Sub
+    Private Sub AddNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddNew.Click
+        Response.Redirect("edit.aspx?" & GetPageParams(FilterFieldType.All))
+    End Sub
+
+    Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
+        'If Not IsValid Then Exit Sub
+        hidItemIds.Value = String.Empty
+        pagerTop.PageIndex = 1
+        pagerBottom.PageIndex = 1
+        BindQuery()
+        BindList()
+    End Sub
+    Private Sub btnSort_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSort.Click
+        SortList(hidSortField.Value)
+    End Sub
+    Private Sub btnEndEbay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEndEbay.Click
+        If (hidEndEbay.Value <> String.Empty) Then
+            Dim itemId As Integer
+            Dim status As String
+            status = hidEndEbay.Value.Substring(0, 1)
+            itemId = CInt(hidEndEbay.Value.Substring(2, hidEndEbay.Value.Length - 2))
+            StoreItemRow.SendEndEbayItem(DB, itemId, status)
+            Response.Redirect("default.aspx?" & GetPageParams(FilterFieldType.All))
+        End If
+    End Sub
+
+    Protected Sub chkIsActive_Checked(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Dim chk As CheckBox = CType(sender, CheckBox)
+
+        Dim itemnew As StoreItemRow = StoreItemRow.GetRow(DB, Convert.ToInt32(chk.ToolTip))
+        Dim itemold As StoreItemRow = CloneObject.Clone(itemnew)
+      
+        itemnew.CheckFreeSampleItem(itemnew, Utility.Common.AdminLogAction.DoActive.ToString())
+        itemnew.CheckFreeGiftItem(itemnew, Nothing, Utility.Common.AdminLogAction.DoActive.ToString())
+        StoreItemRow.DoActive(DB, chk.ToolTip)
+        Dim logMessage As String = String.Empty
+        Dim chkCheck As CheckBox = DirectCast(sender, CheckBox)
+        itemnew.IsActive = chkCheck.Checked
+        logMessage = ",ItemId:" & chk.ToolTip & ",IsActive:" & chkCheck.Checked & ","
+        WriteLogDetail("Update Item", logMessage)
+
+        Dim logDetail As New AdminLogDetailRow
+        logDetail.ObjectId = chk.ToolTip
+        logDetail.Action = Utility.Common.AdminLogAction.Update.ToString()
+        logDetail.ObjectType = Utility.Common.ObjectType.StoreItem.ToString()
+        logDetail.Message = AdminLogHelper.ConvertObjectUpdateToLogMesssageString(DB, Utility.Common.ObjectType.StoreItem, itemold, itemnew)
+        AdminLogHelper.WriteLuceneLogDetail(logDetail)
+    End Sub
+
+    Public Shared Sub BindDepartmentsDropDown(ByVal DB As Database, ByVal DepartmentId As DropDownList, ByVal Level As Integer, ByVal FirstField As String)
+        Dim SQL As String
+
+        If Level = Nothing Then
+            SQL = "SELECT * FROM StoreDepartment ORDER BY NAME ASC"
+        Else
+            SQL = " SELECT P1.DepartmentId, REPLICATE('- ', COUNT(P2.DepartmentId)-2) + p1.NAME AS NAME" _
+             & " FROM StoreDepartment P1, StoreDepartment P2" _
+             & " WHERE P1.lft BETWEEN P2.lft AND P2.rgt" _
+             & " GROUP BY P1.DepartmentId, P1.lft, p1.rgt, p1.NAME" _
+             & " HAVING COUNT(P2.DepartmentId) > 1 AND COUNT(P2.DepartmentId) <= " & DB.Quote((Level + 1).ToString) _
+             & " ORDER BY P1.lft"
+        End If
+
+        Dim ds As DataSet = DB.GetDataSet(SQL)
+        DepartmentId.DataSource = ds
+        DepartmentId.DataTextField = "NAME"
+        DepartmentId.DataValueField = "DepartmentId"
+        DepartmentId.DataBind()
+        If Not FirstField = "{BLANK}" Then DepartmentId.Items.Insert(0, New ListItem(FirstField, ""))
+    End Sub
+    Private Function EbayCount(ByVal id As String) As Integer
+        Dim data As DataTable = DB.GetDataTable("exec sp_EbayItemHistory " & id)
+        If data Is Nothing Then
+            Return 0
+        End If
+        Return data.Rows.Count
+
+    End Function
+    Private Sub gvList_ItemDataBound(ByVal sender As Object, ByVal e As GridViewRowEventArgs) Handles gvList.RowDataBound
+        If Not (e.Row.RowType = DataControlRowType.DataRow) Then
+            Exit Sub
+        End If
+        Dim si As StoreItemRow = e.Row.DataItem
+        'Dim litType As Literal = e.Row.FindControl("litType")
+        Dim img As Literal = CType(e.Row.FindControl("img"), Literal)
+        Dim imglink As Label = CType(e.Row.FindControl("imglink"), Label)
+        Dim noimg As Label = CType(e.Row.FindControl("noimg"), Label)
+
+        If Convert.ToString(si.Image) <> String.Empty Then
+            img.Text = "<img src=""/assets/items/cart/" & si.Image & """>"
+            imglink.Visible = True
+            noimg.Visible = False
+        Else
+            imglink.Visible = False
+            noimg.Visible = True
+        End If
+        ''IsNew,IsBestSeller, IsHot
+        Dim litNewHotBestSeller As Literal = e.Row.FindControl("litNewHotBestSeller")
+        Dim IsNew As Boolean = si.IsNew
+        Dim IsHot As Boolean = si.IsHot
+        Dim IsBestSeller As Boolean = si.IsBestSeller
+        If (IsNew) Then
+            litNewHotBestSeller.Text = "<img style='margin-right:5px;' alt='IsNew' src='/includes/theme-admin/images/new.gif' />"
+        End If
+        If (IsHot) Then
+            litNewHotBestSeller.Text = litNewHotBestSeller.Text & "<img style='margin-right:5px;' alt='IsHot' src='/includes/theme-admin/images/hot.gif' />"
+        End If
+        If (IsBestSeller) Then
+            litNewHotBestSeller.Text = litNewHotBestSeller.Text & "<img alt='IsBestSeller' src='/includes/theme-admin/images/bestseller.gif' />"
+        End If
+        ''IsFreeShipping, IsFreeSample
+        Dim litFreeShip_Sample As Literal = e.Row.FindControl("litFreeShip_Sample")
+        Dim IsFreeShipping As Boolean = si.IsFreeShipping
+        Dim IsFreeSample As Boolean = si.IsFreeSample
+        If (IsFreeShipping) Then
+            litFreeShip_Sample.Text = "<div style='margin-top:3px;'>Free Shipping<div>"
+        ElseIf (IsFreeSample) Then
+            litFreeShip_Sample.Text = "<div style='margin-top:3px;'>Free Sample<div>"
+        End If
+        ''Sale Price
+        Dim lnkSalePrice As HyperLink = CType(e.Row.FindControl("lnkSalePrice"), HyperLink)
+        Dim lnkCaseSalePrice As HyperLink = CType(e.Row.FindControl("lnkCaseSalePrice"), HyperLink)
+        If Not (lnkSalePrice Is Nothing) Then
+            lnkSalePrice.Text = si.CountSalePrice
+        End If
+        If Not (lnkCaseSalePrice Is Nothing) Then
+            lnkCaseSalePrice.Text = si.CountCaseSalePrice
+        End If
+        Dim litItemName As Literal = e.Row.FindControl("litItemName")
+        If Not litItemName Is Nothing Then
+            ''IsSellInEbay,IsEbay
+            Dim IsSellInEbay As Boolean = Convert.ToBoolean(si.IsSellItemInEbay)
+            Dim IsEbay As Boolean = False
+            Try
+                IsEbay = Convert.ToBoolean(si.IsEbay)
+            Catch ex As Exception
+            End Try
+            litItemName.Text = si.ItemName & "<br>"
+            If IsSellInEbay Then
+                litItemName.Text = litItemName.Text & "<a target='_blank' href='EbayHistory.aspx?id=" & si.ItemId & "&" & GetPageParams(Components.FilterFieldType.All) & "' style='border:none;'><img src='/includes/theme-admin/images/ebayLink.png' alt='' style='border:none;margin:0 5px;vertical-align:middle;'/></a>"
+            End If
+           
+            Dim IsSellInAmazon As Boolean = Convert.ToBoolean(si.IsSellInAmazon)
+            If (IsSellInAmazon) Then
+                litItemName.Text = litItemName.Text & "<a target='_blank' href='AmazonHistory.aspx?sku=" & si.SKU & "&" & GetPageParams(Components.FilterFieldType.All) & "' style='border:none;'><img src='/includes/theme-admin/images/amazonLink.png' alt='' style='border:none;margin:0 5px;vertical-align:middle;'/></a>"
+            End If
+            ''Is Accepting Order/In Stock
+            Dim AcceptingOrder_InStock As Integer = si.AcceptingOrder
+            If AcceptingOrder_InStock > 0 Then
+                litItemName.Text = litItemName.Text & "<span class='red'>"
+                If AcceptingOrder_InStock = "1" Then
+                    litItemName.Text = litItemName.Text & "Accepting Order"
+                Else
+                    litItemName.Text = litItemName.Text & "In Stock"
+                End If
+            End If
+            ''Flammable US, Flammable Int            
+            Dim IsFlammableUS As Boolean = False
+            Try
+                IsFlammableUS = Convert.ToBoolean(si.IsHazMat)
+            Catch ex As Exception
+            End Try
+            Dim IsFlammableInt As Boolean = False
+            Try
+                IsFlammableInt = Convert.ToBoolean(si.IsFlammable)
+            Catch ex As Exception
+            End Try
+            Dim strFlammable As String = String.Empty
+            If (IsFlammableInt) Or ((IsFlammableUS) AndAlso (IsFlammableInt)) Then
+                strFlammable = "Hazardous Material (Block)"
+            ElseIf (IsFlammableUS) Then
+                strFlammable = " Hazardous Material" '"Flammable US"
+                'ElseIf (IsFlammableInt) Then
+                '    strFlammable = "Flammable Int"
+            End If
+
+
+            If (AcceptingOrder_InStock > 0 AndAlso strFlammable <> "") Then
+                litItemName.Text = litItemName.Text & ", " & strFlammable & "</span>"
+            ElseIf strFlammable <> "" Then
+                litItemName.Text = litItemName.Text & "<span class='red'>" & strFlammable & "</span>"
+            End If
+        End If
+
+
+        Dim litSKU As Literal = e.Row.FindControl("litSKU")
+        litSKU.Text = si.SKU
+        Dim ltlBrandName As Literal = e.Row.FindControl("ltlBrandName")
+        Try
+            ltlBrandName.Text = si.BrandName
+        Catch ex As Exception
+
+        End Try
+
+        Dim ltlPrice As Literal = CType(e.Row.FindControl("ltlPrice"), Literal)
+        If Convert.ToBoolean(si.IsOnSale) Then
+            ltlPrice.Text = "<span class=red>" & FormatCurrency(si.SalePrice) & "</span>"
+        Else
+            ltlPrice.Text = FormatCurrency(si.Price)
+        End If
+        If Convert.ToBoolean(si.IsRewardPoints) Then
+            Dim point As Integer = Convert.ToInt32(si.RewardPoints)
+            If (point > 0) Then
+                Dim sysbol As String = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol
+                ltlPrice.Text = ltlPrice.Text & "<div style='margin-top:5px;'>" & FormatCurrency(point, 0).Replace(sysbol, "") & " pts</div>"
+            End If
+        End If
+        Dim Departments As Repeater = CType(e.Row.FindControl("Departments"), Repeater)
+        Departments.DataSource = StoreItemRow.GetDepartments(DB, si.ItemId)
+        Departments.DataBind()
+
+        'If Not IsDBNull(e.Row.DataItem("groupname")) Then
+        '    litType.Text = "<a href=""/admin/store/groups/items.aspx?ItemGroupId=" & e.Row.DataItem("ItemGroupId") & """>" & e.Row.DataItem("groupname") & "</a>"
+        'End If
+
+        Dim IsActive As Boolean = False
+        Try
+            IsActive = Convert.ToBoolean(si.IsActive)
+        Catch ex As Exception
+
+        End Try
+        Dim chkIsActive As CheckBox = CType(e.Row.FindControl("chkIsActive"), CheckBox)
+        chkIsActive.Checked = IsActive
+
+        'Dim IsFeatured As Boolean = False
+        'Try
+        '    IsFeatured = Convert.ToBoolean(e.Row.DataItem("IsFeatured"))
+        'Catch ex As Exception
+
+        'End Try
+        'Dim chkIsFeatured As CheckBox = CType(e.Row.FindControl("chkIsFeatured"), CheckBox)
+        'chkIsFeatured.Checked = IsFeatured
+        Dim ltrPromotionCode As Literal = e.Row.FindControl("ltrPromotionCode")
+        Try
+            ltrPromotionCode.Text = si.PromotionCode
+        Catch ex As Exception
+
+        End Try
+
+        Dim IsEbayEnd As Boolean = False
+        Try
+            IsEbayEnd = Convert.ToBoolean(e.Row.DataItem("IsEbayEnd"))
+        Catch ex As Exception
+
+        End Try
+        Dim chkEndEbay As CheckBox = CType(e.Row.FindControl("chkEndEbay"), CheckBox)
+        If (IsEbayEnd) Then
+            chkEndEbay.Checked = True
+            chkEndEbay.Attributes.Add("onchange", "SetEbayEndItem(" & si.ItemId & ",'0');")
+        Else
+            chkEndEbay.Checked = False
+            chkEndEbay.Attributes.Add("onchange", "SetEbayEndItem(" & si.ItemId & ",'1');")
+        End If
+
+        Dim lnkImages As HyperLink = CType(e.Row.FindControl("lnkImages"), HyperLink)
+        If Not (lnkImages Is Nothing) Then
+            lnkImages.Text = DB.ExecuteScalar("Select count(*) from  StoreItemImage where ItemId=" & si.ItemId)
+        End If
+
+        hidItemIds.Value &= si.ItemId & ","
+    End Sub
+    Protected Sub pagerTop_PageIndexChanging(ByVal obj As Object, ByVal e As PageIndexChangeEventArgs)
+        pagerTop.PageIndex = e.PageIndex
+        pagerBottom.PageIndex = e.PageIndex
+        hidItemIds.Value = ""
+        BindList()
+    End Sub
+
+    Protected Sub pagerTop_PageSizeChanging(ByVal obj As Object, ByVal e As PageSizeChangeEventArgs)
+        pagerTop.PageSize = e.PageSize
+        pagerTop.PageIndex = 1
+        pagerBottom.PageSize = e.PageSize
+        pagerBottom.PageIndex = 1
+
+        If (DirectCast(obj, controls_layout_pager).ID = "pagerBottom") Then
+            pagerTop.ViewAll = pagerBottom.ViewAll
+        Else
+            pagerBottom.ViewAll = pagerTop.ViewAll
+        End If
+        BindList()
+    End Sub
+
+   
+End Class

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/SkyDrive/Sources/UPS/Street Level Address Validation for SHIPPING/XAV Web Services/Code Samples/XAV/Dot Net/XAVWSSample/XAVWSSample/Web References/XAVWebReference/UPSSecurity.xsd" filename="UPSSecurity.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/SkyDrive/Sources/UPS/Street Level Address Validation for SHIPPING/XAV Web Services/Code Samples/XAV/Dot Net/XAVWSSample/XAVWSSample/Web References/XAVWebReference/common.xsd" filename="common.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="file:///D:/SkyDrive/Sources/UPS/Street Level Address Validation for SHIPPING/XAV Web Services/Code Samples/XAV/Dot Net/XAVWSSample/XAVWSSample/Web References/XAVWebReference/XAV.wsdl" filename="XAV.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/SkyDrive/Sources/UPS/Street Level Address Validation for SHIPPING/XAV Web Services/Code Samples/XAV/Dot Net/XAVWSSample/XAVWSSample/Web References/XAVWebReference/XAVWebServiceSchema.xsd" filename="XAVWebServiceSchema.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/SkyDrive/Sources/UPS/Street Level Address Validation for SHIPPING/XAV Web Services/Code Samples/XAV/Dot Net/XAVWSSample/XAVWSSample/Web References/XAVWebReference/Error1.1.xsd" filename="Error1.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

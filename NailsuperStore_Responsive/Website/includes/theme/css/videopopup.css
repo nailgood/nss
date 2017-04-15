@@ -1,0 +1,28 @@
+﻿#sendcart, #bodyVideo
+{
+    overflow-x:visible !important;
+     padding:10px 4px 10px 10px;
+    }
+ video
+        {
+            width:99%;
+            min-height:84%;
+            overflow:hidden;
+            height:100%;
+        }
+        #divTitle
+        {
+           margin-top:10px;
+        }
+        .itemVideoPopup
+        {
+           
+           float:left;
+           width:100%;
+           overflow:hidden;
+            
+        }
+        #videoPopup
+        {
+            overflow:hidden;
+          }

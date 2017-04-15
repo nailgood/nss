@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <group name="Graphic">
+    <section name="Appearance" code="APPEARANCE">
+      <menu link="/admin/content/pages/" isActive="1" allowGroup="Administrator, Editing" name="Pages">
+        <child link="/admin/content/pages/register.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/content/pages/generate.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/content/pages/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/content/pages/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/content/pages/control.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+
+      <menu link="/admin/content/navigation/" isActive="1" allowGroup="Administrator, Editing" name="Navigation">
+        <child link="/admin/content/navigation/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/content/navigation/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+    </section>
+    <section name="Home Page" code="BANNER">
+      <menu link="/admin/graphic/FlashBanner/default.aspx" isActive="1" allowGroup="Administrator, Editing" name="Main Banner">
+        <child link="/admin/graphic/FlashBanner/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/graphic/FlashBanner/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/graphic/FlashBanner/Main-block-banner.aspx" isActive="1" allowGroup="Administrator, Editing" name="Main Block Banner">
+      </menu>
+      <menu link="/admin/graphic/SubBlockBanner/" isActive="1" allowGroup="Administrator, Editing" name="Sub Block Banner">
+        <child link="/admin/graphic/SubBlockBanner/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/graphic/SubBlockBanner/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/graphic/InforBanner/" isActive="1" allowGroup="Administrator, Editing" name="Info Banner">
+        <child link="/admin/graphic/InforBanner/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/graphic/InforBanner/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/graphic/LinkBanner/?Type=1" isActive="0" allowGroup="Administrator, Editing" name="Left Banner">
+        <child link="/admin/graphic/LinkBanner/edit.aspx?Type=1" isActive="0" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/graphic/LinkBanner/delete.aspx?Type=1" isActive="0" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/graphic/LinkBanner/?Type=0" isActive="0" allowGroup="Administrator, Editing" name="Strip Banner">
+        <child link="/admin/graphic/LinkBanner/edit.aspx?Type=0" isActive="0" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/graphic/LinkBanner/delete.aspx?Type=0" isActive="0" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/promotions/ShopSave/arrange.aspx" isActive="0" allowGroup="Administrator, Editing" name="Homepage Tab"></menu>
+      <menu link="/admin/graphic/about-us-home.aspx" isActive="1" allowGroup="Administrator, Editing" name="About Us Text"></menu>
+      <menu link="/admin/promotions/ShopSave/default.aspx?Type=4" isActive="1" allowGroup="Administrator, Editing" name="Promotion Section 1">
+        <child link="/admin/promotions/ShopSave/SearchItem.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/promotions/ShopSave/edit.aspx?Type=4" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/promotions/ShopSave/delete.aspx?Type=4" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/promotions/ShopSave/default.aspx?Type=5" isActive="1" allowGroup="Administrator, Editing" name="Promotion Section 2">
+        <child link="/admin/promotions/ShopSave/edit.aspx?Type=5" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/promotions/ShopSave/delete.aspx?Type=5" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/homepage/ConfigText.aspx" isActive="1" allowGroup="Administrator, Editing" name="Section Text"></menu>
+    </section>
+
+    <section name="Top Widget" code="PROMOTION" isActive="0">
+      <menu link="/admin/graphic/LinkBanner/?Type=4" isActive="1" allowGroup="Administrator, Editing" name="Bonnus Offer">
+        <child link="/admin/graphic/LinkBanner/edit.aspx?Type=4" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/graphic/LinkBanner/delete.aspx?Type=4" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/graphic/LinkBanner/?Type=3" isActive="1" allowGroup="Administrator, Editing" name="Exclusive Offer">
+        <child link="/admin/graphic/LinkBanner/edit.aspx?Type=3" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/graphic/LinkBanner/delete.aspx?Type=3" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+    </section>
+    <section name="Promotion Page" code="PROMOTION">
+      <menu link="/admin/promotions/ShopSave/default.aspx?Type=1" isActive="1" allowGroup="Administrator, Editing" name="Deals Center">
+        <child link="/admin/promotions/ShopSave/edit.aspx?Type=1" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/promotions/ShopSave/delete.aspx?Type=1" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/promotions/ShopSave/items.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/promotions/ShopSave/default.aspx?Type=6" isActive="1" allowGroup="Administrator, Editing" name="Weekly Email">
+        <child link="/admin/promotions/ShopSave/edit.aspx?Type=6" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/promotions/ShopSave/delete.aspx?Type=6" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/LandingPage/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Landing Page">
+        <child link="/admin/LandingPage/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/LandingPage/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/promotions/DealDay/" isActive="0" allowGroup="Administrator, Editing" name="Deal Of the Day">
+        <child link="/admin/promotions/DealDay/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/promotions/DealDay/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/promotions/ShopSave/default.aspx?Type=3" isActive="0" allowGroup="Administrator, Editing" name="Tab Deal Of the Day"></menu>
+      <menu link="/admin/promotions/FreeSamples/" isActive="1" allowGroup="Administrator, Editing" name="Free Samples">
+        <child link="/admin/promotions/FreeSamples/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/promotions/FreeSamples/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/promotions/FreeGift/level/default.aspx" isActive="1" allowGroup="Administrator, Editing" name="Free Gift Level">
+        <child link="/admin/promotions/FreeGift/level/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/promotions/FreeGift/level/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/promotions/FreeGift/default.aspx" isActive="1" allowGroup="Administrator, Editing" name="Free Gift">
+        <child link="/admin/promotions/FreeGift/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/promotions/FreeGift/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/promotions/Sweepstake/default.aspx" isActive="1" allowGroup="Administrator, Editing" name="Sweepstake">
+        <child link="/admin/promotions/Sweepstake/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/promotions/Sweepstake/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+    </section>
+    <section name="Check Missing" code="OTHERS" link="/admin/graphic/CheckImages.aspx"  allowGroup="Administrator, Editing">
+    </section>
+  </group>
+
+  <group name="Store">
+    <section name="Product" code="PRODUCT">
+      <menu link="/admin/store/items/" isActive="1" allowGroup="Administrator, Editing" name="Item">
+        <child link="/admin/store/items/Album.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/Album.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/Album/MusicSearch.aspx?Type=1" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/attributes.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/collection.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/collectiondelete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/EbayHistory.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/groupitems.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/groupitemsdelete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/move.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/related-swatch.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/related.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/SetupFlatFee.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/video.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/salesprice/default.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/salesprice/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/salesprice/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/images/default.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/images/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/images/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/images/image.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/images/move.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/AmazonHistory.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/policies.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/items/policies-addnew.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/itembuywithpoints/" isActive="1" allowGroup="Administrator, Editing" name="Item Buy With Point">
+        <child link="/admin/store/itembuywithpoints/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/itembuywithpoints/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+
+      <menu link="/admin/store/brands/" isActive="1" allowGroup="Administrator, Editing" name="Brand">
+        <child link="/admin/store/brands/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/brands/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+
+      <menu link="/admin/policy/" isActive="1" allowGroup="Administrator, Editing" name="Policy">
+        <child link="/admin/policy/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/policy/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/policy/items.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/policy/remove.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/policy/SearchItem.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+
+      <menu link="/admin/store/groups/" isActive="1" allowGroup="Administrator, Editing" name="Item Group">
+        <child link="/admin/store/groups/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/groups/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/groups/items.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/groups/remove.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/groups/arrange.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/groups/options/" isActive="1" allowGroup="Administrator, Editing" name="Item Group Option">
+        <child link="/admin/store/groups/options/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/groups/options/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/groups/options/choices/" isActive="1" allowGroup="Administrator, Editing" name="Item Group Option Type">
+        <child link="/admin/store/groups/options/choices/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/groups/options/choices/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/collections/" isActive="1" allowGroup="Administrator, Editing" name="Nail Polish Collection">
+        <child link="/admin/store/collections/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/collections/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/tones/" isActive="1" allowGroup="Administrator, Editing" name="Nail Polish Tone">
+        <child link="/admin/store/tones/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/tones/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/shades/" isActive="1" allowGroup="Administrator, Editing" name="Nail Polish Shade">
+        <child link="/admin/store/shades/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/shades/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/basecolor/" isActive="1" allowGroup="Administrator, Editing" name="Spa Base Color">
+        <child link="/admin/store/basecolor/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/basecolor/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/cusioncolor/" isActive="1" allowGroup="Administrator, Editing" name="Spa Cushion Color">
+        <child link="/admin/store/cusioncolor/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/cusioncolor/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/laminatetrim/" isActive="1" allowGroup="Administrator, Editing" name="Spa Laminate Trim">
+        <child link="/admin/store/laminatetrim/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/laminatetrim/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+    </section>
+
+    <section name="Department" code="DEPARTMENT">
+
+      <menu link="/admin/store/departments/" isActive="1" allowGroup="Administrator, Editing" name="Department">
+        <child link="/admin/store/departments/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/departments/move.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/banner/default.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/banner/edit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/banner/delete.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/departments/ArrangeItems.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/departments/tab.aspx" isActive="1" allowGroup="Administrator, Editing" name="Department Tab">
+        <child link="/admin/store/departments/tabitem.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/store/departments/tabEdit.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/departments/testimonial/" isActive="1" allowGroup="Administrator, Editing" name="Department Testimonial">
+        <child link="/admin/store/departments/testimonial/SearchReview.aspx" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/graphic/FlashBanner/default.aspx" isActive="1" allowGroup="Administrator, Editing" name="Main Banner"></menu>
+      <menu link="/admin/graphic/LinkBanner/?Type=1" isActive="1" allowGroup="Administrator, Editing" name="Left Banner">
+        <child link="/admin/graphic/LinkBanner/edit.aspx?Type=1" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/graphic/LinkBanner/?Type=2" isActive="1" allowGroup="Administrator, Editing" name="Strip Banner">
+        <child link="/admin/graphic/LinkBanner/edit.aspx?Type=2" isActive="1" allowGroup="Administrator, Editing"></child>
+        <child link="/admin/graphic/LinkBanner/delete.aspx?Type=2" isActive="1" allowGroup="Administrator, Editing"></child>
+      </menu>
+    </section>
+
+    <section name="Order" code="ORDERS">
+      <menu link="/admin/store/orders/" isActive="1" allowGroup="Sales Marketing, Administrator, Editing" name="Order">
+        <child link="/admin/store/orders/edit.aspx" isActive="1" allowGroup="Sales Marketing,Administrator, Editing"></child>
+        <child link="/admin/store/orders/AddTrackingNumber.aspx" isActive="1" allowGroup="Sales Marketing,Administrator, Editing"></child>
+        <child link="/admin/store/orders/order-view.aspx" isActive="1" allowGroup="Sales Marketing,Administrator, Editing"></child>
+      </menu>
+      <menu link="/admin/store/OrdersRemove/" isActive="1" allowGroup="Administrator" name="Remove Test Order">
+        <child link="/admin/store/OrdersRemove/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/OrdersRemove/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/store/orders/create-order-ebay.aspx" isActive="1" allowGroup="Administrator" name="eBay Quick Order">
+
+      </menu>
+    </section>
+    <section name="Navision" code="NAVISION">
+      <menu link="/admin/navision/postinggroup/" isActive="1" allowGroup="Administrator" name="Posting Group">
+        <child link="/admin/navision/postinggroup/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/navision/postinggroup/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/navision/itemcategory/" isActive="1" allowGroup="Administrator" name="Item Department Mapping">
+        <child link="/admin/navision/itemcategory/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+    </section>
+    <section name="Promotion" code="PROMOTION">
+      <menu link="/admin/store/promotions/" isActive="1" allowGroup="Administrator" name="Order Coupon">
+        <child link="/admin/store/promotions/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/promotions/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/promotions/specific-delete.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/promotions/specific-items.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/store/productpromotions/" isActive="1" allowGroup="Administrator" name="Product Coupon">
+        <child link="/admin/store/productpromotions/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/productpromotions/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/productpromotions/specific-delete.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/productpromotions/specific-items.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/productpromotions/searchmixmatch.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+
+      <menu link="/admin/store/salescategory/" isActive="1" allowGroup="Administrator" name="Sales Category">
+        <child link="/admin/store/salescategory/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/salescategory/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/salescategory/items-move.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/salescategory/itemsdelete.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/salescategory/items.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/salescategory/move.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/navision/mixmatch/" isActive="1" allowGroup="Administrator" name="Mix Match">
+        <child link="/admin/navision/mixmatch/line/default.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/navision/mixmatch/line/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/navision/mixmatch/line/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/navision/mixmatch/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/navision/mixmatch/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+    </section>
+    <section name="Shipping" code="SHIPPING">
+      <menu link="/admin/store/shippingmethod/" isActive="1" allowGroup="Administrator" name="Shipping Method"></menu>
+      <menu link="/admin/store/shipping/" isActive="1" allowGroup="Administrator" name="Shipping Rate">
+        <child link="/admin/store/shipping/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/shipping/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/store/shippingcountry/" isActive="1" allowGroup="Administrator" name="Shipping Country">
+        <child link="/admin/store/shippingcountry/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/shippingcountry/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/settings/shipping/" isActive="1" allowGroup="Administrator" name="Free Shipping"></menu>
+      <menu link="/admin/store/shippingcountryimport/" isActive="0" allowGroup="Administrator" name="Import Shipping Country"></menu>
+    </section>
+  </group>
+
+  <group name="Customer Service">
+    <section name="Member" code="MEMBER">
+      <menu link="/admin/members/" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service" name="Member">
+        <child link="/admin/members/edit.aspx" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service"></child>
+        <child link="/admin/members/delete.aspx" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service"></child>
+        <child link="/admin/members/addpoint.aspx" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service"></child>
+      </menu>
+      <menu link="/admin/members/password.aspx" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service" name="Password"></menu>
+      <menu link="/admin/members/pendingpoint.aspx" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service" name="Pending Reward Point"></menu>
+      <menu link="/admin/members/reportpoint.aspx" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service" name="Summary Reward Point"></menu>
+      <menu link="/admin/members/LevelPoint.aspx" isActive="1" allowGroup="Administrator" name="Member Reward Level"></menu>
+      <menu link="/admin/store/BrandCustomer/related.aspx" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service" name="Permission Buy Brand">
+        <child link="/admin/store/BrandCustomer/delete.aspx" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service"></child>
+      </menu>
+      <menu link="/admin/catalog/request/" isActive="1" allowGroup="Administrator" name="Catalog Request">
+        <child link="/admin/catalog/request/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/catalog/request/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/members/refer.aspx" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service" name="Refer Friend"></menu>
+    </section>
+    <section name="Customer Service" code="CUSTOMERSERVICE">
+      <menu link="/admin/contact/" isActive="1" allowGroup="Administrator" name="Customer Inquiry">
+        <child link="/admin/contact/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/contact/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/store/items/reviews/" isActive="1" allowGroup="Administrator, SEO" name="Product Review">
+        <child link="/admin/store/items/reviews/edit.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/store/items/reviews/delete.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/store/items/reviews/view.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+      </menu>
+      <menu link="/admin/store/orders/reviews/" isActive="1" allowGroup="Administrator, SEO" name="Order Review">
+        <child link="/admin/store/orders/reviews/edit.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/store/orders/reviews/delete.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/store/orders/reviews/view.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+      </menu>
+      <menu link="/admin/video/reviews/" isActive="1" allowGroup="Administrator, SEO" name="Video Review">
+        <child link="/admin/video/reviews/edit.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/video/reviews/reply.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/video/reviews/delete.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/video/reviews/view.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+      </menu>
+      <menu link="/admin/newsevent/reviews/" isActive="1" allowGroup="Administrator, SEO" name="NewsEvents Review">
+        <child link="/admin/newsevent/reviews/edit.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/newsevent/reviews/reply.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/newsevent/reviews/delete.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/newsevent/reviews/view.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+      </menu>
+      <menu link="/admin/shopdesign/reviews/" isActive="1" allowGroup="Administrator, SEO" name="Shop Design Review">
+        <child link="/admin/shopdesign/reviews/edit.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/shopdesign/reviews/reply.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/shopdesign/reviews/delete.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+        <child link="/admin/shopdesign/reviews/view.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+      </menu>
+      <menu link="/admin/pricematch/" isActive="1" allowGroup="Administrator" name="Price Match Request">
+        <child link="/admin/pricematch/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/pricematch/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/survey/default.aspx?F_SurveyId=1" isActive="1" allowGroup="Administrator, SEO" name="Order Survey">
+      </menu>
+      <menu link="/admin/survey/default.aspx?F_SurveyId=2" isActive="1" allowGroup="Administrator, SEO" name="Website Survey">
+        <child link="/admin/survey/view.aspx" isActive="1" allowGroup="Administrator, SEO"></child>
+      </menu>
+    </section>
+    <section name="FAQ" code="FAQ">
+      <menu link="/admin/faq/" isActive="1" allowGroup="Administrator, Customer Service" name="FAQ List">
+        <child link="/admin/faq/edit.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+        <child link="/admin/faq/move.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+        <child link="/admin/faq/delete.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+      </menu>
+      <menu link="/admin/faq/edit.aspx?MODE=ADD" isActive="1" allowGroup="Administrator, Customer Service" name="Add New FAQ"></menu>
+      <menu link="/admin/faq/category/" isActive="1" allowGroup="Administrator, Customer Service" name="Category List">
+        <child link="/admin/faq/category/move.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+        <child link="/admin/faq/category/delete.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+      </menu>
+      <menu link="/admin/faq/category/edit.aspx" isActive="1" allowGroup="Administrator, Customer Service" name="Add New Category"></menu>
+    </section>
+    <section name="Classifieds" code="CLASSIFIEDS" isActive="0">
+      <menu link="/admin/classifieds/" isActive="1" allowGroup="Administrator, Customer Service" name="Classified">
+        <child link="/admin/classifieds/edit.aspx" isActive="0" allowGroup="Administrator, Customer Service"></child>
+        <child link="/admin/classifieds/delete.aspx" isActive="0" allowGroup="Administrator, Customer Service"></child>
+      </menu>
+      <menu link="/admin/classifieds/categories/" isActive="0" allowGroup="Administrator, Customer Service" name="Classified Category">
+        <child link="/admin/classifieds/categories/edit.aspx" isActive="0" allowGroup="Administrator, Customer Service"></child>
+        <child link="/admin/classifieds/categories/delete.aspx" isActive="0" allowGroup="Administrator, Customer Service"></child>
+      </menu>
+    </section>
+    <section name="Jobs" code="JOBS" isActive="0">
+      <menu link="/admin/employer/" isActive="1" allowGroup="Administrator, Customer Service" name="Employer">
+        <child link="/admin/employer/delete.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+      </menu>
+      <menu link="/admin/employer/edit.aspx" isActive="1" allowGroup="Administrator, Customer Service" name="Add New Employer"></menu>
+      <menu link="/admin/resume/" isActive="1" allowGroup="Administrator, Customer Service" name="Employee">
+        <child link="/admin/resume/edit.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+        <child link="/admin/resume/delete.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+      </menu>
+      <menu link="/admin/jobs/" isActive="1" allowGroup="Administrator, Customer Service" name="Add New Employee"></menu>
+      <menu link="/admin/jobs/default.aspx?F_IsActive=0" isActive="1" allowGroup="Administrator, Customer Service" name="Job List">
+        <child link="/admin/jobs/edit.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+        <child link="/admin/jobs/delete.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+      </menu>
+      <menu link="" isActive="1" allowGroup="Administrator, Customer Service" nam="List Pending Job"></menu>
+      <menu link="/admin/jobs/applications/" isActive="1" allowGroup="Administrator, Customer Service" name="Job Posting Request">
+        <child link="/admin/jobs/applications/edit.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+        <child link="/admin/jobs/applications/delete.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+      </menu>
+      <menu link="/admin/jobs/categories/" isActive="1" allowGroup="Administrator, Customer Service" name="Job Category">
+        <child link="/admin/jobs/categories/edit.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+        <child link="/admin/jobs/categories/delete.aspx" isActive="1" allowGroup="Administrator, Customer Service"></child>
+      </menu>
+    </section>
+  </group>
+
+  <group name="Resource Center">
+    <section name="Expert Tips &amp; Advice" isActive="1" allowGroup="Administrator, Editing, SEO" code="TIPS" link="/admin/marketing/tips/categories/">
+      <menu>
+        <child link="/admin/marketing/tips/categories/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/marketing/tips/categories/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/marketing/tips/categories/departments.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/marketing/tips/categories/items.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/marketing/tips/categories/itemsdelete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/marketing/tips/categories/move.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+
+        <child link="/admin/marketing/tips/default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/marketing/tips/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/marketing/tips/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/marketing/tips/departments.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/marketing/tips/items.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/marketing/tips/itemsdelete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/marketing/tips/move.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+    </section>
+    <section name="Photo Gallery" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service" code="NEWSEVENT" link="/admin/members/nail-art-trends/">
+      <menu>
+        <child link="/admin/members/nail-art-trends/edit.aspx" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service"></child>
+        <child link="/admin/members/nail-art-trends/delete.aspx" isActive="1" allowGroup="Sales Marketing, Administrator, Editing, Customer Service"></child>
+      </menu>
+    </section>
+    <section name="How-to Video" code="VIDEO">
+      <menu link="/admin/Video/Category/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Category">
+        <child link="/admin/Video/Category/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/Video/Video/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Video">
+        <child link="/admin/Video/Video/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/Video/Video/PopupVideorelated.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/Video/Video/VideoRelated.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/Video/Video/ItemRelatedVideo.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/Video/Video/PopupItemRelatedVideo.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+    </section>
+    <section name="News &amp; Events" code="NEWSEVENT">
+      <menu link="/admin/NewsEvent/Category/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Category">
+        <child link="/admin/NewsEvent/Category/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/NewsEvent/Category/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/NewsEvent/Image/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Image">
+        <child link="/admin/NewsEvent/Image/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/NewsEvent/Image/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/NewsEvent/Document/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Document">
+        <child link="/admin/NewsEvent/Document/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/NewsEvent/Document/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/NewsEvent/News/" isActive="1" allowGroup="Administrator, Editing, SEO" name="News">
+        <child link="/admin/NewsEvent/News/NewsImage.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/NewsEvent/News/PopupImage.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/NewsEvent/NewsDocument/default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/NewsEvent/NewsDocument/AddDocument.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/NewsEvent/Blog/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Blog">
+        <child link="/admin/NewsEvent/Blog/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/NewsEvent/NewsFeed/" isActive="1" allowGroup="Administrator, Editing, SEO" name="News Feed">
+        <child link="/admin/NewsEvent/NewsFeed/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/NewsEvent/NewsFeed/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+    </section>
+    <section name="Media Press" code="NEWSEVENT">
+      <menu link="/admin/MediaPress/Category/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Category">
+        <child link="/admin/MediaPress/Category/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/MediaPress/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Media Image">
+        <child link="/admin/MediaPress/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/FacebookPage/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Facebook/Twitter">
+        <child link="/admin/FacebookPage/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+    </section>
+  </group>
+
+  <group name="Marketing">
+    <section name="Shop By Design" code="SHOPDESIGN">
+      <menu link="/admin/shopdesign/Category/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Category">
+        <child link="/admin/shopdesign/Category/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/shopdesign/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Item Design">
+        <child link="/admin/shopdesign/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/shopdesign/media.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/shopdesign/item.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+    </section>
+    <section name="Search" code="SEARCH">
+      <menu link="/admin/KeyWord/ExcludeSearchIP/default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO " name="Exclude IP"></menu>
+      <menu link="/admin/KeyWord/Synonym/default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO" name="Keyword Synonym">
+        <child link="/admin/KeyWord/Synonym/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/KeyWord/Synonym/arrange.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/KeyWord/Synonym/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/KeyWord/ReplaceKeyword/default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO " name="Keyword Replace">
+        <child link="/admin/KeyWord/ReplaceKeyword/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/KeyWord/ReplaceKeyword/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/KeyWord/RedirectKeyword/default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO " name="Keyword Redirect">
+        <child link="/admin/KeyWord/RedirectKeyword/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/KeyWord/RedirectKeyword/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/KeyWord/FilterKeyword/default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO " name="Keyword Filter">
+        <child link="/admin/KeyWord/FilterKeyword/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/KeyWord/FilterKeyword/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+    </section>
+    <section name="SEO" code="SEO">
+      <menu link="/admin/KeyWord/ReportByDate/default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO " name="Daily Search Activity">
+        <child link="/admin/KeyWord/ReportByDate/GetDataByKeyword.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/KeyWord/ReportByKeyword/default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO" name="Keyword List">
+        <child link="/admin/KeyWord/ReportByKeyword/KeywordDetail.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/KeyWord/ReportByKeyword/ViewKeywordItem.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+
+      </menu>
+
+    </section>
+
+
+    <section name="Sweepstake" code="PROMOTION" isActive="0">
+      <menu link="/admin/Sweepstake/default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO" name="Sweepstake Setup">
+        <child link="/admin/Sweepstake/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/Sweepstake/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/Sweepstake/Details/Default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/Sweepstake/Details/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/Sweepstake/Details/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+      <menu link="/admin/Sweepstake/TypeAward/default.aspx" isActive="1" allowGroup="Administrator, Editing, SEO" name="Type of Award">
+        <child link="/admin/Sweepstake/TypeAward/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/Sweepstake/TypeAward/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+    </section>
+    <section name="Broadcast" code="BROADCAST">
+      <menu link="/admin/broadcast/lists/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Lists">
+        <child link="/admin/broadcast/lists/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/lists/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+
+      <menu link="/admin/broadcast/subscribers/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Subscribers">
+        <child link="/admin/broadcast/subscribers/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/subscribers/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+
+      <menu link="/admin/broadcast/groups/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Recipient Groups">
+        <child link="/admin/broadcast/groups/edit.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/groups/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+
+      <menu link="/admin/broadcast/" isActive="1" allowGroup="Administrator, Editing, SEO" name="Email List">
+        <child link="/admin/broadcast/add.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/layout.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/delete.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/links.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/log.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/preview.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/recipients.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/review.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/send.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/target.aspx" isActive="1" allowGroup="Administrator, Editing, SEO"></child>
+        <child link="/admin/broadcast/view.aspx" isActive="0" allowGroup="Administrator, Editing, SEO"></child>
+      </menu>
+    </section>
+  </group>
+
+  <group name="Report">
+    <section name="Items" code="REPORT">
+      <menu link="/admin/report/item/sale.aspx" isActive="1" allowGroup="Administrator, Sales Marketing" name="Sale Items"></menu>
+      <menu link="/admin/report/item/inventory.aspx" isActive="1" allowGroup="Administrator, Sales Marketing" name="Inventory Items"></menu>
+    </section>
+    <section name="Orders" code="REPORT">
+      <menu link="/admin/report/order/" isActive="1" allowGroup="Administrator, Sales Marketing" name="Order Totals"></menu>
+      <menu link="/admin/report/order/coupon.aspx" isActive="1" allowGroup="Administrator, Sales Marketing" name="Order Coupon">
+        <child link="/admin/report/order/coupon_customer.aspx" isActive="1" allowGroup="Administrator, Sales Marketing"></child>
+      </menu>
+    </section>
+    <section name="Shopping Cart" code="REPORT">
+      <menu link="/admin/store/CartDetail/" isActive="1" allowGroup="Administrator" name="List Pending Orders">
+        <child link="/admin/store/CartDetail/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/store/CartDetail/SendEmail.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/store/cart/" isActive="1" allowGroup="Administrator" name="Total Pending Order">
+        <child link="/admin/store/cart/abandoned.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/store/orders/pending-order.aspx" isActive="1" allowGroup="Administrator" name="Pending Order">
+      </menu>
+    </section>
+  </group>
+
+  <group name="Administration">
+    <section name="API" code="SETTING">
+      <menu link="/admin/api/shipvalid.aspx" isActive="1" allowGroup="Administrator" name="US Shipping Validation"></menu>
+      <menu link="/admin/api/fedex.aspx" isActive="1" allowGroup="Administrator" name="US Shipping Calculating"></menu>
+      <menu link="/admin/api/USPS.aspx" isActive="1" allowGroup="Administrator" name="Int Shipping Calculating"></menu>
+      <menu link="/admin/api/complete-order.aspx" isActive="1" allowGroup="Administrator" name="Complete Order"></menu>
+      <menu link="/admin/api/testemail.aspx" isActive="1" allowGroup="Administrator" name="Test Email"></menu>
+    </section>
+    <section name="Setting" code="SETTING">
+
+      <menu link="/admin/navisiontasks/" isActive="0" allowGroup="Administrator" name="Navision Task"></menu>
+      <menu link="/admin/Skype/" isActive="0" allowGroup="Administrator" name="Skype">
+        <child link="/admin/Skype/edit.aspx" isActive="0" allowGroup="Administrator"></child>
+        <child link="/admin/Skype/delete.aspx" isActive="0" allowGroup="Administrator"></child>
+        <child link="/admin/Skype/move.aspx" isActive="0" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/settings/" isActive="1" allowGroup="Administrator" name="System Setting"></menu>
+      <menu link="/admin/settings/ContactEmail/" isActive="1" allowGroup="Administrator" name="Email Contact Role">
+
+        <child link="/admin/settings/ContactEmail/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/settings/ContactEmail/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/settings/ContactEmail/editEmail.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/settings/callback/" isActive="1" allowGroup="Administrator" name="Call Back Request">
+        <child link="/admin/settings/callback/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/settings/callback/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/settings/callback/editEmail.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/AutoRespond/" isActive="1" allowGroup="Administrator" name="Holiday Schedule">
+        <child link="/admin/AutoRespond/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/AutoRespond/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+    </section>
+    <section name="Users" code="USERS">
+      <menu link="/admin/admins/" isActive="1" allowGroup="Administrator" name="User List">
+        <child link="/admin/admins/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/admins/password.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/admins/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/admins/AdminIPAccess/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/admins/AdminIPAccess/default.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/admins/groups/" isActive="1" allowGroup="Administrator" name="User Group">
+        <menu link="/admin/admins/edit.aspx" isActive="1" allowGroup="Administrator" name="Add New User"></menu>
+        <child link="/admin/admins/groups/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/admins/groups/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/adminlog/LogAction.aspx" isActive="1" allowGroup="Administrator" name="Log"></menu>
+
+    </section>
+    <section name="Others" code="OTHERS">
+      <menu link="/admin/ImExLog/" isActive="1" allowGroup="Administrator" name="Import/Export Log"></menu>
+      <menu link="/admin/EmailLog/" isActive="0" allowGroup="Administrator" name="Email Tracking Log"></menu>
+      <menu link="/admin/store/referrals/" isActive="0" allowGroup="Administrator" name="Referral Tracking Code">
+        <child link="/admin/store/referrals/edit.aspx" isActive="0" allowGroup="Administrator"></child>
+        <child link="/admin/store/referrals/delete.aspx" isActive="0" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/splashpage/" isActive="0" allowGroup="Administrator" name="Old Homepage Banner">
+        <child link="/admin/splashpage/edit.aspx" isActive="0" allowGroup="Administrator"></child>
+        <child link="/admin/splashpage/delete.aspx" isActive="0" allowGroup="Administrator"></child>
+      </menu>
+      <menu link="/admin/wishlistemailtemplate/" isActive="0" allowGroup="Administrator" name="Wishlist Email Template"></menu>
+      <menu link="/admin/NotEmailList/" isActive="0" allowGroup="Administrator" name="Import Not-To-Email List"></menu>
+      <menu link="/admin/ContactTemplate/" isActive="1" allowGroup="Administrator" name="Contact Us Template">
+        <child link="/admin/ContactTemplate/edit.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/ContactTemplate/editEmail.aspx" isActive="1" allowGroup="Administrator"></child>
+        <child link="/admin/ContactTemplate/delete.aspx" isActive="1" allowGroup="Administrator"></child>
+      </menu>
+    </section>
+  </group>
+</root>

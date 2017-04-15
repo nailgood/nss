@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <session name="Captcha">
+    <page url="/members/"></page>
+    <page url="/contact/"></page>
+  </session>
+
+  <session name="EstimateShipping">
+    <page url="/store/cart.aspx"></page>
+    <page url="/includes/popup/free-item.aspx"></page>
+    <page url="/includes/popup/special-offer.aspx"></page>
+    <page url="/includes/popup/sendmailcart.aspx"></page>
+  </session>
+
+  <session name="GetFedExRate">
+    <page url="/members/login.aspx"></page>
+    <page url="/store/cart.aspx"></page>
+    <page url="/store/payment.aspx"></page>
+    <page url="/store/billing.aspx"></page>
+    <page url="/store/billingint.aspx"></page>
+  </session>
+
+  <session name="isUpdateAddress">
+    <page url="/members/login.aspx"></page>
+    <page url="/store/cart.aspx"></page>
+    <page url="/store/revise-cart.aspx"></page>
+    <page url="/store/payment.aspx"></page>
+    <page url="/store/billing.aspx"></page>
+    <page url="/store/billingint.aspx"></page>
+  </session>
+
+  <session name="CheckResidential">
+    <page url="/store/billing.aspx"></page>
+    <page url="/store/payment.aspx"></page>
+  </session>
+  
+  <session name="DepartmentId">
+    <page url="/store/main-category.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+    <page url="/store/item.aspx"></page>
+  </session>
+
+  <session name="ShowCartMessage">
+    <page url="/store/cart.aspx"></page>
+  </session>
+  
+  <session name="CheckMemberIsInternational">
+    <remove url="/members/addressbook/edit.aspx"></remove>
+    <remove url="/members/address.aspx"></remove>
+    <remove url="/members/login.aspx"></remove>
+    <remove url="/members/logout.aspx"></remove>
+    <remove url="/store/billing.aspx"></remove>
+    <remove url="/store/billingint.aspx"></remove>
+    <remove url="/store/register.aspx"></remove>
+  </session>
+
+  <session name="LandingPageCouponCode">
+    <remove url="/store/billing.aspx"></remove>
+    <remove url="/store/billingint.aspx"></remove>
+    <remove url="/store/payment.aspx"></remove>
+  </session>
+  
+  <!-- SEARCH -->
+  <session name="FacetedSearchPriceLevel">
+    <page url="/store/search-result.aspx"></page>
+  </session>
+  <session name="FacetedSearchRatingLevel">
+    <page url="/store/search-result.aspx"></page>
+  </session>
+  <session name="searchBrandId">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+  </session>
+  <session name="searchCountBrand">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+  </session>
+  <session name="searchCountPrice">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+  </session>
+  <session name="searchCountRating">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+  </session>
+  <session name="searchCountCollection">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+  </session>
+ <session name="searchCountTone">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+  </session>
+ <session name="searchCountShade">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+  </session>
+  <session name="searchCollectionId">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+  </session>
+ <session name="searchToneId">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+  </session>
+ <session name="searchShadeId">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+  </session>
+  <session name="searchShadeId">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/sub-category.aspx"></page>
+  </session>
+  <session name="KeywordSearchId">
+    <page url="/store/search-result.aspx"></page>
+    <page url="/store/item.aspx"></page>
+    <page url="/store/cart.aspx"></page>
+    <page url="/home.aspx"></page>
+  </session>
+  
+</root>

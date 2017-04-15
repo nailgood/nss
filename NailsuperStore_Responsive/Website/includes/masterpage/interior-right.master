@@ -1,0 +1,82 @@
+﻿<%@ Master Language="VB" CodeFile="interior-right.master.vb" Inherits="Masterpage_InteriorRight" ClientIDMode="Static" %>
+<%@ Register Src="~/controls/layout/header.ascx" TagName="header" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/footer.ascx" TagName="footer" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/google-analytics.ascx" TagName="ga" TagPrefix="uc" %>
+<%@ Register src="~/controls/layout/social-share.ascx" tagname="Social" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/bread-crumb.ascx" TagName="bread" TagPrefix="uc" %>
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head runat="server">
+    <title></title>
+     <asp:Literal ID="ltrMetaSocialNetwork" runat="server"></asp:Literal>
+    <meta name="author" content="Kevin Huynh, The Nail Superstore" />
+    <asp:Literal ID="ltIndexFollow" runat="server"></asp:Literal>
+    <asp:Literal ID="ltrCanonical" runat="server"></asp:Literal>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css' />
+<%--    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/bootstrap.css" />--%>
+    <%--<link rel="stylesheet" type="text/css" href="/includes/Theme/css/product.css" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/style.css" />      
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/resource-center.css" />--%>
+    <%--<link rel="stylesheet" type="text/css" href="/includes/Theme/css/default.css?t=2015" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/pager.css" />
+      <link href="/includes/scripts/qtip/qtip.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/includes/scripts/jquery-1.7.1.min.js"></script>
+     <script src="/includes/scripts/qtip/jquery.qtip.min.js" type="text/javascript"></script>  
+    <script src="/includes/scripts/qtip/qtip.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/includes/scripts/Common.js"></script> Edit css.xml--%>
+    <asp:Literal ID="litCSS" runat="server"></asp:Literal>
+    <asp:Literal ID="litScript" runat="server"></asp:Literal>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <script type="text/javascript" src="/includes/scripts/html5.js"></script>
+        <script type="text/javascript" src="/includes/scripts/respond.js"></script>
+    <![endif]-->
+   <%-- <link href="/includes/scripts/nyroModal/styles/nyroModal.full.css" rel="stylesheet" type="text/css" />
+    <script src="/includes/scripts/nyroModal/js/jquery.nyroModal-1.6.2.min.js" type="text/javascript"></script>Edit css.xml--%>
+    <asp:Literal ID="ltriPadScrollBar" runat="server"></asp:Literal>
+    <uc:ga ID="ga" runat="server" />
+</head>
+<body>
+<div id="fb-root"></div>
+<script>    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0&appId=203982539670006";
+        fjs.parentNode.insertBefore(js, fjs);
+    } (document, 'script', 'facebook-jssdk'));</script>
+    <form id="formMain" runat="server">
+    <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
+    <asp:ScriptManager runat="server" EnablePageMethods="true"  ID="MainSM" runat="server" ScriptMode="Release" LoadScriptsBeforeUI="true"></asp:ScriptManager>
+    <asp:Literal ID="litScriptCustom" runat="server"></asp:Literal>
+    <uc:header ID="ucHeader" runat="server" />
+     <div class="container">
+        <div id="main">
+            <div id="right-page">            
+                 <asp:PlaceHolder ID="phdRight" runat="server"></asp:PlaceHolder>
+            </div>
+            <div id="content-page">
+                 <uc:bread ID="bread1" runat="server" />
+                <CT:ErrorMessage id="ErrorPlaceHolder" runat="server"/>                
+                <asp:ContentPlaceHolder ID="cphContent" runat="server"></asp:ContentPlaceHolder>
+            </div>  
+            <asp:ContentPlaceHolder ID="cphBottom" runat="server"></asp:ContentPlaceHolder>
+            <uc:Social ID="social" runat="server" />          
+        </div>
+    </div>
+
+     <!-- Begin footer -->
+    <uc:footer ID="ucFooter" runat="server" />
+    <!-- End footer -->
+    </form>
+    <%--<script type="text/javascript" src="/includes/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/includes/scripts/layout.js"></script>
+    <script type="text/javascript" src="/includes/scripts/command.js"></script> Edit css.xml--%>
+</body>
+</html>

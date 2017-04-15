@@ -1,0 +1,192 @@
+<%@ Master Language="VB" CodeFile="admin.master.vb" Inherits="AdminMaster" %>
+<%@ Register TagPrefix="CT" Namespace="MasterPages" Assembly="Common"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head runat="server">
+<script type="text/javascript">
+    var methodHandlers = {};
+</script>    
+   
+     <title></title>
+   <meta name="author" content="Kevin Huynh, The Nail Superstore" />
+    <link href="/includes/theme-admin/css/admin.css?2015" rel="stylesheet" />
+    <link href="/includes/theme-admin/css/product.css?2015" rel="stylesheet" />
+    <link href="/includes/theme-admin/css/page.css?2015" rel="stylesheet" />
+    <script type="text/javascript" src="/includes/scripts/jquery-1.7.1.min.js"></script>
+    <script src="/includes/scripts/admin.js?t=1" type="text/javascript"></script>
+    <script src="/includes/scripts/XmlHttpLookupAdmin.js" type="text/javascript"></script>
+    <script src="/includes/scripts/ajaxQueue.js" type="text/javascript"></script>
+    <%	If Request.Path.ToLower <> "/admin/login.aspx" Then%><script src="/includes/theme-admin/css/session.js.aspx" type="text/javascript"></script><%end if%>
+
+    <link href="/includes/scripts/nyroModal/styles/nyroModal.full.css" rel="stylesheet" type="text/css" />
+    <script src="/includes/scripts/nyroModal/js/jquery.nyroModal-1.6.2.min.js" type="text/javascript"></script>
+</head>
+
+<body bgcolor="#ffffff" topmargin="5" leftmargin="5" marginheight="3" marginwidth="3" runat="server" id="HtmlBody" onscroll="if(typeof calculatePosition == 'function') calculatePosition();" onresize="if(typeof calculatePosition == 'function') calculatePosition();">
+    <form id="main" method="post" name="main" runat="server">
+
+        <div style="width:100%; position:relative;" id="divAdminWrapper">
+
+		<div style="display:none;background:#6699cc;padding:5px 0;position:absolute;top:0;left:0;width:100%;z-index:5000;opacity:.97;-moz-opacity:.97;filter:alpha(opacity=97);" id="divAdminPopup">
+			<div id="divAdminPopupInner" style="background:#ecf6ff;margin:0 5px;text-align:center;position:relative;">&nbsp;
+				<div style="width:405px;text-align:justify;margin:0 auto;padding:20px;position:relative;z-index:5000;background:#ffffff;" id="divAdminPopupInfo">
+					<div style="position:absolute;z-index:5000;top:-100px;left:0px;text-align:center;"><img src="/includes/theme-admin/images/admin-logo.png"  /><br /></div>
+					<div><p><b>Your session will expire in <span id="warningMinutes"></span> minutes.</b> You may extend your session by clicking "Continue Logged-In" below. If you wish to logout now, choose "Logout Now" below. Otherwise, choose "Logout when Session Expires" and you will be logged out automatically.</p>
+					<p><input type="button" onclick="sessionBtnClick(this)" value="Continue Logged-In" class="btn" style="width:125px;" /> <input type="button" onclick="sessionBtnClick(this)" value="Logout Now" class="btn" style="width:88px;" /> <input type="button" onclick="sessionBtnClick(this)" value="Logout when Session Expires" class="btn" style="width:185px;" /></p></div>
+				</div>
+			</div>
+		</div>
+
+		<CT:ErrorMessage id="ErrorPlaceHolder" runat="server" />
+     
+		<asp:contentplaceholder id="ph" runat="server"></asp:contentplaceholder>
+
+		</div>
+
+    </form>
+    <script>
+        var msglarge = '',
+        msgsmall = '',
+        flarge = 0,
+        fsmall = 0,
+        w = 0,
+        h = 0,
+        l = '';
+//        $("#ctl00_ph_fuImage_FILE").change(function (e) {
+//            var pathname = window.location.pathname;
+//            if (pathname.indexOf('nail-art-trends') == -1 && pathname.indexOf('NewsEvent') == -1) {
+//                if (this.disabled) return alert('File upload not supported!');
+//                var F = this.files,
+//                s = $("#imgsize").text(),
+//                w = s.split("x")[0],
+//                h = s.split("x")[1],
+//                l = $("#imglength").text();
+//               // alert(l);
+//                if (F && F[0]) for (var i = 0; i < F.length; i++) readImage(F[i], w, h, l, "#msgError", "#ctl00_ph_btnSave");
+//            }
+
+//         });
+       
+         fnSelectImage = function (container, msgerror, buttonsave, infowidthheight, infolenght) {
+             $(container).change(function (e) {
+                 //                var pathname = window.location.pathname;
+                 //                if (pathname.indexOf('nail-art-trends') == -1 && pathname.indexOf('NewsEvent') == -1) {
+                 if (this.disabled) return alert('File upload not supported!');
+                 var F = this.files;
+                 fnGetRequiredImg(infowidthheight, infolenght);
+                 if (F && F[0]) for (var i = 0; i < F.length; i++) readImage(F[i], w, h, l, msgerror, buttonsave);
+
+                 // }
+
+             });
+
+
+         }
+
+
+        fnGetRequiredImg = function (infowidthheight, infolenght) {
+            var s = $(infowidthheight).text();
+            w = s.split("x")[0];
+            h = s.split("x")[1];
+
+            if ($(infolenght))
+                l = $(infolenght).text();
+            //alert(w + '---wixhe--' + h + "---" + l + "---" + infolenght);
+        }
+
+        $(window).load(function () {
+            var pathname = window.location.pathname;
+            var browser = navigator.userAgent.toLowerCase();
+            //alert(browser);
+            if ((browser.indexOf('safari') == -1 || browser.indexOf('chrome') > -1) && pathname.indexOf('nail-art-trends') == -1 && pathname.indexOf('NewsEvent') == -1 && pathname.indexOf('Video') == -1 && pathname.indexOf('shopdesign') == -1 && pathname.indexOf('groups') == -1 && pathname.indexOf('MediaPress') == -1 && pathname.indexOf('productpromotions') == -1 && pathname.indexOf('store/promotions/') == -1 && pathname.indexOf('promotions/FreeGift/') == -1) {
+                fnCheckExistImageSize();
+            }
+        });
+        fnCheckExistImageSize = function () {
+            if (document.getElementById("ctl00_ph_hpimg")) {
+                //alert("1");
+                //fnGetImageInfo("ctl00_ph_hpimg", "#imgsize", "#imglength", "#msgError", "#ctl00_ph_btnSave");
+                fnSelectImage("#ctl00_ph_fuImage_FILE", "#msgError", "#ctl00_ph_btnSave", "#imgsize", "#imglength");
+            }
+            if (document.getElementById("ctl00_ph_hpimg1")) {
+                //alert("3");
+                //fnGetImageInfo("ctl00_ph_hpimg1", "#imgsize1", "#imglength1", "#msgError1", "#ctl00_ph_btnSave");
+                fnSelectImage("#ctl00_ph_fuImageMobile_FILE", "#msgError1", "#ctl00_ph_btnSave", "#imgsize1", "#imglength1");
+                //alert("4");
+              //  l = '';
+            }
+            //alert("1:" + orgsize);
+        }
+        fnGetImageInfo = function (imgid, size, len, msgerr, btnsave) {
+            var orgWidth = 0,
+                orgHeight = 0,
+                orgsize = 0,
+                error = '';
+            var img = document.getElementById(imgid);
+            // alert(imgid + "---" + img);
+            fnGetRequiredImg(size, len);
+            if (img != null) {
+                orgWidth = img.clientWidth;
+                orgHeight = img.clientHeight;
+                //alert(orgWidth);
+                //                fnGetRequiredImg(size, len);
+
+                if (w != orgWidth || h != orgHeight)
+                    error += w + " x " + h + " (width x height) ";
+                //alert(error);
+                var xhr = new XMLHttpRequest();
+                xhr.open('HEAD', $(img).attr('src'), true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            //alert('Size in bytes: ' + xhr.getResponseHeader('Content-Length') / 1024);
+                            l = $(len).text();
+                            orgsize = ~ ~(xhr.getResponseHeader('Content-Length') / 1024);
+                            //alert(orgsize + "orgsize---");
+                            if (orgsize > l) {
+                                if (error != '')
+                                    error += ", ";
+
+                                error += "size < " + l + "kb";
+                                //alert(orgsize + "---uuu" + l + "ooo---" + imgid + "---" + error);
+                            }
+                            if (error != '') {
+                                $(btnsave).prop('disabled', true);
+                                $(msgerr).html('Please input image ' + error);
+                                if (size == '#imgsize')
+                                    flarge = 0;
+                                else
+                                    fsmall = 0;
+                            } else {
+                                if (size == '#imgsize')
+                                    flarge = 1;
+                                else
+                                    fsmall = 1;
+                                $(msgerr).html("");
+                            }
+                            //alert(flarge + "--1--" + fsmall);
+                            //flarge = 1 (cho large image) va fsmall = 1 (cho small iamge mobile) thi moi submit dc
+
+
+                        }
+                    }
+                };
+                xhr.send(null);
+
+            }
+            else {
+                error = "Please input image " + w + " x " + h + " (width x height) ";
+                if (imgid == "ctl00_ph_hpimg1") {
+                    fsmall = 1;
+                }
+                if (imgid == "ctl00_ph_hpimg") {
+                    flarge = 1;
+                }
+            }
+
+            $(msgerr).html('Please input image ' + error);
+        }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+﻿
+             <div id="Title1">
+							<div class="bold floatleft rname">Title:&nbsp;</div> #Title#
+							
+							<div id="DateAdded1">
+			         Posted #DateAdded#
+			    </div>
+							
+											
+							
+			</div>
+			<div style="width:100%;clear:both;">
+			    <div id="Name1">
+					<span class="bold">Reviewer Name:</span> #Name#
+	 			</div>
+	 			 <div id="Star1">
+			        <div class="bold" style="float:left">Rating:&nbsp;&nbsp;</div> 
+			        <div style="padding-left:20px">
+					  <img alt="" style="border-style:none" src="/includes/theme/images/star#Star#0.png">
+				    </div>
+				</div>				
+			</div>
+							
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <div id="newComment" class="hidediv">
+              <div>
+<div id="GPros" class="groupChk hidediv">
+<div id="Pros">Pros:</div>
+<div class="padGroup">
+<div id="ProsEasyToUse" class="hidediv">-&nbsp;#ProsEasyToUse#Easy To Use</div>
+<div id="ProsHighQuality" class="hidediv">-&nbsp;#ProsHighQuality#High Quality</div>
+<div id="ProsGoodValue" class="hidediv">-&nbsp;#ProsGoodValue#Good Value</div>
+<div id="ProsLongLasting" class="hidediv">-&nbsp;#ProsLongLasting#Long Lasting</div>
+</div>
+</div>
+<div id="GCons" class="groupChk hidediv">	
+<div id="Cons">Cons:</div>
+<div class="padGroup">
+<div id="ConsDifficultToUse" class="hidediv">-&nbsp;#ConsDifficultToUse#Difficult To Use</div>
+<div id="ConsPoorQuality" class="hidediv">-&nbsp;#ConsPoorQuality#Poor Quality</div>
+<div id="ConsExpensive" class="hidediv">-&nbsp;#ConsExpensive#Expensive</div>
+<div id="ConsDoesNotWork" class="hidediv">-&nbsp;#ConsDoesNotWork#Does Not Work</div>
+</div>
+</div>
+<div id="GExperienceLevel" class="groupChk hidediv">
+<div id="ExperienceLevel">Experience Level:</div>
+<div class="padGroup">
+<div id="ExperienceLevelStudent" class="hidediv">-&nbsp;#ExperienceLevelStudent#Student</div>
+<div id="ExperienceLevel1" class="hidediv">-&nbsp;#ExperienceLevel1#1+ Years</div>
+<div id="ExperienceLevel3" class="hidediv">-&nbsp;#ExperienceLevel3#3+ Years</div>
+<div id="ExperienceLevel5" class="hidediv">-&nbsp;#ExperienceLevel5#5+ Years</div>
+</div>
+</div>
+</div>
+
+<div id="txtComments" class="hidediv"><b>Product Comment</b>:&nbsp;#txtComments#</div>
+
+
+
+<div id="txtSuggestion" class="hidediv"><b>Product Suggestions</b>:&nbsp;#txtSuggestion#</div>
+
+
+
+<div id="BottomLine"><b>Bottom Line</b>:&nbsp;#BottomLine#</div>
+
+
+
+
+
+              </div>
+    
+<div id="oldComment" class="hidediv">#OldComment#</div>

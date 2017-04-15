@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+***********************************************************************************************
+website.publishproj
+
+WARNING: DO NOT MODIFY this file, it is used for the web publish process.
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+***********************************************************************************************
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.30319</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{bf79ffd8-df17-4e7c-a487-131c144b5ae1}</ProjectGuid>
+    <SourceWebPhysicalPath>$(MSBuildThisFileDirectory)</SourceWebPhysicalPath>
+    <SourceWebVirtualPath>/Website</SourceWebVirtualPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SourceWebProject>
+    </SourceWebProject>
+    <SourceWebMetabasePath>
+    </SourceWebMetabasePath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- for VS2010 we need to use 10.5 but for VS2012+ we should use VisualStudioVersion -->
+    <WebPublishTargetsVersion Condition=" '$(WebPublishTargetsVersion)' =='' and '$(VisualStudioVersion)' == 10.0 ">10.5</WebPublishTargetsVersion>
+    <WebPublishTargetsVersion Condition=" '$(WebPublishTargetsVersion)'=='' ">$(VisualStudioVersion)</WebPublishTargetsVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(WebPublishTargetsVersion)</VSToolsPath>
+    <_WebPublishTargetsPath Condition=" '$(_WebPublishTargetsPath)'=='' ">$(VSToolsPath)</_WebPublishTargetsPath>
+    <AssemblyFileVersion Condition="'$(AssemblyFileVersion)' == ''">1.0.0.0</AssemblyFileVersion>
+    <AssemblyVersion Condition="'$(AssemblyVersion)' == ''">1.0.0.0</AssemblyVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AssemblyAttributes Include="AssemblyFileVersion">
+      <Value>$(AssemblyFileVersion)</Value>
+    </AssemblyAttributes>
+    <AssemblyAttributes Include="AssemblyVersion">
+      <Value>$(AssemblyVersion)</Value>
+    </AssemblyAttributes>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vbproj">
+      <Project>{98B6090B-4267-4FE2-A79C-6B1046132775}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CryptData\CryptData.vbproj">
+      <Project>{0B83DB41-0AD5-4AA9-A111-F54062869CF1}</Project>
+      <Name>CryptData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FaceBook\FaceBook.csproj">
+      <Project>{C8DE4818-4824-4EFB-A5F5-EBD7AB0910C5}</Project>
+      <Name>FaceBook</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maxmind\Maxmind.csproj">
+      <Project>{B359605B-A831-41A4-918D-305416EBD6BB}</Project>
+      <Name>Maxmind</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayPalHandler\PayPalHandler.csproj">
+      <Project>{C86C52C4-AFF9-4677-9EA7-7EAE3FD5D86D}</Project>
+      <Name>PayPalHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShippingValidator\ShippingValidator.vbproj">
+      <Project>{0CFB5BBC-6FC1-4D54-B89A-BA257CAADF05}</Project>
+      <Name>ShippingValidator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Twitter\Twitter.csproj">
+      <Project>{E9A403A4-E822-43F7-9AB9-4FD416810A16}</Project>
+      <Name>Twitter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(_WebPublishTargetsPath)\Web\Microsoft.WebSite.Publishing.targets" />
+</Project>

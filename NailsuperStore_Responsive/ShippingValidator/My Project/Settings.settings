@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="ShippingValidator_UPSValidator_XAVService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://wwwcie.ups.com/webservices/XAV</Value>
+    </Setting>
+    <Setting Name="ShippingValidator_FedExGetRate_RateService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://ws.fedex.com:443/web-services</Value>
+    </Setting>
+    <Setting Name="ShippingValidator_FedExGetTracking_TrackService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://ws.fedex.com:443/web-services/track</Value>
+    </Setting>
+    <Setting Name="ShippingValidator_FedExValidator_AddressValidationService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://ws.fedex.com/web-services</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

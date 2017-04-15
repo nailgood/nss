@@ -1,0 +1,317 @@
+﻿.pageinfo ul
+{
+	margin: 15px 0 15px 0px;
+}
+
+.pageinfo ul li,#border-faq ul
+{
+	color: #333333;
+	line-height:22px;
+	padding:0px;
+}
+.pageinfo ul.csdefault li
+{
+	float:left;
+	list-style: none;
+	width: 48%;
+	padding: 10px;
+	margin-bottom:20px;
+	height: auto;
+}
+
+.pageinfo p
+{
+    color: #333333;
+    line-height: 22px;
+    padding-top: 5px;
+}
+.pageinfo .email,.clickhere
+{
+    color: #3B76BA;
+}
+.pageinfo a
+{
+    text-decoration: underline;
+}
+.pageinfo .readmore
+{
+    font-size: 13px;
+}
+.pageinfo .warning {
+    color: #FF0000;
+    display: block;
+    margin-left: -15px;
+}
+.pageinfo .msg-content
+{
+    background: url("/includes/theme/images/icon-msg.gif") no-repeat scroll 20px 20px #FFC2E6;
+    border-bottom: 1px solid #BB0E7C;
+    border-top: 1px solid #BB0E7C;
+    color: #454545;
+    font: 13px "Open Sans",sans-serif;
+    min-height: 80px;
+    padding: 20px 20px 10px 65px;
+}
+.pageinfo .ps
+{
+    padding: 20px 0 0 20px;
+}
+.pageinfo .center
+{
+    padding: 20px;
+    text-align: center;
+}
+.pageinfo .contact-us
+{
+    background-color: #eeeeee;
+    width:40%;
+    padding: 10px;
+    margin: 20px auto 0 auto;
+}
+.pageinfo .title
+{
+    font-weight: 600;
+    padding-top: 5px;
+    }
+.pageinfo .link
+{
+    color: #3B76BA;
+}
+.pageinfo .div
+{
+    padding-left:25px;
+}
+.pageinfo .hour-operation
+{
+    color: #B80587;
+    padding-left: 50px;
+    overflow: hidden;
+}
+.pageinfo .holidayTime
+{
+    border: 1px solid #DDDDDD;
+    float: left;
+    margin: 0 0 20px 3px;
+    text-align: center;
+    width: 99%;
+    min-width: 400px;
+}
+.pageinfo .holidayTime .schedule
+{
+    background-color: #C7C8C8;
+    font-weight: 600;
+    padding: 8px;
+    color: #58595B;
+}
+.pageinfo .holidayTime ul
+{
+    padding: 0px;
+    margin: 0px;
+}
+.pageinfo .holidayTime td
+{
+    padding: 8px 10px;
+}
+.pageinfo .holidayTime ul li
+{
+    padding-left: 10px;
+    text-align: left;
+    list-style: none;
+    float: left;
+}
+
+.pageinfo .holidayTime .rowItem
+{
+    background-color: #FFFFFF;
+    padding: 8px 0 8px 50px;
+    text-align: left;
+}
+.pageinfo .holidayTime .rowAlternatingItem
+{
+    background-color: #F1F1F1;
+    padding: 8px 0 8px 50px;
+    text-align: left;
+}
+.pageinfo .p-left
+{
+    padding-left: 50px;
+}
+.pageinfo #pointTable {
+    border-left: 1px solid;
+    border-top: 1px solid;
+    margin-bottom: 15px;
+    margin-top: 0;
+    width: 320px;
+}
+.pageinfo #pointTable td
+{
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    padding: 5px;
+}
+.pageinfo .ulPoint
+{
+    margin: 0;
+    padding: 0 0 0 15px;
+}
+.pageinfo .ulPoint li
+{
+    font-weight: 600;
+}
+.pageinfo .leftCol, .rightCol
+{
+    width: 50%;
+    float: left;
+    padding: 20px;
+    line-height: 22px;
+}
+
+.pageinfo .leftCol, .rightCol div
+{
+    padding-left: 15px;
+}
+
+.pageinfo .leftCol, .rightCol a
+{
+    text-decoration: underline;
+}
+.pageinfo .leftCol .subString, .rightCol .subString
+{
+    padding-left: 15px;
+}
+
+@media (max-width: 767px) 
+{
+    .pageinfo ul.csdefault li
+    {
+	    float:none;
+	    width: 100%;
+	    height: auto;
+	    color: #333333;
+    } 
+    .pageinfo .contact-us
+    {
+        width:90%;
+    }
+    .pageinfo .div
+    {
+        padding-left:0;
+    }
+    .pageinfo .holidayTime .rowItem,.pageinfo .holidayTime .rowAlternatingItem
+    {
+        padding: 5px;
+    }
+    .pageinfo .holidayTime
+    {
+        border: 1px solid #DDDDDD;
+        float: left;
+        margin: 0 0 20px 3px;
+    }
+    .pageinfo .hour-operation
+    {
+        padding-left: 10px;
+    }
+    .pageinfo .p-left
+    {
+        padding-left: 20px;
+    }
+    .pageinfo .leftCol, .rightCol
+    {
+        width: 100%;
+        float: none;
+        padding: 10px;
+    }
+}
+
+
+.boxFAQ { margin-bottom:20px;}   
+ ul.lstQuestion,ul.lblAsk ,#lstStoreDepartment ul{ padding-left:25px; }
+.lstQuestion li,.lblAsk li
+{
+	padding:5px 0;
+	font-size:10px;
+}
+.lstQuestion li a,.lblAsk li a{ font-size:14px;}
+.lblAsk
+{
+     margin:5px 0;
+}
+#pnlSend input[type="submit"]
+{
+	margin-right:5px;
+}
+#spError_F_Text:before { content:'';}
+#trPriceMatch .glyphicon,#trItemReturn .glyphicon,#trDamaged .glyphicon,#trPriceRequest .glyphicon,#trItemNotReceive .glyphicon { display:none;}
+#trItemReturn .txt-required:after ,#trPriceMatch .txt-required:after
+{
+    position:relative;
+    top:1px;
+} 
+.boxcol
+{
+    width:270px;
+    margin:10px 30px 0 0;
+    float:left;
+}
+.boxcol:nth-child(3) { margin:10px 0 0;}
+#border-myorder,.border-return
+{
+    border:1px solid #ddd;
+    width:405px;
+    margin:6px;
+    padding:10px;
+    float:left;
+    background-color:#f3f4f5;
+}
+.border-return { margin:6px 6px -7px;}
+#border-faq
+{
+    padding:10px;
+    float:left;
+    width:100%;
+}
+#border-faq ul li
+{
+    list-style-type:none;
+    padding-bottom:10px;
+}
+.content #directionsPanel {
+    display: none;
+    float: left;
+    height: 500px;
+    margin-right: 5px;
+    overflow: auto;
+    width: 275px;
+}
+.content #map {
+    height: 500px;
+}
+.content #distance {
+    margin-top: 10px;
+    text-align:center;
+}
+.adp table 
+{
+    font-family:"Open Sans",sans-serif;
+    color:#333;
+    padding-bottom:10px;
+}
+.adp-step, .adp-text
+{
+    padding-left:5px;
+}
+.adp-step, .adp-stepicon, .adp-substep
+{
+    xborder-top: 1px solid #ccc;
+    margin: 0;
+    padding: 0.3em 3px;
+    vertical-align: top;
+}        
+.adp-summary
+{
+    padding: 0 3px 3px;
+}
+.adp b, .adp-list b {
+    font-weight: 600;
+}
+.adp-substep .adp-stepicon { overflow:visible;}

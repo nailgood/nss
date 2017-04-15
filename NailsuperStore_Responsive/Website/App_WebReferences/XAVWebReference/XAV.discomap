@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/Projects/2010/NailsuperStore_Responsive/Website/App_WebReferences/XAVWebReference/UPSSecurity.xsd" filename="UPSSecurity.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/Projects/2010/NailsuperStore_Responsive/Website/App_WebReferences/XAVWebReference/XAVWebServiceSchema.xsd" filename="XAVWebServiceSchema.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/Projects/2010/NailsuperStore_Responsive/Website/App_WebReferences/XAVWebReference/Error1.xsd" filename="Error1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="file:///D:/Projects/2010/NailsuperStore_Responsive/Website/App_WebReferences/XAVWebReference/XAV.wsdl" filename="XAV.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/Projects/2010/NailsuperStore_Responsive/Website/App_WebReferences/XAVWebReference/common.xsd" filename="common.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

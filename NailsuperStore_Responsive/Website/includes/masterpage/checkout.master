@@ -1,0 +1,711 @@
+﻿  <%@ Master Language="VB" CodeFile="checkout.master.vb" Inherits="includes_masterpage_checkout" %>
+
+<%@ Register Src="~/controls/layout/header.ascx" TagName="header" TagPrefix="uc1" %>
+<%@ Register Src="~/controls/layout/footer.ascx" TagName="footer" TagPrefix="uc2" %>
+<%@ Register Src="~/controls/checkout/estimate-shipping.ascx" TagName="estimate"
+    TagPrefix="uc3" %>
+<%@ Register Src="~/controls/checkout/cart-summary.ascx" TagName="cart" TagPrefix="uc4" %>
+<%@ Register Src="~/controls/checkout/help-full-links.ascx" TagName="help" TagPrefix="uc5" %>
+<%@ Register Src="~/controls/checkout/small-help-full-links.ascx" TagName="small"
+    TagPrefix="uc6" %>
+<%@ Register Src="~/controls/checkout/checkout-header.ascx" TagName="checkout" TagPrefix="uc6" %>
+<%@ Register Src="~/controls/checkout/checkout-footer.ascx" TagName="checkout" TagPrefix="uc7" %>
+<%@ Register Src="~/controls/layout/google-analytics.ascx" TagName="ga" TagPrefix="uc" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:Literal ID="ltIndexFollow" runat="server"></asp:Literal>
+    <asp:Literal ID="ltrMetaSocialNetwork" runat="server"></asp:Literal>
+    <meta name="author" content="Kevin Huynh, The Nail Superstore" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet'type='text/css' />
+<%--    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/bootstrap.css">--%>
+<%--    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/page.css">
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/style.css">--%>
+    <%-- <link rel="stylesheet" type="text/css" href="/includes/Theme/css/default.css?t=2015" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/checkout-master.css">
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/cart.css">
+    <link href="/includes/scripts/qtip/qtip.css" rel="stylesheet" type="text/css" />
+    <link href="/includes/scripts/nyroModal/styles/nyroModal.full.css" rel="stylesheet"
+        type="text/css" /> Edit css.xml--%>
+    <asp:Literal ID="litCSS" runat="server"></asp:Literal>
+    <asp:literal id="litScript" runat="server"></asp:literal>
+    <asp:Literal ID="ltriPadScrollBar" runat="server">
+    </asp:Literal>
+    <%--<script type="text/javascript" src="/includes/scripts/jquery-1.7.1.min.js"></script> Edit css.xml--%>
+   <%-- <script language="JavaScript" src="https://seal.networksolutions.com/siteseal/javascript/siteseal.js"
+        type="text/javascript"></script>--%>
+       <%-- <script language="JavaScript" src="/includes/scripts/siteseal.js" type="text/javascript"></script>
+    <script src="/includes/scripts/nyroModal/js/jquery.nyroModal-1.6.2.min.js" type="text/javascript"></script>
+    <script src="/includes/scripts/qtip/jquery.qtip.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/includes/scripts/Common.js"></script>
+    <script src="/includes/scripts/qtip/qtip.js" type="text/javascript"></script> Edit css.xml--%>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <script type="text/javascript" src="/includes/scripts/html5.js"></script>
+        <script type="text/javascript" src="/includes/scripts/respond.js"></script>
+    <![endif]-->
+    <uc:ga ID="ga" runat="server" />
+</head>
+<body>
+    <form id="formMain" runat="server">
+    <asp:ScriptManager runat="server" EnablePageMethods="true" ID="MainSM" runat="server" ScriptMode="Release" LoadScriptsBeforeUI="true"></asp:ScriptManager>
+    <!--header-->
+    <asp:literal id="litScriptCustom" runat="server"></asp:literal>
+    <uc1:header ID="fullHeader" runat="server" />
+    <div class="container">
+        <div id="main">
+            <div class="main-container1">
+                <div class="main-container2">
+                    <div id="content-page">
+                        <center>
+                            <div id="loading" runat="server" clientidmode="Static" class="bg-loading" style="display: none;">
+                                Please wait...<br />
+                                <img src="/includes/theme/images/loader.gif" alt="Waiting" />
+                            </div>
+                        </center>
+                        <!--header-->
+                        <uc6:checkout ID="checkoutHeader" runat="server" />
+                        <CT:ErrorMessage ID="ErrorPlaceHolder" runat="server" />
+                        <asp:ContentPlaceHolder ID="cphContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix hidden-lg hidden-md">
+            </div>
+            <div id="right-page">
+                <div id="rightcontent" class="content" runat="server" clientidmode="Static">
+                </div>
+            </div>
+        </div>
+        <uc7:checkout ID="checkoutFooter" runat="server" />
+    </div>
+    <!-- Begin footer -->
+    <uc2:footer ID="fullFooter" runat="server" />
+    <!-- End footer -->
+    <input type="hidden" id="hidUrl" value="<%=HttpContext.Current.Request.Url.ToString() %>" />
+    </form>
+    <%--<script type="text/javascript" src="/includes/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/includes/scripts/layout.js"></script>
+    <script type="text/javascript" src="/includes/scripts/command.js"></script>Edit css.xml--%>
+    <script type="text/javascript">//<![CDATA[
+        function BindDataCartSummaryBox(htmlSumaryBox) {
+            if (document.getElementById('secOrderSummary')) {
+                $('#secOrderSummary').replaceWith(htmlSumaryBox);
+            }
+        }
+        $(window).load(function () {
+            ResetBoxEstimateShippingHeight();
+        });
+
+        $(window).scroll(function () {
+            // return;
+            if (ViewPortVidth() <= 991) {
+                return;
+            }
+            FixBoxSummary();
+        });
+        function FixBoxSummary() {
+            var url = document.getElementById('hidUrl').value;
+            if (url.indexOf('/store/billing.aspx') > 0 || url.indexOf('/store/billingint.aspx') > 0 || url.indexOf('/members/addressbook/edit.aspx') > 0) {
+                return;
+            }
+            var footerSelector = 'footer .header';
+            if (document.getElementById('checkoutFooter')) {
+                footerSelector = '#checkoutFooter'
+            }
+            var rightTop = $("#right-page").position().top;
+            //alert(rightTop);
+            var paddingtop = $("#right-page ").css("padding-top");
+            paddingtop = paddingtop.replace('px', '');
+            paddingtop = paddingtop.replace('-', '');
+
+            var secureHeight = $('#right-page .secure').outerHeight();
+            if (isNaN(secureHeight) || secureHeight == null) {
+                secureHeight = 0;
+            }
+            var posFix = rightTop + parseInt(paddingtop);//  + parseInt(secureHeight);
+            var url = document.getElementById('hidUrl').value;
+            if (url.indexOf('/store/cart.aspx') > 0 || url.indexOf('/store/revise-cart.aspx') > 0) {
+                var rightCSS = $('#right-page #rightcontent').attr('class');
+                if (rightCSS == 'content') {
+                    var cartBottom = $('#secCartList').position().top + $('#secCartList').outerHeight(); //$('#secCartList').position().bottom;
+                    var rightBottom = $('#right-page #rightcontent').position().top + $('#right-page #rightcontent').outerHeight(); // $('#right-page #rightcontent').position().bottom;
+                    cartBottom = parseInt(cartBottom);
+                    rightBottom = parseInt(rightBottom);
+                    if (rightBottom > cartBottom) {
+                        return;
+                    }
+                }
+            }
+
+            //if ($(window).scrollTop() >= posFix && rightBottom < cartBottom && isCheckAllowFixBox==false) {
+            if ($(window).scrollTop() >= posFix) {
+
+                var posFooter = $(footerSelector).position().top;
+                var rightHeight = $('#right-page').height();
+                var boxHeight = $('#right-page #rightcontent').outerHeight();
+                var carttotal = posFooter - boxHeight;
+                if ($(window).scrollTop() + boxHeight >= posFooter) {
+                    $("#right-page #rightcontent").removeClass("content-fix");
+                    $("#right-page #rightcontent").addClass("content-absolute");
+                    $("#right-page #rightcontent").css("top", carttotal + "px");
+                }
+                else {
+                    $("#right-page #rightcontent").removeClass("content-absolute");
+                    $('#right-page #rightcontent[style]').removeAttr('style')
+                    ResetPositionBoxSummary();
+                    $("#right-page #rightcontent").addClass("content-fix");
+                }
+            }
+            else {
+                ClearFixBoxSummary();
+            }
+        }
+        function ClearFixBoxSummary() {
+            $("#right-page #rightcontent").removeClass("content-absolute");
+            $("#right-page #rightcontent").removeClass("content-fix");
+            $('#right-page  #rightcontent[style]').removeAttr('style')
+        }
+        function ResetPositionBoxSummary() {
+            var w = $("#right-page #rightcontent").outerWidth();
+            $("#right-page #rightcontent").css("width", w + "px");
+        }
+        function ChangeResize() {
+            ClearFixBoxSummary();
+            ResetBoxEstimateShippingHeight();
+            if (ViewPortVidth() <= 991) {
+                $('#right-page').removeAttr('style')
+                return;
+            }
+            FixBoxSummary();
+
+        }
+        $(window).resize(function () {
+            ChangeResize();
+            SetPositionEstimateShippingResultBox();
+            $('[data-toggle=popover]').each(function () {
+                $(this).popover('hide');
+            });
+        });
+        function ResetBoxEstimateShippingHeight() {
+            if (document.getElementById('secOrderSummary') && document.getElementById('secEstimateShipping')) {
+                var summaryPos = $('#secOrderSummary').position().top;
+                var estimateShippingPos = $('#secEstimateShipping').position().top;
+                $('#secEstimateShipping').removeAttr('style');
+                $('#secOrderSummary').removeAttr('style');
+
+                if (summaryPos == estimateShippingPos) {
+                    var summaryHeight = $('#secOrderSummary .box').outerHeight();
+                    var estimateShippingHeight = $('#secEstimateShipping').outerHeight();
+                    if (summaryHeight > estimateShippingHeight) {
+                        $('#secEstimateShipping').css('height', summaryHeight + 'px')
+                    }
+                    else {
+
+                        $('#secOrderSummary .box').css('height', estimateShippingHeight + 'px')
+                    }
+                }
+            }
+        }
+
+        function CheckOutCartPage() {
+            var url = document.getElementById('hidUrl').value;
+            var arrurl = url.split("?");
+            if (arrurl.length > 1)
+                url = arrurl[0] + "/ValidateCheckOut?" + arrurl[1];
+            else
+                url = arrurl[0] + "/ValidateCheckOut";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: "",            
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: ValidateCheckOutCallBack,
+                failure: function (response) {
+                    // alert(response.d);
+                },
+                error: function (response) {
+                    //alert("error");
+                    //                           alert(response.d);
+                }
+            });
+        }
+
+        function ValidateCheckOutCallBack(response) {
+            if (document.getElementById("loading")) {
+                document.getElementById("loading").style.display = 'none';
+            }
+            var htmlError = response.d[0];
+            var sectionError = response.d[1];
+            var linkredirect = response.d[2];
+            if (htmlError != '') {
+                ShowCheckOutCartError(htmlError, sectionError);
+            }
+            if (linkredirect != '')
+                window.location.href = linkredirect;
+
+        }
+        function ShowCheckOutCartError(msg, cartItemId) {
+            HidenWaiting();
+            showQtipID('qtip-error', msg, 'Ooops', 'qtip-cart-checkout');
+            $('#qtip-cart-checkout .qtip-button').attr('param', 'trRow_' + cartItemId + '_goSec_');
+            return;
+        }
+
+        function ShowFlammableTip() {
+            showQtip('qtip-msg', '<%=Resources.Msg.PopupFlammable %>', 'Flammable & Hazardous Material Item');
+        }
+
+        function GoItemErrorCheckOut() {
+
+            if (document.getElementById('hidFirstItemErrorId')) {
+                var idError = $('#hidFirstItemErrorId').val();
+
+                if (idError != '') {
+                    GoItemError('trRow_' + idError);
+                }
+            }
+        }
+        function GoItemError(section) {
+            if (document.getElementById(section)) {
+                var pos = $('#' + section).offset().top;
+                $('html,body').animate({
+                    scrollTop: pos
+                },
+            'slow');
+                return false;
+            }
+        }
+        function Waiting() {
+            if (document.getElementById("loading")) {
+                document.getElementById("loading").style.display = 'inline';
+            }
+        }
+        function HidenWaiting() {
+            if (document.getElementById("loading")) {
+                document.getElementById("loading").style.display = 'none';
+            }
+        }
+        function CheckOutNow() {
+            Waiting();
+            var url = document.getElementById('hidUrl').value;
+            if (url.indexOf('/store/cart.aspx') > 0 || url.indexOf('/store/revise-cart.aspx') > 0) {
+
+                CheckOutCartPage();
+            }
+            else if (url.indexOf('/store/reward-point.aspx') > 0) {
+                if (document.getElementById('btnCheckOutRewardPoint')) {
+                    document.getElementById('btnCheckOutRewardPoint').click();
+                }
+            }
+        }
+
+        $("#txtZipCode").on('blur keyup change click', function () {
+            CalculateShipping();
+        });
+
+        function CalculateShipping() {
+            var zipCode = $('#txtZipCode').val();
+            var bCheck = $('#ResultZipCode').hasClass('success') || $('#ResultZipCode').hasClass('invalid');
+            var hid = $('#hidZipCode').val();
+            if (zipCode.length != 5) {
+                if (bCheck == true) {
+                    $('#ResultZipCode').removeClass('success');
+                    $('#ResultZipCode').removeClass('invalid');
+                    $('#ResultZipCode').html('')
+                }
+                return;
+            }
+            else {
+                if (!$.isNumeric(zipCode)) {
+                    $('#ResultZipCode').html('Zip Code match not found');
+                    $('#ResultZipCode').addClass('invalid');
+                    return;
+                }
+
+                if (bCheck == false && hid != zipCode) {
+                    $('#hidZipCode').val(zipCode);
+                    $('#ResultZipCode').html('Checking Zip Code...')
+                    $('#divChangeMethod').css('display', 'none');
+                    if (zipCode == '') {
+                        ShowError('Invalid zipcode!');
+                        return
+                    }
+                    var country = $('#drpCountry').val();
+                    mainScreen.ExecuteCommand('CalEstimateShipping', 'methodHandlers.CalEstimateShippingCallBack', [country, zipCode]);
+                }
+            }
+        }
+
+        function ResetEstimateShippingDefault() {
+            $('#drpCountry').val('US');
+            $('#trZipCode').css('display', '');
+            $('#divCalculateShipping').css('display', '');
+
+        }
+
+
+        methodHandlers.CalEstimateShippingCallBack = function (html, isInternational) {
+            var htmlError = '';
+            var htmlEstimatePopup = '';
+            var htmlSumaryBox = '';
+            if (html) {
+                htmlEstimatePopup = html[0];
+                htmlError = html[1];
+                htmlSumaryBox = html[2];
+            }
+
+            if (htmlError != '') {
+                ShowError(htmlError);
+
+                if (htmlError.indexOf('zipcode') >= 0) {
+                    $('#ResultZipCode').html('Zip Code match not found');
+                    $('#ResultZipCode').addClass('invalid');
+                }
+                return;
+            }
+
+            if (isInternational == 'false') {
+                if (document.getElementById('divEstimateShippingResult')) {
+                    $('#divEstimateShippingResult').html(htmlEstimatePopup);
+                    $('#divEstimateShippingResult').css('display', 'block');
+                    SetPositionEstimateShippingResultBox();
+
+                    $('#ResultZipCode').html('')
+
+                    poppover();
+                }
+
+                if (document.getElementById('secOrderSummary')) {
+                    $('#secOrderSummary').replaceWith(htmlSumaryBox);
+                    $('#secOrderSummary').addClass('summaryestimate');
+                }
+            }
+            else {
+                //$('#ResultZipCode').addClass('success');
+                $('#ResultZipCode').html('')
+
+                $('#divEstimateShippingResult').css('display', 'none');
+
+                $('#secOrderSummary').removeClass('summaryestimate');
+                $('#secOrderSummary').replaceWith(htmlEstimatePopup);
+            }
+        }
+
+        function poppover() {
+            $('.estimate > .popover').remove();
+            var poppover = $('[data-toggle="popover"]');
+            if (poppover == undefined) return;
+
+            var isSafari = /constructor/i.test(window.HTMLElement);
+            if (isSafari) {
+                poppover.popover({
+                    container: 'body',
+                    placement: 'bottom',
+                    trigger: 'manual',
+                    content: function () {
+                        return 'Delivery Dates are estimates only, and are not guaranteed. <a href="/services/order-delivery-time.aspx" target=\'_blank\' style="color: #3b76ba;text-decoration: underline;">More details</a>';
+                    }
+                })
+                    .on("mouseenter", function () {
+                        var _this = this;
+                        $(_this).popover("show");
+                        $(_this).siblings(".popover")
+                      .on("mouseleave", function () {
+                          $(_this).popover('hide');
+                      });
+
+                        $('.popover').on('mouseleave', function () {
+                            $(_this).popover('hide');
+                        });
+                        $(poppover).click(function () {
+                            $(_this).popover('hide');
+                            return false;
+                        });
+                    })
+                    .on("mouseleave", function () {
+                        var _this = this;
+                        setTimeout(function () {
+                            if (!$(".popover:hover").length) {
+                                $(_this).popover("hide");
+                            }
+                        }, 50);
+                    });
+                //poppover.popover({
+                //    container: 'body',
+                //    viewport: '#viewport',
+                //    placement: 'bottom',
+                //    trigger: 'click',
+                //    content: function () {
+                //        return 'Delivery Dates are estimates only, and are not guaranteed. <a href="/services/order-delivery-time.aspx" target=\'_blank\' style="color: #3b76ba;text-decoration: underline;">More details</a>';
+                //    }
+                //}).on("click", function (evt) {
+                //    $(poppover).not($(this)).popover('hide');
+                //    if ($(window).width() <= 580)
+                //        $('.popover').css('left', '10px');
+
+                //    evt.preventDefault();
+                //});  
+                return;
+            }
+            /*Edit arrow for Firefox*/
+            var isFF = !!navigator.userAgent.match(/firefox/i);
+            if (isFF) {
+                poppover.popover({
+                    container: 'body',
+                    viewport: '#viewport',
+                    placement: 'bottom',
+                    trigger: 'click',
+                    content: function () {
+                        return 'Delivery Dates are estimates only, and are not guaranteed. <a href="/services/order-delivery-time.aspx" target=\'_blank\' style="color: #3b76ba;text-decoration: underline;">More details</a>';
+                    }
+                })
+                    .on("mouseenter", function () {
+                        var _this = this;
+                        $(_this).popover("show");
+                        $(_this).siblings(".popover")
+                        $('.popover.bottom > .arrow').css({ 'border-width': '8px', 'top': '-16px' })
+                        if ($(window).width() <= 580) {
+                            $('.popover').css('left', '10px');
+                        }
+                        //.on("mouseleave", function () {
+                        //    $(_this).popover('hide');
+                        //})
+
+                        $('.popover').on('mouseleave', function () {
+                            $(_this).popover('hide');
+                        })
+                    })
+                    .on("mouseleave", function () {
+                        var _this = this;
+                        setTimeout(function () {
+                            if (!$(".popover:hover").length) {
+                                $(_this).popover("hide");
+                            }
+                        }, 50);
+                    });
+
+                return;
+            }
+
+            var mq = window.matchMedia('all and (max-width: 768px)');
+            if (!mq.matches) {
+                poppover.popover({
+                    container: 'body',
+                    placement: 'bottom',
+                    trigger: 'manual',
+                    content: function () {
+                        return 'Delivery Dates are estimates only, and are not guaranteed. <a href="/services/order-delivery-time.aspx" target=\'_blank\' style="color: #3b76ba;text-decoration: underline;">More details</a>';
+                    }
+                })
+                    .on("mouseenter", function () {
+                        var _this = this;
+                        $(_this).popover("show");
+                        $(_this).siblings(".popover")
+                      .on("mouseleave", function () {
+                          $(_this).popover('hide');
+                      });
+
+                        $('.popover').on('mouseleave', function () {
+                            $(_this).popover('hide');
+                        });
+
+                    })
+                    .on("mouseleave", function () {
+                    var _this = this;
+                    setTimeout(function () {
+                        if (!$(".popover:hover").length) {
+                            $(_this).popover("hide");
+                        }
+                    }, 50);
+                    }).on('click', function () {
+                        return false;
+                    });
+                var isOpera = !!window.opera || /opera|opr/i.test(navigator.userAgent);
+                if (!isOpera) {
+                    if ($(window).width() <= 580)
+                        $('.popover').css('left', '10px');
+                }
+                else {
+                    if ($(window).width() <= 580 - 15)
+                        $('.popover').css('left', '10px');
+                }
+            }
+            else
+            {
+                poppover.popover({
+                    container: 'body',
+                    viewport: '#viewport',
+                    placement: 'bottom',
+                    trigger: 'toggle',
+                    content: function () {
+                        return 'Delivery Dates are estimates only, and are not guaranteed. <a href="/services/order-delivery-time.aspx" target=\'_blank\' style="color: #3b76ba;text-decoration: underline;">More details</a>';
+                    }
+                }).on("click", function (evt) {
+                    var isOpera = !!window.opera || /opera|opr/i.test(navigator.userAgent);
+                    if (!isOpera) {
+                        if ($(window).width() <= 580)
+                            $('.popover').css('left', '10px');
+                    }
+                    else {
+                        if ($(window).width() <= 580 - 15) {
+                            $('.popover').css('left', '10px');
+                        }
+                    }
+                    evt.preventDefault();
+                });
+            }
+        }
+
+        function SetPositionEstimateShippingResultBox() {
+
+            var display = $('#divEstimateShippingResult').css('display');
+            if (display == 'block') {
+                if (document.getElementById('secOrderSummary') && document.getElementById('secEstimateShipping')) {
+                    var summaryPos = $('#secOrderSummary').position().top;
+                    var estimateShippingPos = $('#secEstimateShipping').position().top;
+                    if (summaryPos == estimateShippingPos) {
+                        $('#secEstimateShipping').css('position', 'inherit');
+                        var top = $('#secEstimateShipping .change').position().top;
+                        var left = $('#secEstimateShipping').position().left;
+                        var width = $('#secEstimateShipping').outerWidth();
+                        $("#divEstimateShippingResult").css("top", (top + 5) + "px");
+                        $("#divEstimateShippingResult").css("left", (left + 4) + "px");
+                        $("#divEstimateShippingResult").css("width", (width - 8) + "px");
+                        $("#divEstimateShippingResult").css("margin-left", "0px");
+                    }
+                    else {
+                        $('#secEstimateShipping').css('position', 'relative');
+                        $('#divEstimateShippingResult').removeAttr('style');
+                        $('#divEstimateShippingResult').css('display', 'block');
+                    }
+                }
+            }
+
+        }
+        function MinimazeShipping() {
+            if (document.getElementById('divEstimateShippingResult')) {
+                $('#divEstimateShippingResult').css('display', 'none');
+            }
+            if (document.getElementById('secOrderSummary')) {
+                $('#secOrderSummary').removeClass('summaryestimate');
+            }
+        }
+
+        function ChangeMethod() {
+            $('#divEstimateShippingResult').css('display', 'block');
+            $('#divChangeMethod').css('display', 'none');
+            SetPositionEstimateShippingResultBox();
+        }
+
+        function ChangeCountry(country) {
+            $('#divEstimateShippingResult').css('display', 'none');
+            //$('#lnkChangeMethod').css('display', 'none');
+            var zipCode = ''
+            if (country == 'US') {
+                zipCode = $('#txtZipCode').val();
+                $('#trZipCode').css('display', '');
+                //$('#lnkChangeMethod').css('display', 'none');
+                $('#divCalculateShipping').css('display', 'block');
+            }
+            else {
+
+                $('#trZipCode').css('display', 'none');
+                //$('#lnkChangeMethod').css('display', 'none');
+                $('#divCalculateShipping').css('display', 'none');
+                $('#ResultZipCode').css('display', 'none');
+            }
+            mainScreen.ExecuteCommand('ChangeCountryEstimateShipping', 'methodHandlers.ChangeCountryEstimateShippingCallBack', [country, zipCode]);
+        }
+
+        methodHandlers.OpenFreeGiftCallBack = function (html) {
+            var htmlFreeGift = '';
+            var htmlError = '';
+            if (html) {
+                htmlFreeGift = html[0];
+                htmlError = html[1];
+            }
+            if (htmlError != '') {
+                ShowError(htmlError);
+                return;
+            }
+            if (document.getElementById('divListGift')) {
+                $('#secFreeGift #icon').removeClass('fclose');
+                $('#secFreeGift #icon').addClass('fopen');
+                $('#divListGift').css('display', 'block');
+                $('#divListGift').html(htmlFreeGift);
+            }
+        }
+
+        methodHandlers.OpenFreeSamplesCallBack = function (html) {
+            var htmlFreeSamples = '';
+            var htmlError = '';
+            if (html) {
+                htmlFreeSamples = html[0];
+                htmlError = html[1];
+            }
+            if (htmlError != '') {
+                ShowError(htmlError);
+                return;
+            }
+            if (document.getElementById('divListSamples')) {
+                $('#secFreeSamples #icon').removeClass('fclose');
+                $('#secFreeSamples #icon').addClass('fopen');
+                $('#divListSamples').css('display', 'block');
+                $('#divListSamples').html(htmlFreeSamples);
+            }
+        }
+
+        methodHandlers.ChangeCountryEstimateShippingCallBack = function (html) {
+
+            var htmlSumaryBox = '';
+            var htmlError = '';
+            if (html) {
+                htmlSumaryBox = html[0];
+                htmlError = html[1];
+            }
+
+            if (htmlError != '') {
+                ShowError(htmlError);
+            }
+
+            if (document.getElementById('secOrderSummary')) {
+                $('#secOrderSummary').replaceWith(htmlSumaryBox);
+            }
+            ResetBoxEstimateShippingHeight();
+        }
+        function ChangeEstimateShipping(methodId) {
+            var zipCode = $('#txtZipCode').val();
+            var country = $('#drpCountry').val();
+            mainScreen.ExecuteCommand('ChangeEstimateShipping', 'methodHandlers.ChangeEstimateShippingCallBack', [methodId, country, zipCode]);
+            var rdoID = 'rbtnShipping_' + methodId;
+            $("#" + rdoID).prop("checked", true);
+        }
+
+        methodHandlers.ChangeEstimateShippingCallBack = function (html) {
+            var htmlSumaryBox = '';
+            var htmlError = '';
+            if (html) {
+                htmlSumaryBox = html[0];
+                htmlError = html[1];
+            }
+
+            if (htmlError != '') {
+                ShowError(htmlError);
+            }
+            if (document.getElementById('secOrderSummary')) {
+                $('#secOrderSummary').replaceWith(htmlSumaryBox);
+                $('#secOrderSummary').addClass('summaryestimate');
+            }
+            ResetBoxEstimateShippingHeight();
+        }
+
+    </script>
+    <asp:Literal ID="ltrScript" runat="server"></asp:Literal>
+</body>
+</html>

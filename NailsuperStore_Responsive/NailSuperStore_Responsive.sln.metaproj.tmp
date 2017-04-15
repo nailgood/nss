@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" InitialTargets="ValidateSolutionConfiguration;ValidateToolsVersions;ValidateProjects">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore')" />
+  <Import Project="D:\Project\NailsuperStore_Responsive\before.NailSuperStore_Responsive.sln.targets" Condition="exists('D:\Project\NailsuperStore_Responsive\before.NailSuperStore_Responsive.sln.targets')" />
+  <PropertyGroup Condition=" '$(Configuration)' == '' ">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == '' ">
+    <Platform>Mixed Platforms</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(AspNetConfiguration)' == '') ">
+    <AspNetConfiguration>$(Configuration)</AspNetConfiguration>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SolutionDir>D:\Project\NailsuperStore_Responsive\</SolutionDir>
+    <SolutionExt>.sln</SolutionExt>
+    <SolutionFileName>NailSuperStore_Responsive.sln</SolutionFileName>
+    <SolutionName>NailSuperStore_Responsive</SolutionName>
+    <SolutionPath>D:\Project\NailsuperStore_Responsive\NailSuperStore_Responsive.sln</SolutionPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and '$(MSBuildToolsVersion)' == '2.0'">v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and ('$(MSBuildToolsVersion)' == '3.5' or '$(MSBuildToolsVersion)' == '3.0')">v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and '$(MSBuildToolsVersion)' == '4.0'">v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == '.NET') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{1BD656FD-5176-4166-8D2F-8590E7445759}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Website" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{98B6090B-4267-4FE2-A79C-6B1046132775}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Common\Common.vbproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0B83DB41-0AD5-4AA9-A111-F54062869CF1}" AbsolutePath="D:\Project\NailsuperStore_Responsive\CryptData\CryptData.vbproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C8DE4818-4824-4EFB-A5F5-EBD7AB0910C5}" AbsolutePath="D:\Project\NailsuperStore_Responsive\FaceBook\FaceBook.csproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C86C52C4-AFF9-4677-9EA7-7EAE3FD5D86D}" AbsolutePath="D:\Project\NailsuperStore_Responsive\PayPalHandler\PayPalHandler.csproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0CFB5BBC-6FC1-4D54-B89A-BA257CAADF05}" AbsolutePath="D:\Project\NailsuperStore_Responsive\ShippingValidator\ShippingValidator.vbproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{E9A403A4-E822-43F7-9AB9-4FD416810A16}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Twitter\Twitter.csproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B359605B-A831-41A4-918D-305416EBD6BB}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Maxmind\Maxmind.csproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{1BD656FD-5176-4166-8D2F-8590E7445759}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Website" BuildProjectInSolution="True">Debug|AnyCPU<ProjectDependency Project="{C8DE4818-4824-4EFB-A5F5-EBD7AB0910C5}" /><ProjectDependency Project="{E9A403A4-E822-43F7-9AB9-4FD416810A16}" /><ProjectDependency Project="{0B83DB41-0AD5-4AA9-A111-F54062869CF1}" /><ProjectDependency Project="{0CFB5BBC-6FC1-4D54-B89A-BA257CAADF05}" /><ProjectDependency Project="{C86C52C4-AFF9-4677-9EA7-7EAE3FD5D86D}" /><ProjectDependency Project="{98B6090B-4267-4FE2-A79C-6B1046132775}" /><ProjectDependency Project="{B359605B-A831-41A4-918D-305416EBD6BB}" /></ProjectConfiguration>
+  <ProjectConfiguration Project="{98B6090B-4267-4FE2-A79C-6B1046132775}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Common\Common.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0B83DB41-0AD5-4AA9-A111-F54062869CF1}" AbsolutePath="D:\Project\NailsuperStore_Responsive\CryptData\CryptData.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C8DE4818-4824-4EFB-A5F5-EBD7AB0910C5}" AbsolutePath="D:\Project\NailsuperStore_Responsive\FaceBook\FaceBook.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C86C52C4-AFF9-4677-9EA7-7EAE3FD5D86D}" AbsolutePath="D:\Project\NailsuperStore_Responsive\PayPalHandler\PayPalHandler.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0CFB5BBC-6FC1-4D54-B89A-BA257CAADF05}" AbsolutePath="D:\Project\NailsuperStore_Responsive\ShippingValidator\ShippingValidator.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{E9A403A4-E822-43F7-9AB9-4FD416810A16}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Twitter\Twitter.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B359605B-A831-41A4-918D-305416EBD6BB}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Maxmind\Maxmind.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Mixed Platforms') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{1BD656FD-5176-4166-8D2F-8590E7445759}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Website" BuildProjectInSolution="False">Debug|AnyCPU<ProjectDependency Project="{98B6090B-4267-4FE2-A79C-6B1046132775}" /><ProjectDependency Project="{B359605B-A831-41A4-918D-305416EBD6BB}" /></ProjectConfiguration>
+  <ProjectConfiguration Project="{98B6090B-4267-4FE2-A79C-6B1046132775}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Common\Common.vbproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0B83DB41-0AD5-4AA9-A111-F54062869CF1}" AbsolutePath="D:\Project\NailsuperStore_Responsive\CryptData\CryptData.vbproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C8DE4818-4824-4EFB-A5F5-EBD7AB0910C5}" AbsolutePath="D:\Project\NailsuperStore_Responsive\FaceBook\FaceBook.csproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C86C52C4-AFF9-4677-9EA7-7EAE3FD5D86D}" AbsolutePath="D:\Project\NailsuperStore_Responsive\PayPalHandler\PayPalHandler.csproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0CFB5BBC-6FC1-4D54-B89A-BA257CAADF05}" AbsolutePath="D:\Project\NailsuperStore_Responsive\ShippingValidator\ShippingValidator.vbproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{E9A403A4-E822-43F7-9AB9-4FD416810A16}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Twitter\Twitter.csproj" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B359605B-A831-41A4-918D-305416EBD6BB}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Maxmind\Maxmind.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == '.NET') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{1BD656FD-5176-4166-8D2F-8590E7445759}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Website" BuildProjectInSolution="False">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{98B6090B-4267-4FE2-A79C-6B1046132775}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Common\Common.vbproj" BuildProjectInSolution="False">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0B83DB41-0AD5-4AA9-A111-F54062869CF1}" AbsolutePath="D:\Project\NailsuperStore_Responsive\CryptData\CryptData.vbproj" BuildProjectInSolution="False">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C8DE4818-4824-4EFB-A5F5-EBD7AB0910C5}" AbsolutePath="D:\Project\NailsuperStore_Responsive\FaceBook\FaceBook.csproj" BuildProjectInSolution="False">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C86C52C4-AFF9-4677-9EA7-7EAE3FD5D86D}" AbsolutePath="D:\Project\NailsuperStore_Responsive\PayPalHandler\PayPalHandler.csproj" BuildProjectInSolution="False">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0CFB5BBC-6FC1-4D54-B89A-BA257CAADF05}" AbsolutePath="D:\Project\NailsuperStore_Responsive\ShippingValidator\ShippingValidator.vbproj" BuildProjectInSolution="False">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{E9A403A4-E822-43F7-9AB9-4FD416810A16}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Twitter\Twitter.csproj" BuildProjectInSolution="False">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B359605B-A831-41A4-918D-305416EBD6BB}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Maxmind\Maxmind.csproj" BuildProjectInSolution="False">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{1BD656FD-5176-4166-8D2F-8590E7445759}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Website" BuildProjectInSolution="True">Debug|AnyCPU<ProjectDependency Project="{C8DE4818-4824-4EFB-A5F5-EBD7AB0910C5}" /><ProjectDependency Project="{E9A403A4-E822-43F7-9AB9-4FD416810A16}" /><ProjectDependency Project="{0B83DB41-0AD5-4AA9-A111-F54062869CF1}" /><ProjectDependency Project="{0CFB5BBC-6FC1-4D54-B89A-BA257CAADF05}" /><ProjectDependency Project="{C86C52C4-AFF9-4677-9EA7-7EAE3FD5D86D}" /><ProjectDependency Project="{98B6090B-4267-4FE2-A79C-6B1046132775}" /><ProjectDependency Project="{B359605B-A831-41A4-918D-305416EBD6BB}" /></ProjectConfiguration>
+  <ProjectConfiguration Project="{98B6090B-4267-4FE2-A79C-6B1046132775}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Common\Common.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0B83DB41-0AD5-4AA9-A111-F54062869CF1}" AbsolutePath="D:\Project\NailsuperStore_Responsive\CryptData\CryptData.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C8DE4818-4824-4EFB-A5F5-EBD7AB0910C5}" AbsolutePath="D:\Project\NailsuperStore_Responsive\FaceBook\FaceBook.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C86C52C4-AFF9-4677-9EA7-7EAE3FD5D86D}" AbsolutePath="D:\Project\NailsuperStore_Responsive\PayPalHandler\PayPalHandler.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0CFB5BBC-6FC1-4D54-B89A-BA257CAADF05}" AbsolutePath="D:\Project\NailsuperStore_Responsive\ShippingValidator\ShippingValidator.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{E9A403A4-E822-43F7-9AB9-4FD416810A16}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Twitter\Twitter.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B359605B-A831-41A4-918D-305416EBD6BB}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Maxmind\Maxmind.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Mixed Platforms') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{1BD656FD-5176-4166-8D2F-8590E7445759}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Website" BuildProjectInSolution="True">Debug|AnyCPU<ProjectDependency Project="{C8DE4818-4824-4EFB-A5F5-EBD7AB0910C5}" /><ProjectDependency Project="{E9A403A4-E822-43F7-9AB9-4FD416810A16}" /><ProjectDependency Project="{0B83DB41-0AD5-4AA9-A111-F54062869CF1}" /><ProjectDependency Project="{0CFB5BBC-6FC1-4D54-B89A-BA257CAADF05}" /><ProjectDependency Project="{C86C52C4-AFF9-4677-9EA7-7EAE3FD5D86D}" /><ProjectDependency Project="{98B6090B-4267-4FE2-A79C-6B1046132775}" /><ProjectDependency Project="{B359605B-A831-41A4-918D-305416EBD6BB}" /></ProjectConfiguration>
+  <ProjectConfiguration Project="{98B6090B-4267-4FE2-A79C-6B1046132775}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Common\Common.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0B83DB41-0AD5-4AA9-A111-F54062869CF1}" AbsolutePath="D:\Project\NailsuperStore_Responsive\CryptData\CryptData.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C8DE4818-4824-4EFB-A5F5-EBD7AB0910C5}" AbsolutePath="D:\Project\NailsuperStore_Responsive\FaceBook\FaceBook.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{C86C52C4-AFF9-4677-9EA7-7EAE3FD5D86D}" AbsolutePath="D:\Project\NailsuperStore_Responsive\PayPalHandler\PayPalHandler.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{0CFB5BBC-6FC1-4D54-B89A-BA257CAADF05}" AbsolutePath="D:\Project\NailsuperStore_Responsive\ShippingValidator\ShippingValidator.vbproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{E9A403A4-E822-43F7-9AB9-4FD416810A16}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Twitter\Twitter.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{B359605B-A831-41A4-918D-305416EBD6BB}" AbsolutePath="D:\Project\NailsuperStore_Responsive\Maxmind\Maxmind.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter')" />
+  <Import Project="D:\Project\NailsuperStore_Responsive\after.NailSuperStore_Responsive.sln.targets" Condition="exists('D:\Project\NailsuperStore_Responsive\after.NailSuperStore_Responsive.sln.targets')" />
+  <Target Name="Build" />
+  <Target Name="Rebuild" />
+  <Target Name="Clean" />
+  <Target Name="Publish" />
+</Project>

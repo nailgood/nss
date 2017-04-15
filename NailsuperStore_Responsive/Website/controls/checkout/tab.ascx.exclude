@@ -1,0 +1,7 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="tab.ascx.vb" Inherits="controls_checkout_tab" %>
+<div class="tabs-content">
+    <ul class="nav nav-tabs">
+        <asp:Literal ID="ltrContent" runat="server">
+        </asp:Literal>
+    </ul>
+</div>

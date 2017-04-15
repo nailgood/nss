@@ -1,0 +1,36 @@
+8.0
+34
+1       SQLCHAR       0       20       ""      1     Contact_No               SQL_Latin1_General_CP1_CI_AS
+2       SQLCHAR       0       30       ""      2     Cust_Name                SQL_Latin1_General_CP1_CI_AS
+3       SQLCHAR       0       30       ""      3     Cust_Name_2              SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR       0       30       ""      4     Address                  SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR       0       30       ""      5     Address_2                SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR       0       30       ""      6     City                     SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR       0       30       ""      7     Phone                    SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR       0       10       ""      8     Territory_Code           SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR       0       10       ""      9     Currency_Code            SQL_Latin1_General_CP1_CI_AS
+10      SQLCHAR       0       10       ""      10    Language_Code            SQL_Latin1_General_CP1_CI_AS
+11      SQLCHAR       0       10       ""      11    Salesperson_Code         SQL_Latin1_General_CP1_CI_AS
+12      SQLCHAR       0       10       ""      12    Country_Code             SQL_Latin1_General_CP1_CI_AS
+13      SQLCHAR       0       10       ""      13    Comment                  SQL_Latin1_General_CP1_CI_AS
+14      SQLCHAR       0       11       ""      14    Last_Date_Modified       SQL_Latin1_General_CP1_CI_AS
+15      SQLCHAR       0       30       ""      15    Fax_No                   SQL_Latin1_General_CP1_CI_AS
+16      SQLCHAR       0       20       ""      16    VAT_Registration_No      SQL_Latin1_General_CP1_CI_AS
+17      SQLCHAR       0       20       ""      17    Post_Code                SQL_Latin1_General_CP1_CI_AS
+18      SQLCHAR       0       30       ""      18    County                   SQL_Latin1_General_CP1_CI_AS
+19      SQLCHAR       0       80       ""      19    Email                    SQL_Latin1_General_CP1_CI_AS
+20      SQLCHAR       0       80       ""      20    Home_Page                SQL_Latin1_General_CP1_CI_AS
+21      SQLCHAR       0       10       ""      21    Type                     SQL_Latin1_General_CP1_CI_AS
+22      SQLCHAR       0       20       ""      22    Company_No               SQL_Latin1_General_CP1_CI_AS
+23      SQLCHAR       0       30       ""      23    Company_Name             SQL_Latin1_General_CP1_CI_AS
+24      SQLCHAR       0       30       ""      24    First_Name               SQL_Latin1_General_CP1_CI_AS
+25      SQLCHAR       0       30       ""      25    Middle_Name              SQL_Latin1_General_CP1_CI_AS
+26      SQLCHAR       0       30       ""      26    Surname                  SQL_Latin1_General_CP1_CI_AS
+27      SQLCHAR       0       30       ""      27    Job_Title                SQL_Latin1_General_CP1_CI_AS
+28      SQLCHAR       0       30       ""      28    Initials                 SQL_Latin1_General_CP1_CI_AS
+29      SQLCHAR       0       30       ""      29    Extension_No             SQL_Latin1_General_CP1_CI_AS
+30      SQLCHAR       0       30       ""      30    Mobile_Phone_No          SQL_Latin1_General_CP1_CI_AS
+31      SQLCHAR       0       30       ""      31    Pager                    SQL_Latin1_General_CP1_CI_AS
+32      SQLCHAR       0       10       ""      32    Salutation_Code          SQL_Latin1_General_CP1_CI_AS
+33      SQLCHAR       0       10       ""      33    Last_Time_Modified       SQL_Latin1_General_CP1_CI_AS
+34	    SQLCHAR	      0	      15       "\r\n"  34    WebReferenceNo           SQL_Latin1_General_CP1_CI_AS

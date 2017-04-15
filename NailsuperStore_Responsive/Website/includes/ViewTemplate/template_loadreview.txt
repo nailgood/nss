@@ -1,0 +1,67 @@
+﻿<div itemtype="http://schema.org/Review" itemscope="" itemprop="review">
+     <div id="Title">
+       <div id="Star" itemtype="http://schema.org/Rating" itemscope="" itemprop="reviewRating">
+	        <meta content="1" itemprop="worstRating" />
+	        <span><img itemprop="" alt="" style="border-style:none" src="/includes/theme/images/star#Star#0.png">	        
+	        </span>	  
+	        <span style="display:none;" itemprop="ratingValue">#Star#</span>
+	        <span style="display:none;" itemprop="bestRating">5</span>
+		</div>
+		<div class="bold floatleft rname" itemscope="" itemprop="itemReviewed" itemtype="http://schema.org/Thing"><span itemprop="name">#Title#</span></div>
+		<div id="Name" itemscope="" itemprop="author" itemtype="http://schema.org/Person">by <span class="bold" itemprop="name">#Name#</span>
+		
+		</div>
+	</div>
+	
+	  
+
+						
+
+            
+	<div id="newComment" class="hidediv">
+		<div id="reviewBody">
+			<div id="GPros" class="groupChk hidediv">
+				<div id="Pros">Pros:</div>
+				<div class="padGroup">
+					<div id="ProsEasyToUse" class="hidediv">-&nbsp;#ProsEasyToUse#Easy To Use</div>
+					<div id="ProsHighQuality" class="hidediv">-&nbsp;#ProsHighQuality#High Quality</div>
+					<div id="ProsGoodValue" class="hidediv">-&nbsp;#ProsGoodValue#Good Value</div>
+					<div id="ProsLongLasting" class="hidediv">-&nbsp;#ProsLongLasting#Long Lasting</div>
+				</div>
+			</div>
+			<div id="GCons" class="groupChk hidediv">	
+				<div id="Cons">Cons:</div>
+				<div class="padGroup">
+					<div id="ConsDifficultToUse" class="hidediv">-&nbsp;#ConsDifficultToUse#Difficult To Use</div>
+					<div id="ConsPoorQuality" class="hidediv">-&nbsp;#ConsPoorQuality#Poor Quality</div>
+					<div id="ConsExpensive" class="hidediv">-&nbsp;#ConsExpensive#Expensive</div>
+					<div id="ConsDoesNotWork" class="hidediv">-&nbsp;#ConsDoesNotWork#Does Not Work</div>
+				</div>
+			</div>
+			<div id="GExperienceLevel" class="groupChk hidediv">
+				<div id="ExperienceLevel">Experience Level:</div>
+					<div class="padGroup">
+						<div id="ExperienceLevelStudent" class="hidediv">-&nbsp;#ExperienceLevelStudent#Student</div>
+						<div id="ExperienceLevel1" class="hidediv">-&nbsp;#ExperienceLevel1#1+ Years</div>
+						<div id="ExperienceLevel3" class="hidediv">-&nbsp;#ExperienceLevel3#3+ Years</div>
+						<div id="ExperienceLevel5" class="hidediv">-&nbsp;#ExperienceLevel5#5+ Years</div>
+					</div>
+				</div>
+			
+			<div id="txtComments" class="hidediv"><b>Product Comment</b>:&nbsp;<span itemprop="description">#txtComments#</span></div>
+			<div id="txtSuggestion" class="hidediv"><b>Product Suggestions</b>:&nbsp;#txtSuggestion#</div>
+			<div id="BottomLine"><b>Bottom Line</b>:&nbsp;#BottomLine#</div>
+			<div class="adminReply" style="display:#displayAdminReply#"> 
+				<div class="top" >
+					&nbsp;
+				</div>
+				<div class="content">
+					<div class="title">The Nail Superstore replied:</div>
+					<div class="data">
+				#AdminReplyContent#
+				</div>
+			</div>
+		</div>
+		<div id="oldComment" class="hidediv">#OldComment#</div>
+	</div>
+</div>

@@ -1,0 +1,76 @@
+﻿<%@ Master Language="VB" CodeFile="main.master.vb" Inherits="Masterpage_Main" ClientIDMode="Static" %>
+
+<%@ Register Src="~/controls/layout/header.ascx" TagName="header" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/footer.ascx" TagName="footer" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/bread-crumb.ascx" TagName="breadcrumb" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/google-analytics.ascx" TagName="ga" TagPrefix="uc" %>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js" lang="en">
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <asp:Literal ID="ltIndexFollow" runat="server"></asp:Literal>
+    <asp:Literal ID="ltrCanonical" runat="server"></asp:Literal>
+    <title></title>
+    <asp:Literal ID="ltrMetaSocialNetwork" runat="server"></asp:Literal>
+    <meta name="author" content="Kevin Huynh, The Nail Superstore" />
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,600' />
+
+<%--    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/bootstrap.css" />--%>
+<%--    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/product.css" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/resource-center.css" />--%>
+    <%-- <link rel="stylesheet" type="text/css" href="/includes/Theme/css/default.css?t=2015" />    
+    <script type="text/javascript" src="/includes/scripts/jquery-1.7.1.min.js"></script> Edit css.xml--%>
+ <%--    <link rel="stylesheet" href="/includes/scripts/bxslider/jquery.bxslider.css" type="text/css" />--%><!--dua vao css.xml-->
+ <%--    <   <link href="/includes/scripts/qtip/qtip.css" rel="stylesheet" type="text/css" />
+link rel="stylesheet" type="text/css" href="/includes/scripts/nyroModal/styles/nyroModal.full.css" />--%>
+    <asp:Literal ID="litCSS" runat="server"></asp:Literal>
+    <asp:Literal ID="litScript" runat="server"></asp:Literal>
+    <asp:Literal ID="ltriPadScrollBar" runat="server"></asp:Literal>
+    <asp:ContentPlaceHolder ID="cphHead" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <uc:ga ID="ga" runat="server" />
+    <form id="formMain" runat="server">
+    <asp:ScriptManager runat="server" EnablePageMethods="true" ID="MainSM" runat="server" ScriptMode="Release" EnablePartialRendering="true">
+    </asp:ScriptManager>
+    <%--<div class="container-fluid">--%>
+    <uc:header ID="header" runat="server" />
+    <div class="container">  
+        <div id="main">
+            <uc:breadcrumb ID="ucBreadCrumb" runat="server" />
+            <CT:ErrorMessage ID="ErrorPlaceHolder" runat="server" />
+            <div class="center-block">
+                <div id="loading" class="bg-loading" style="display: none; text-align:center">
+                    Please wait...<br />
+                    <img src="/includes/theme/images/loader.gif" alt="" />
+                </div>
+            </div>
+            <asp:ContentPlaceHolder ID="cphContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    <!-- Begin footer -->
+    <uc:footer ID="ucFooter" runat="server" />
+    <!-- End footer -->
+    </form>
+    <asp:Literal ID="litScriptCustom" runat="server"></asp:Literal>
+</body>
+    <%--<script type="text/javascript" src="/includes/scripts/layout.js" defer="defer"></script>
+    <script type="text/javascript" src="/includes/scripts/command.js"></script>
+    <script type="text/javascript" src="/includes/scripts/bootstrap.min.js" defer="defer"></script> Edit css.xml--%>
+
+    <%--<script type="text/javascript" src="/includes/scripts/bxslider/jquery.bxslider.js" defer="defer"></script>--%>
+    <%--<script type="text/javascript" src="/includes/scripts/qtip/jquery.qtip.min.js" defer="defer"></script>--%>
+    <%--<script type="text/javascript" src="/includes/scripts/qtip/qtip.js" defer="defer"></script>--%>
+    <%-- <script type="text/javascript" src="/includes/scripts/Common.js" defer="defer"></script>--%>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <script type="text/javascript" src="/includes/scripts/html5.js"></script>
+        <script type="text/javascript" src="/includes/scripts/respond.js"></script>
+    <![endif]-->
+    <%--<script type="text/javascript" src="/includes/scripts/nyroModal/js/jquery.nyroModal-1.6.2.min.js" defer="defer"></script>--%>
+    
+</html>

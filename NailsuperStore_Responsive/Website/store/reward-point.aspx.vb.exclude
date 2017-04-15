@@ -1,0 +1,228 @@
+﻿Imports Components
+Imports DataLayer
+Imports System.Data.SqlClient
+Imports System.IO
+
+Partial Class Store_RewardPoint
+    Inherits SitePage
+    '-------------------------------------------------------------------
+    ' VARIABLES
+    '-------------------------------------------------------------------
+    Protected o As StoreOrderRow
+    Private DepartmentId As Integer
+    Private TabId As Integer = 0
+    Private filter As New DepartmentFilterFields
+    Private ItemsCollection As StoreItemCollection
+    Private Brand As StoreBrandRow
+    Private Department As StoreDepartmentRow
+    Protected ReWriteURL As RewriteUrl
+    Protected QtySample As Integer = CInt(SysParam.GetValue("FreeSampleQty"))
+    Protected NofRecords As Int16
+    Protected NofPages As Integer = 1
+    Const NofLinks As Integer = 5
+    Private txtCurrentQtyAddCardID As String = String.Empty
+    Private txtCurrentQtyAddCardValue As Integer = 0
+    Private isInternational As Boolean = False
+    Private memberId As Int32 = 0
+    '-------------------------------------------------------------------
+    ' METHODS
+    '-------------------------------------------------------------------
+    Protected Overrides Sub OnInit(ByVal e As System.EventArgs)
+        MyBase.OnInit(e)
+    End Sub
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+        memberId = Utility.Common.GetCurrentMemberId()
+        If memberId <= 0 And HasAccess() = False Then
+            Response.Redirect("/members/login.aspx")
+        End If
+
+        If Cart Is Nothing Then
+            Response.Redirect("/store/cart.aspx")
+        End If
+        o = Cart.Order
+        If o Is Nothing Then
+            Response.Redirect("/store/cart.aspx")
+        End If
+
+        If Not Page.IsPostBack Then
+            If Cart.GetCartItemCount() = 0 Then
+                DB.Close()
+                Response.Redirect("/store/cart.aspx")
+            End If
+            If MemberRow.MemberInGroupWHS(o.MemberId) Then
+                Response.Redirect(GlobalSecureName & "/store/free-sample.aspx")
+            End If
+            BindData()
+            LoadMetaData(DB, "/store/reward-point.aspx")
+            Utility.Common.OrderLog(o.OrderId, "Page Load", Nothing)
+        End If
+    End Sub
+    Private Function GetCheckOutPage() As String
+        Dim result As String = "/store/payment.aspx"
+        Dim isAllowResetAddress As Boolean = True
+        If Cart.Order.ShippingAddressId < 1 AndAlso Cart.Order.IsSameAddress = False AndAlso Cart.Order.BillingAddressId > 0 Then
+            Return result
+        End If
+
+        Dim isNotCompleteAddress As Boolean = MemberAddressRow.IsNotCompleteAddress(DB, memberId)
+        If isNotCompleteAddress Then
+            Dim country As String = DB.ExecuteScalar("Select COALESCE(Country,'') from MemberAddress where MemberId=" & memberId.ToString() & "  and AddressType='Billing'")
+            If country = "" Or country = "US" Then
+                result = "/store/billing.aspx?type=Billing"
+            Else
+                result = "/store/billingint.aspx"
+            End If
+        End If
+        Return result
+    End Function
+    Private Sub BindData()
+        Dim iTotalRecords As Integer = Integer.MinValue
+        filter.pg = 1
+        filter.MaxPerPage = Int32.MaxValue
+        filter.MemberId = memberId
+        filter.OrderId = o.OrderId
+        If filter.MemberId > 0 Then
+
+            isInternational = MemberRow.CheckMemberIsInternational(filter.MemberId, o.OrderId)
+        End If
+        ItemsCollection = New StoreItemCollection
+        ItemsCollection = StoreItemRow.GetListItemRewardPoint(DB, filter, iTotalRecords)
+
+        If (ItemsCollection.Count < 1) Then
+            GoCheckOut()
+        Else
+            LoadControlList(ItemsCollection, isInternational, ItemsCollection.Count, filter.MaxPerPage)
+            Dim ucBuyPoint As controls_checkout_buy_point = Me.Master.FindControl("ucBuyPoint")
+            If Not ucBuyPoint Is Nothing Then
+                ucBuyPoint.Cart = Cart
+            End If
+            Dim ucPointSummary As controls_checkout_reward_point_summary = Me.Master.FindControl("ucPointSummary")
+            If Not ucPointSummary Is Nothing Then
+                ucPointSummary.Cart = Cart
+            End If
+        End If
+
+    End Sub
+    Private Sub LoadControlList(ByVal sc As StoreItemCollection, ByVal isInt As Boolean, ByVal Count As Integer, ByVal pagesize As Integer)
+        Dim controlPath As String = "~/controls/product/product-list.ascx"
+        Dim pageHolder As New Page()
+        Dim ucListProduct As New controls_product_product_list
+        ucListProduct = DirectCast(pageHolder.LoadControl(controlPath), controls_product_product_list)
+        ucListProduct.ItemsCollection = sc
+        ucListProduct.isInternational = isInt
+        ucListProduct.ItemsCollectionCount = Count
+        ucListProduct.PageSize = pagesize
+        phListItem.Controls.Add(ucListProduct)
+    End Sub
+    Private Sub GoCheckOut()
+        If Not ValiDateCart() Then
+            Response.Redirect(GlobalSecureName & "/store/cart.aspx")
+        End If
+        Dim checkOutURL As String = GetCheckOutPage()
+        If GetQueryString("act") <> Nothing Then
+            Response.Redirect(GlobalSecureName & checkOutURL & "?act=err")
+        Else
+            Response.Redirect(GlobalSecureName & checkOutURL)
+        End If
+
+
+    End Sub
+    Private Sub LogValidateCart(ByVal message As String)
+        Dim orderId As Integer = 0
+        If Not (Cart Is Nothing) Then
+            If Not Cart.Order Is Nothing Then
+                orderId = Cart.Order.OrderId
+            End If
+        End If
+        Dim allowSendmail As String = "0"
+        Try
+            allowSendmail = System.Configuration.ConfigurationManager.AppSettings("SendMailLogValidateCart")
+        Catch ex As Exception
+
+        End Try
+        Dim rawURL As String = String.Empty
+        If Not System.Web.HttpContext.Current Is Nothing Then
+            If Not System.Web.HttpContext.Current.Request Is Nothing Then
+                rawURL = System.Web.HttpContext.Current.Request.Url.AbsoluteUri.ToString()
+            End If
+        End If
+
+        If (allowSendmail = "1") Then
+            Components.Email.SendError("ToError500", "LogValidateCart-" & Now.ToString() & "-" & rawURL, "OrderId:" & orderId & "<br/>" & message)
+        End If
+    End Sub
+    Private Function ValiDateCart() As Boolean
+        Dim scic As StoreCartItemCollection = StoreCartItemRow.GetCartItemsForCart(Cart.Order.OrderId)
+        If (scic Is Nothing OrElse scic.Count < 1) Then
+            LogValidateCart("Cart is nothing")
+            Return False
+        End If
+
+        Dim balance As Integer = Cart.GetCurrentBalancePoint(PointAvailable)
+        For Each ci As StoreCartItemRow In scic
+            If (ci.Type = Utility.Common.CartItemTypeBuyPoint Or ci.IsFreeItem = True) Then
+                Continue For
+            End If
+            Dim item As StoreItemRow = StoreItemRow.GetRow(DB, ci.ItemId)
+            If (item.QtyOnHand <= 0 Or item.QtyOnHand < ci.Quantity) And (ci.IsFreeItem = False And ci.IsFreeSample = False) Then
+                If ((Utility.Common.IsItemAcceptingOrder(item.AcceptingOrder) And item.IsActive = True) OrElse (item.IsSpecialOrder And item.IsActive = True) OrElse ci.AttributeSKU = "FREE") Then
+                    Continue For
+                Else
+                    LogValidateCart("item: " & item.SKU & "<br/>QtyOnHand=" & item.QtyOnHand & "<br/>ci.Quantity=" & ci.Quantity)
+                    Return False
+                End If
+            End If
+            If (ci.IsRewardPoints) Then
+                If (item.IsRewardPoints) Then
+                    If (item.RewardPoints <> ci.RewardPoints) Then ''update point cho item
+                        Cart.RemoveCartItem(ci.CartItemId)
+                        LogValidateCart("item: " & item.SKU & "<br/>RewardPoints=" & item.RewardPoints & "<br/>ci.RewardPoints=" & ci.RewardPoints)
+                        Return False
+                    Else
+                        Dim oldQty As Integer = ci.Quantity
+                        Dim newQty As Integer = CInt(ci.Quantity)
+                        Dim oldPoint As Integer = oldQty * ci.RewardPoints
+                        Dim totalPoint As Integer = oldPoint + balance
+                        Dim MaxNumberAdd As Integer = Utility.Common.GetMaximunQtyAddPoint(totalPoint, ci.RewardPoints)
+                        If (newQty > MaxNumberAdd) Then ''ko du point
+                            LogValidateCart("item: " & item.SKU & "<br/>newQty=" & newQty & "<br/>MaxNumberAdd=" & MaxNumberAdd)
+                            Return False
+                        End If
+                    End If
+                Else
+                    Return False
+                End If
+            End If
+
+            Dim Others As Integer = DB.ExecuteScalar("select coalesce(sum(quantity),0) from storecartitem where [type] = 'item' and orderid = " & ci.OrderId & " and cartitemid <> " & ci.CartItemId & " and itemid = " & ci.ItemId & " and isFreeItem = 0")
+            Dim maximumqty As Integer = DB.ExecuteScalar("select top 1 coalesce(maximumquantity,0) from storeitem where itemid = " & item.ItemId)
+            If maximumqty > 0 AndAlso maximumqty < ci.Quantity Then
+                LogValidateCart("item: " & item.SKU & "<br/>maximumqty=" & maximumqty & "<br/>ci.Quantity=" & ci.Quantity)
+                Return False
+            Else
+                If item.QtyOnHand - Others >= ci.Quantity Then
+                    If (ci.IsRewardPoints) Then
+                        If (item.IsRewardPoints) Then
+                            If (item.RewardPoints <> ci.RewardPoints) Then ''update point cho item
+                                Cart.RemoveCartItem(ci.CartItemId)
+                            End If
+                        Else
+                            LogValidateCart("item: " & item.SKU & "<br/>ci.IsRewardPoints=" & ci.IsRewardPoints & "<br/>item.IsRewardPoints=" & item.IsRewardPoints)
+                            Return False
+                        End If
+                    End If
+                Else
+                    If Not ci.IsFreeItem Then
+                        LogValidateCart("item: " & item.SKU & "<br/>item.QtyOnHand=" & item.QtyOnHand & "<br/>Others=" & Others & "<br/>ci.Quantity=" & ci.Quantity)
+                        Return False
+                    End If
+                End If
+            End If
+        Next
+        Return True
+    End Function
+
+    Protected Sub btnCheckOut_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnCheckOutRewardPoint.Click
+        GoCheckOut()
+    End Sub
+End Class

@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AceptingOrder" xml:space="preserve">
+    <value>Accepting Orders Now. Due to overwhelming demands, we are taking preorders on this item for our next shipment. For more information, please call 800-669-9430 or &lt;a  style='font-style:italic; color:Red ' href="/contact/GeneralQuestion.aspx" target="_blank"&gt;email us&lt;/a&gt;.</value>
+  </data>
+  <data name="EmtyList" xml:space="preserve">
+    <value>No items were found that match your search criteria.</value>
+  </data>
+  <data name="HelloBeginSendTracking" xml:space="preserve">
+    <value>Thank you for shopping with us. We thought you'd like to know that we shipped your items, and that this completes your order. Your order is on its way, and can no longer be changed. Please log on to your account at www.nailsuperstore.com to track your shipment, view your order history or make changes to your account. You can also give us a call at 1-847-260-4000.</value>
+  </data>
+  <data name="HelloTrackingDelivered" xml:space="preserve">
+    <value>Thank you for shopping with us. As you can see below, your order has successfully been delivered! This now completes your order. If you have any question about this shipment or manage other orders, please visit Your Orders at Nailsuperstore.com or give us a call at 1-800-669-9430 or 1-847-260-4000.</value>
+  </data>
+  <data name="HelloTrackingDeliveryException" xml:space="preserve">
+    <value>Thank you for shopping with us. We are informing you that there was a problem while trying to deliver your package. Please be aware that delivery will be re-attempted the next business day. Please see below for complete details. If you have any question about this or other orders, please visit Your Orders at NailSuperstore.com or give us a call at 1-800-669-9430 or 1-847-260-4000.</value>
+  </data>
+  <data name="ItemPoint" xml:space="preserve">
+    <value>earn &lt;span id='earnpoint'&gt;{0}&lt;/span&gt; points &lt;span class='line'&gt;on this purchase&lt;/span&gt;&lt;a href="javascript:void(ShowCashPointTip('{1}'));"&gt;&lt;span class="ico-question" /&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="LinkTrackingNailSuperStore" xml:space="preserve">
+    <value>/order-tracking/{0}</value>
+  </data>
+  <data name="LinkTrackingNumberFedEx" xml:space="preserve">
+    <value>http://www.fedex.com/Tracking?language=english&amp;cntry_code=us&amp;tracknumbers={0}</value>
+  </data>
+  <data name="LinkTrackingNumberUPS" xml:space="preserve">
+    <value>http://wwwapps.ups.com/WebTracking/processRequest?HTMLVersion=5.0&amp;Requester=NES&amp;AgreeToTermsAndConditions=yes&amp;loc=en_US&amp;tracknum={0}</value>
+  </data>
+  <data name="LinkTrackingNumberUSPS" xml:space="preserve">
+    <value>https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1={0}</value>
+  </data>
+  <data name="LinkTrackingNumberUSPSPriority" xml:space="preserve">
+    <value>https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1={0}</value>
+  </data>
+  <data name="LinkTrackingOnWeb" xml:space="preserve">
+    <value>/order-tracking/{0}</value>
+    <comment>Only for Fedex</comment>
+  </data>
+  <data name="LinkTrackingTruck" xml:space="preserve">
+    <value>/members/orderhistory/view.aspx?OrderId={0}</value>
+    <comment>dont' know link tracking --&gt;link order history on web</comment>
+  </data>
+  <data name="NailPromotion" xml:space="preserve">
+    <value>View all {0} on sale</value>
+  </data>
+  <data name="OPI" xml:space="preserve">
+    <value>OPI products are available only in store or by phone order.</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>{0} - The Nail Superstore</value>
+  </data>
+  <data name="ReasonDeliveryException" xml:space="preserve">
+    <value>Reason delivery not completed: customer not available or business closed. Delivery will be re-attempted the next business day.</value>
+  </data>
+  <data name="ReferralDescription" xml:space="preserve">
+    <value>Register for an account with The Nail Superstore and get 50 free points!</value>
+  </data>
+  <data name="review_approve" xml:space="preserve">
+    <value>Your review is wating approve</value>
+  </data>
+  <data name="review_no_record" xml:space="preserve">
+    <value>No items were found that match your search criteria.</value>
+  </data>
+  <data name="review_order_subject_mail" xml:space="preserve">
+    <value>[Order Review] Customer reviews for the purchase order # {0}</value>
+  </data>
+  <data name="review_thanks" xml:space="preserve">
+    <value>Thanks for your review</value>
+  </data>
+  <data name="SeeMoreData" xml:space="preserve">
+    <value>See More Items &gt;&gt;</value>
+  </data>
+  <data name="SeeMoreTracking" xml:space="preserve">
+    <value>To see more about your order tracking, please  {0}</value>
+  </data>
+  <data name="FreeItemFlammable" xml:space="preserve">
+    <value>Item  is not available for customer outsite of 48 states within continental USA.</value>
+  </data>
+  <data name="SearchReplaceKeyword" xml:space="preserve">
+    <value>We’re sorry. This product is currently unavailable. Please check out our selection of {0} products.</value>
+  </data>
+  <data name="HelloBeginSendTrackingByGuest" xml:space="preserve">
+    <value>Thank you for shopping with us. We thought you'd like to know that we shipped your items, and that this completes your order. Your order is on its way, and can no longer be changed. You can also give us a call at 1-847-260-4000.</value>
+  </data>
+  <data name="ButtonLogin1" xml:space="preserve">
+    <value>Login &amp; Checkout</value>
+  </data>
+  <data name="ButtonLogin2" xml:space="preserve">
+    <value>Login &amp; Continue</value>
+  </data>
+  <data name="ButtonRegister1" xml:space="preserve">
+    <value>Checkout as Guest</value>
+  </data>
+  <data name="ButtonRegister2" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+  <data name="LoginTitle1" xml:space="preserve">
+    <value>Checkout with your account</value>
+  </data>
+  <data name="LoginTitle2" xml:space="preserve">
+    <value>Sign in to your account</value>
+  </data>
+  <data name="NotFoundShopSave" xml:space="preserve">
+    <value>The promotion is not found</value>
+  </data>
+  <data name="SubmissionIntruction1" xml:space="preserve">
+    <value>Tell us about your Red Dragon Sauna Pedicure Spa services:</value>
+  </data>
+  <data name="SubmissionIntruction2" xml:space="preserve">
+    <value>Tell us about your salon design:</value>
+  </data>
+  <data name="SubmissionTitle1" xml:space="preserve">
+    <value>Red Dragon Sauna Photo Contest</value>
+  </data>
+  <data name="SubmissionTitle2" xml:space="preserve">
+    <value>Show Off Your Salon Contest</value>
+  </data>
+  <data name="ItemPointCase" xml:space="preserve">
+    <value>earn &lt;span id='earnpointCase'&gt;{0}&lt;/span&gt; points &lt;span class='line'&gt;on this purchase&lt;/span&gt;</value>
+  </data>
+  <data name="IndexFollow" xml:space="preserve">
+    <value>&lt;META NAME="ROBOTS" CONTENT="{0}{1}" /&gt;</value>
+  </data>
+  <data name="NotFoundMedia" xml:space="preserve">
+    <value>Page not found</value>
+  </data>
+  <data name="Canonical" xml:space="preserve">
+    <value>&lt;link rel="canonical" href="{0}" /&gt;</value>
+  </data>
+  <data name="LinkTrackingNumberDHL" xml:space="preserve">
+    <value>http://www.dhl.com/en/express/tracking.html?AWB={0}&amp;brand=DHL</value>
+  </data>
+  <data name="PolicyNotFound" xml:space="preserve">
+    <value>The policy is not found</value>
+  </data>
+  <data name="review_First" xml:space="preserve">
+    <value>Write first review of this product</value>
+  </data>
+  <data name="review_Old" xml:space="preserve">
+    <value>Review this product</value>
+  </data>
+  <data name="MiniCart_FreeShipNoQualify" xml:space="preserve">
+    <value>&lt;span&gt;FREE SHIPPING&lt;/span&gt; | Add &lt;span&gt;{0}&lt;/span&gt; to your order to quality.</value>
+  </data>
+  <data name="MiniCart_FreeShipQualify" xml:space="preserve">
+    <value>You now qualify for &lt;span&gt;FREE SHIPPING!&lt;/span&gt;</value>
+  </data>
+  <data name="RewardsPointCartLogin" xml:space="preserve">
+    <value>You have &lt;span class="debit"&gt;{2:C2} ({3:N0} in points)&lt;/span&gt; to use on this order and will earn &lt;span class="earn"&gt;{0:C2} ({1:N0} in points)&lt;/span&gt; to use later | &lt;a href="/" onclick='showPointBalancePopup();return false;'&gt;view points detail&lt;/a&gt;</value>
+  </data>
+  <data name="RewardsPointCartUnLogin" xml:space="preserve">
+    <value>You can earn &lt;span id="orderpointearn" class="earn"&gt;{0:C2} ({1:N0} in points)&lt;/span&gt; on this order | &lt;a href="/members/login.aspx"&gt;Sign in&lt;/a&gt; or &lt;a href="/members/login.aspx"&gt;Join for Free&lt;/a&gt;</value>
+  </data>
+  <data name="review_msgFirst" xml:space="preserve">
+    <value>** If you write first review of product, you will earn double Cash Reward Points (20 points). **</value>
+  </data>
+  <data name="MiniCart_FreeShipUnLogin" xml:space="preserve">
+    <value>&lt;span&gt;Free Shipping&lt;/span&gt; for orders of $99 or more | &lt;a href="/services/free-shipping-policies.aspx"&gt;Info&lt;/a&gt;</value>
+  </data>
+  <data name="PopupCashPoint" xml:space="preserve">
+    <value>&lt;p&gt;For every USD$1.00 spent at NailSuperstore.com you\'ll earn 1 \(one\) point. Each point is worth USD$0.05 off on future purchase.&lt;/p&gt;
+&lt;p&gt;Every time you make a purchase you earn points based on the price of products purchased, shipping fees and taxes are excluded. These points are added and accumulated to your Cash Reward Points balance and available to use after 30 days from invoice date.&lt;/p&gt;
+&lt;p&gt;Or you can earn 10 points for writing a review on each product which you purchased from us, except free items or product samples.&lt;/p&gt;
+&lt;p&gt;You can redeem your reward points at checkout. If you have accumulated enough points to redeem then you will have the option of using points as one of the payment methods.&lt;/p&gt;</value>
+  </data>
+  <data name="PopupFlammable" xml:space="preserve">
+    <value>In compliance with U.S Department of Transportation, IATA laws &amp; regulations, some of your items are required an extra handling fee of $66.25 per shipment (NOT per item) ONLY for international or $42.50 for US express air shipments. No charge for ground shipment to 48 continuous states. &lt;a style="color: #3b76ba; text-decoration: underline;" href="/services/order-shipping-restrictions.aspx"&gt;Click here for more information.&lt;/a&gt;</value>
+  </data>
+  <data name="ItemFlammable" xml:space="preserve">
+    <value>In compliance with U.S Department of Transportation, IATA laws &amp; regulations, order with flammable &amp; hazardous material item is required an extra handling fee of $66.25 per shipment (NOT per item) ONLY for international or $42.50 for US express air shipments. No charge for ground shipment to 48 continuous states. &lt;a style="color: #3b76ba; text-decoration: underline;" href="/services/order-shipping-restrictions.aspx"&gt;Click here for more information.&lt;/a&gt;</value>
+  </data>
+  <data name="SpendFreeShipping" xml:space="preserve">
+    <value>Spend {0:C2} more for &lt;strong&gt;FREE Standard Shipping&lt;/strong&gt; in the continental USA</value>
+  </data>
+</root>

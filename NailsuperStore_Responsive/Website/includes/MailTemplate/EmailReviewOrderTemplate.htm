@@ -1,0 +1,74 @@
+﻿<div style="width: 780px; margin-bottom: 4px; color: #454545; font: 12px/18px Arial;">
+    <div style="border-bottom: 1px solid #CCC; padding: 7px 0px;">
+        <table cellspacing="0" cellpadding="0" style="color: #454545; font: 12px/18px Arial;">
+            <tbody>
+                <tr>
+                    <td>
+                        <strong>Order No</strong>:
+                    </td>
+                    <td style="padding-left: 4px; padding-right: 4px; padding-top: 0px;">
+                        <a style="color: Black; font: 12px Arial,Helvetica,Verdana,sans-serif;" href="##webroot##/admin/default.aspx?fr=/admin/store/orders/edit.aspx&OrderId=##OrderId##">
+                            ##OrderNo##</a>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="color: #454545; font: 12px/18px Arial;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <strong>Customer Rating</strong> (1 to 5 Stars):
+                </td>
+                <td style="padding-left: 4px; padding-right: 4px; padding-top: 3px;">
+                    <img src="##webroot##/includes/theme/images/star##star##0.png" />
+                </td>
+                <td>
+                    ##star## ##level##
+                </td>
+            </tr>
+        </table>
+        <table style="color: #454545; font: 12px/18px Arial;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="padding: 0px;">
+                    by <span style="font-weight: bold;">##name##</span> (##CustomerNo##) <span style="padding-left: 12px;
+                        padding-right: 12px; font-size: 14px;">| </span><a href="mailto:##CustomerEmail##">##CustomerEmail##</a>
+                    <span style="padding-left: 12px; padding-right: 12px; font-size: 14px;">| </span>
+                    ##CustomerPhone##
+                </td>
+            </tr>
+        </table>
+        <div>
+            <strong>Comment</strong>: <span>##comment##</span></div>
+    </div>
+</div>
+<table style="width: 780px; margin-top: 4px; color: #454545; font: 12px/18px Arial;">
+    <tr>
+        <td style="width: 70px; padding-top: 3px; padding-bottom: 5px;" align="left" valign="top">
+            <a style="color: Black; font: 12px Arial,Helvetica,Verdana,sans-serif" href="##webroot##/store/review/order-access.aspx?OrderId=##OrderId##&act=1&email=##Email##">
+                Approve</a>
+        </td>
+        <td style="width: 150px; padding-top: 3px; padding-bottom: 5px; border-left: 1px solid #DDDDDD;
+            border-right: 1px solid #DDDDDD;" align="center" valign="top">
+            <a style="color: Black; font: 12px Arial" href="##webroot##/store/review/order-access.aspx?OrderId=##OrderId##&act=2&email=##Email##">
+                Approve & Post </a>
+        </td>
+        <td style="width: 200px; padding-top: 3px; padding-bottom: 5px; border-right: 1px solid #DDDDDD;"
+            align="center" valign="top">
+            <a style="color: Black; font: 12px Arial" href="##webroot##/store/review/order-access.aspx?OrderId=##OrderId##&act=3&email=##Email##">
+                Approve, Post & Facebook</a>
+        </td>
+        <td style="width: 100px; padding-top: 3px; padding-bottom: 5px; border-right: 1px solid #DDDDDD;"
+            align="center" valign="top">
+            <a style="color: Black; font: 12px Arial" href="##webroot##/admin/default.aspx?fr=/admin/store/orders/reviews/edit.aspx&OrderId=##OrderId##">
+                Edit/Reply</a>
+        </td>
+        <td style="width: 70px; padding-top: 3px; padding-bottom: 5px; padding-left: 40px;"
+            align="left" valign="top">
+            <a style="color: Black; font: 12px Arial" href="##webroot##/store/review/order-access.aspx?OrderId=##OrderId##&act=0&email=##Email##">
+                Delete</a>
+        </td>
+        <td>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wurfl_patch>
+  <devices>
+    <device id="generic_android" user_agent="DO_NOT_MATCH_GENERIC_ANDROID" fall_back="generic_xhtml">
+      <group id="object_download">
+        <capability name="ringtone_mp3" value="true"/>
+        <capability name="video" value="true" />
+      </group>
+    </device>
+    <device id="huawei_g510_0251_ver1_sub" user_agent="Mozilla/5.0 (Linux; U; Android 4.1.1; es-us; HUAWEI G510-0251 Build/HuaweiG510-0251) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30" fall_back="generic_android_ver4">
+      <group id="product_info">
+        <capability name="model_name" value="HUAWEI"/>
+        <capability name="brand_name" value="G510-0251"/>
+      </group>
+      <group id="display">
+        <capability name="resolution_width" value="480"/>
+        <capability name="resolution_height" value="854"/>
+      </group>
+    </device>
+  </devices>
+</wurfl_patch>

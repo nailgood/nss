@@ -1,0 +1,5 @@
+D:\Project\NailsuperStore_Responsive\FaceBook\bin\Release\FaceBook.dll
+D:\Project\NailsuperStore_Responsive\FaceBook\bin\Release\FaceBook.pdb
+D:\Project\NailsuperStore_Responsive\FaceBook\obj\Release\FaceBook.dll
+D:\Project\NailsuperStore_Responsive\FaceBook\obj\Release\FaceBook.pdb
+D:\Project\NailsuperStore_Responsive\FaceBook\obj\Release\FaceBook.csprojResolveAssemblyReference.cache

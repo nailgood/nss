@@ -1,0 +1,10 @@
+D:\Projects\NailsuperStore_Responsive\PayPalHandler\obj\Debug\PayPalHandler.csprojResolveAssemblyReference.cache
+D:\Projects\NailsuperStore_Responsive\NailSuperStore_PD\Bin\PayPalHandler.dll
+D:\Projects\NailsuperStore_Responsive\NailSuperStore_PD\Bin\PayPalHandler.pdb
+D:\Projects\NailsuperStore_Responsive\PayPalHandler\obj\Debug\PayPalHandler.dll
+D:\Projects\NailsuperStore_Responsive\PayPalHandler\obj\Debug\PayPalHandler.pdb
+D:\Project\NailsuperStore_Responsive\NailSuperStore_PD\Bin\PayPalHandler.dll
+D:\Project\NailsuperStore_Responsive\NailSuperStore_PD\Bin\PayPalHandler.pdb
+D:\Project\NailsuperStore_Responsive\PayPalHandler\obj\Debug\PayPalHandler.csprojResolveAssemblyReference.cache
+D:\Project\NailsuperStore_Responsive\PayPalHandler\obj\Debug\PayPalHandler.dll
+D:\Project\NailsuperStore_Responsive\PayPalHandler\obj\Debug\PayPalHandler.pdb

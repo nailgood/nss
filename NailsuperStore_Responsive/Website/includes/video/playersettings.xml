@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Note: 
+	- if the with and height are not defined and the param in 
+	the "init" function came undefined the the player will have the stage dimensions
+	- if you don't define a color then the element will look like in the FLA file 
+-->
+
+<videoplayer width = "" height = "">
+    
+ 	<settings>
+ 	
+ 		<autoPlay>true</autoPlay>
+ 		<bufferTime>0</bufferTime>
+ 		<initVolumePercent>100</initVolumePercent>
+ 		
+ 		<playbarHeight>7</playbarHeight>
+ 		<controllerMargin>0</controllerMargin> <!-- on left, right and under -->
+ 		<controllerHeight>30</controllerHeight> <!-- if not defined, then the controller will have the same dimension as in the FLA file -->
+ 		<controllerUnder>false</controllerUnder> <!-- to make it be over the video(for this case you sould define an autohide time) or under the video -->
+ 		<controllerAutohideTime>2</controllerAutohideTime> <!-- if not defined, the controller will not autohide -->
+ 		
+ 		<disableCenterPlayBt>false</disableCenterPlayBt>
+ 		<disableFullBt>false</disableFullBt>
+ 		<disableVolumeBt>false</disableVolumeBt>
+ 		<verticalVolume>false</verticalVolume>
+ 		<disableTooltip>false</disableTooltip>
+ 		
+ 		<titleRightMargin>5</titleRightMargin>
+ 		
+ 	</settings>
+ 	
+ 	
+ 	<colors>
+ 	
+ 		<!-- background of the player, usually black -->
+ 		<background>0x000000</background>
+ 		
+ 		<!-- background of the controller -->
+ 		<controllerBackgroundAlpha>100</controllerBackgroundAlpha>
+ 		<controllerBackgroundColor>0x000000</controllerBackgroundColor>
+ 		
+	 	<!-- for play and volume bar -->
+	 	<backBarsColor>0x999999</backBarsColor>
+	 	
+	 	<!-- for play and volume progress bar -->
+	 	<progressBarsColor>0x7cfd03</progressBarsColor>
+	 	
+	 	<!-- for play download bar -->
+	 	<downloadBarColor>0xFFFFFF</downloadBarColor>
+	 	
+	 	<!-- for the the controls and center play button -->
+	 	<controlsSignColor>0x999999</controlsSignColor>
+	 	
+	 	<!-- tooltip colors -->
+		<tooltipFillColor>0x000000</tooltipFillColor>
+		<tooltipStrokeColor>0xFFFFFF</tooltipStrokeColor>
+		<tooltipTextColor>0xFFFFFF</tooltipTextColor>
+		
+	 	<!-- video title color -->
+		<titleColor>0xFFFFFF</titleColor>
+	</colors>
+	
+</videoplayer>

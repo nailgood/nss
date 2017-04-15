@@ -1,0 +1,658 @@
+﻿
+Imports Components
+Imports DataLayer
+Imports System.Data.SqlClient
+Imports Utility.Common
+Imports System.Web.Services
+Imports System.Collections.Generic
+Imports Newtonsoft.Json
+Imports System.Linq
+Partial Class store_searchresult
+    Inherits SitePage
+
+    Private m_BrandID As Integer
+    Private m_BrandCode As String
+    Private m_categoryId As String
+
+    Protected Brand As StoreBrandRow
+    Protected Department As StoreDepartmentRow
+    Private ItemsCollectionCount As Integer = 0
+    Private ItemsCollection As StoreItemCollection
+    Private filter As DepartmentFilterFields
+    Private txtTitle As String = "Search result for "
+    Private TotalRelatedArticle As Integer = 0
+    Private TotalRelatedVideo As Integer = 0
+    Private luceneHelper As New LuceneHelper
+
+    Private tabName As String = String.Empty
+    Private Keywords As String = String.Empty
+    Private isInternational As Boolean
+    Public replaceKeywordName As String = String.Empty
+    Private objMetaTag As New MetaTag
+
+    Private filterProperty_replaceKw As String = String.Empty
+
+    Private Sub LoadData()
+        Dim breadCrumb As Control = Me.Master.FindControl("BreadCrumb")
+        If breadCrumb IsNot Nothing Then
+            breadCrumb.Visible = False
+        End If
+
+        Dim departmentID As Integer = Utility.ConfigData.RootDepartmentID
+        Department = StoreDepartmentRow.GetRow(DB, departmentID)
+        fltr.Department = Department
+        fltr.ParentDepartment = Department
+        filter = New DepartmentFilterFields()
+        filter.DepartmentId = Department.DepartmentId
+        filter.pg = 1
+        filter.MaxPerPage = Utility.ConfigData.PageSizeScroll
+        filter.SortBy = GetQueryString("Sort")
+        filter.SortOrder = GetQueryString("SortOrder")
+        m_BrandCode = ""
+        If GetQueryString("brand") <> Nothing And GetQueryString("brand") <> "default.aspx" Then
+            m_BrandCode = GetQueryString("brand")
+
+            ''utm constant contact 21/12/2012
+            If (m_BrandCode.Contains("utm_source=constantcontact")) Then
+                Dim sUrl As String = Me.Request.RawUrl
+                sUrl = sUrl.Replace("utm_source=constantcontact", "&utm_source=constantcontact")
+                HttpContext.Current.Response.Clear()
+                HttpContext.Current.Response.Status = "301 Moved Permanently"
+                HttpContext.Current.Response.AddHeader("Location", sUrl)
+                HttpContext.Current.Response.End()
+            End If
+        End If
+        ''utm constant contact 21/12/2012
+        If (GetQueryString("F_Search") <> Nothing) Then
+            Dim fsearch As String = GetQueryString("F_Search")
+            If (fsearch.Contains("utm_source=constantcontact")) Then
+                Dim sUrl As String = Me.Request.RawUrl
+                sUrl = sUrl.Replace("utm_source=constantcontact", "&utm_source=constantcontact")
+                HttpContext.Current.Response.Clear()
+                HttpContext.Current.Response.Status = "301 Moved Permanently"
+                HttpContext.Current.Response.AddHeader("Location", sUrl)
+                HttpContext.Current.Response.End()
+            End If
+        End If
+        ''''''''''''''''''''''''''''''''''''
+
+        filter.BrandCode = m_BrandCode
+        'Keywords = Utility.Common.CheckSearchKeyword(Keywords)
+        Dim isSearchKW As String = GetQueryString("searchkw")
+        If isSearchKW = "1" Then
+            filter.IsSearchKeyWord = True
+
+        Else
+            filter.IsSearchKeyWord = False
+            ''filter.Keyword = IIf(Keywords.IndexOf(" ") <> -1, Core.SplitSearchAND(Keywords), Keywords)
+        End If
+        Dim ds As DataSet = KeywordRow.GetReplaceKeywordWithFilter(Keywords)
+
+        If ds IsNot Nothing AndAlso ds.Tables("1") IsNot Nothing AndAlso ds.Tables("1").Rows.Count = 1 Then
+            replaceKeywordName = ds.Tables("1").Rows(0)(0).ToString()
+        End If
+        If (Not String.IsNullOrEmpty(replaceKeywordName)) Then
+            Dim fqDefault As String = String.Empty
+            filter.Keyword = replaceKeywordName
+            If ds.Tables("2").Rows.Count > 0 Then
+                For dx = 0 To ds.Tables("2").Rows.Count - 1
+                    Dim property_ As String = ds.Tables("2").Rows(dx)(0).ToString()
+                    If Not String.IsNullOrEmpty(property_) Then
+                        Dim vals As String = ds.Tables("2").Rows(0)(1).ToString()
+                        If Not String.IsNullOrEmpty(vals) Then
+                            Dim val As String() = vals.Split(",")
+                            For index = 0 To val.Length - 1
+                                fqDefault = IIf(Not String.IsNullOrEmpty(fqDefault), fqDefault + " OR " + property_.ToLower() + ":" + val(index), property_.ToLower() + ":" + val(index))
+                            Next
+                        End If
+                    End If
+                    If Not String.IsNullOrEmpty(fqDefault) Then
+                        filterProperty_replaceKw = fqDefault
+                    End If
+                Next
+            End If
+        Else
+            filter.Keyword = Keywords
+        End If
+
+        'filter synonym buy in bulk
+        If KeywordSynonymRow.CheckBuyInBulkSynonym(Keywords) Then
+            filterProperty_replaceKw = IIf(String.IsNullOrEmpty(filterProperty_replaceKw), "isinbulk:true", "&isinbulk:true")
+        End If
+
+        filter.HasPromotion = False
+
+        objMetaTag.MetaDescription = MetaDescription
+
+        If Not String.IsNullOrEmpty(Keywords) Then
+            objMetaTag.PageTitle = "Search results " & Keywords
+        Else
+            objMetaTag.PageTitle = "Search results - The Nailsuperstore"
+        End If
+        objMetaTag.MetaDescription = Department.MetaDescription
+        objMetaTag.MetaDescription = Department.MetaKeywords
+
+        fltr.Filter = filter
+        fltr.Visible = filter.PromotionId = Nothing AndAlso (Not filter.IsFeatured OrElse filter.DepartmentId = Utility.ConfigData.RootDepartmentID)
+
+
+        If Brand Is Nothing Then
+            objMetaTag.MetaDescription = SetMetaDescription(objMetaTag.MetaDescription, Department.Name)
+        Else
+            objMetaTag.MetaDescription = SetMetaDescription(objMetaTag.MetaDescription, Brand.BrandName)
+        End If
+
+        tabName = IIf(GetQueryString("tab") Is Nothing, String.Empty, GetQueryString("tab"))
+
+        If Not IsPostBack Then
+            BindData()
+        End If
+
+        SetPageMetaSocialNetwork(Page, objMetaTag)
+
+        '' MetaDescription = strMetaDescription
+    End Sub
+    Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+        Keywords = IIf(GetQueryString("kw") Is Nothing, String.Empty, GetQueryString("kw"))
+        If String.IsNullOrEmpty(Keywords) AndAlso Not GetQueryString("F_Keywords") Is Nothing Then
+            Keywords = Utility.Common.CheckSearchKeyword(GetQueryString("F_Keywords"))
+        End If
+
+        If Keywords.Length > 50 Then
+            Keywords = String.Empty
+        End If
+        'Dim redirectLink As String = KeywordRedirectRow.GetLinkRedirect(Keywords.Trim())
+        'If Not String.IsNullOrEmpty(redirectLink) Then
+        '    Response.Redirect(redirectLink)
+        'End If
+        If Not Page.IsPostBack Then
+            If GetQueryString("ClearCacheQuickSearch") IsNot Nothing Then
+                If Application("KeywordSearchCache") IsNot Nothing Then
+                    Application.Remove("KeywordSearchCache")
+                End If
+                Return
+            End If
+
+            LoadData()
+            If Not String.IsNullOrEmpty(Keywords) Then
+                ViewedItemRow.updateSearchResult(Keywords.Replace("""", "").Trim(), Request.RawUrl)
+            End If
+        End If
+    End Sub
+    Private Sub ClearSearchSession()
+        Session("searchBrandId") = Nothing
+        Session("searchCountBrand") = Nothing
+        Session("searchCountPrice") = Nothing
+        Session("searchCountRating") = Nothing
+        HttpContext.Current.Session("FacetedSearchRatingLevel") = Nothing
+        HttpContext.Current.Session("FacetedSearchPriceLevel") = Nothing
+    End Sub
+    Private Sub BindData()
+        If (Not String.IsNullOrEmpty(filter.Keyword)) Then
+            Dim redirectLink As String = SolrHelper.getKeywordRedirect(filter.Keyword.Trim())
+            If Not String.IsNullOrEmpty(redirectLink) Then
+                Response.Redirect(redirectLink)
+            End If
+
+            If Not String.IsNullOrEmpty(replaceKeywordName) Then
+                ltrTitle.Text = String.Format(Resources.Msg.SearchReplaceKeyword, "<span class='kw'>" & replaceKeywordName & "</span>")
+            Else
+                ltrTitle.Text = txtTitle & Chr(34) & "<span class='kw'>" & filter.Keyword & "</span>" & Chr(34)
+            End If
+
+            hidKeyword.Value = filter.Keyword
+
+        Else
+            ClearSearchSession()
+        End If
+        Dim queryString As String = "0"
+        filter.MemberId = Utility.Common.GetCurrentMemberId()
+        If filter.MemberId > 0 Then
+            Dim orderId As Integer = Session("OrderId")
+            If orderId < 1 Then
+                orderId = Utility.Common.GetOrderIdFromCartCookie()
+            End If
+            '' isInternational = CBool(DB.ExecuteScalar("Select coalesce(IsInternational,[dbo].[fc_IsMemberInternational](MemberId)) from Member where MemberId=" & filter.MemberId))
+        End If
+        If filter.IsSearchKeyWord Then
+            ItemsCollection = StoreItemRow.GetItemSearchKeyword(DB, filter, ItemsCollectionCount)
+        ElseIf Not filter.Keyword Is Nothing AndAlso filter.Keyword.Length > 0 Then
+
+            If (IsKeywordSKU(filter.Keyword)) Then
+                Dim dtItem As DataTable = DB.GetDataTable("Select ItemId,coalesce(URLCode,'') as URLCode,coalesce(ItemName,'') as ItemName  from StoreItem where SKU='" & filter.Keyword.Trim() & "' and IsActive=1 ")
+                If Not dtItem Is Nothing Then
+                    If dtItem.Rows.Count = 1 AndAlso Not SitePage.IsHasFilterSearch() Then
+                        Dim itemID As Integer = dtItem.Rows(0)("ItemId")
+                        Dim urlCode As String = dtItem.Rows(0)("URLCode")
+                        Dim itemName As String = dtItem.Rows(0)("ItemName")
+                        If String.IsNullOrEmpty(urlCode) Then
+                            urlCode = URLParameters.ReplaceUrl(HttpUtility.UrlEncode(itemName.ToLower()))
+                        End If
+                        Dim url As String = URLParameters.ProductUrl(urlCode, itemID)
+                        Session("DepartmentURLCode") = Nothing
+                        Response.Redirect(url)
+                    End If
+                End If
+            End If
+            m_BrandCode = ""
+            If GetQueryString("brand") <> Nothing And GetQueryString("brand") <> "default.aspx" Then
+                m_BrandCode = GetQueryString("brand")
+            End If
+            If m_BrandCode <> "" Then
+                Brand = StoreBrandRow.GetByURLCode(m_BrandCode)
+                m_BrandID = Brand.BrandId
+            Else
+                If GetQueryString("brandid") IsNot Nothing AndAlso IsNumeric(GetQueryString("brandid")) Then
+                    m_BrandID = GetQueryString("brandid")
+                End If
+                If GetQueryString("DepartmentId") IsNot Nothing AndAlso Not String.IsNullOrEmpty(GetQueryString("DepartmentId")) Then
+                    m_categoryId = GetQueryString("DepartmentId")
+                End If
+            End If
+            If GetQueryString("price") <> Nothing And GetQueryString("price") <> "default.aspx" Then
+                filter.PriceRange = GetQueryString("price")
+            End If
+            If GetQueryString("rating") <> Nothing And GetQueryString("rating") <> "default.aspx" Then
+                filter.RatingRange = GetQueryString("rating")
+            End If
+
+            If GetQueryString("collectionid") <> Nothing And GetQueryString("collectionid") <> "default.aspx" Then
+                filter.CollectionId = GetQueryString("collectionid")
+            End If
+            If GetQueryString("toneid") <> Nothing And GetQueryString("toneid") <> "default.aspx" Then
+                filter.ToneId = GetQueryString("toneid")
+            End If
+            If GetQueryString("shadeid") <> Nothing And GetQueryString("shadeid") <> "default.aspx" Then
+                filter.ShadeId = GetQueryString("shadeid")
+            End If
+
+            If Not SitePage.IsHasFilterSearch() Then
+                ClearSearchSession()
+            End If
+            filter.BrandId = m_BrandID
+            Dim currentFlterActive As String = String.Empty
+
+            If Request.RawUrl.Contains("?") Then
+                queryString = Request.RawUrl.Substring(Request.RawUrl.LastIndexOf("?") + 1)
+                currentFlterActive = SitePage.GetCurrentFilterActive(queryString)
+            End If
+            queryString = queryString & "&currentKeyword=" & filter.Keyword.Replace("'", "").Replace("""", "").Replace("&", "%26")
+
+            If (Utility.ConfigData.UseSolr) Then
+                ItemsCollection = SolrHelper.SearchItem(filter.Keyword, filter.SortBy, filter.SortOrder, filter.pg, filter.MaxPerPage, ItemsCollectionCount, m_categoryId, m_BrandID, filter.PriceRange, filter.RatingRange, False, currentFlterActive, filter.CollectionId, filter.ToneId, filter.ShadeId, filterProperty_replaceKw)
+            Else
+                ItemsCollection = luceneHelper.SearchItemInLucene(filter.Keyword, filter.SortBy, filter.SortOrder, filter.pg, filter.MaxPerPage, ItemsCollectionCount, m_BrandID, filter.PriceRange, filter.RatingRange, False, currentFlterActive)
+            End If
+
+            If Not ItemsCollection Is Nothing Then
+                If (ItemsCollectionCount = 1 AndAlso Not SitePage.IsHasFilterSearch()) Then
+                    Dim url As String = URLParameters.ProductUrl(ItemsCollection(0).URLCode, ItemsCollection(0).ItemId)
+                    Session("DepartmentURLCode") = Nothing
+                    Response.Redirect(url)
+                End If
+            End If
+
+            luceneHelper.SearchArticleInLucene(filter.Keyword, 1, Int32.MaxValue, TotalRelatedArticle, False)
+            luceneHelper.SearchVideoInLucene(filter.Keyword, 1, Int32.MaxValue, TotalRelatedVideo, False)
+            ucTabSearch.ActiveTab = "product"
+            ucTabSearch.CountProduct = ItemsCollectionCount
+            ucTabSearch.CountArticle = TotalRelatedArticle
+            ucTabSearch.CountVideo = TotalRelatedVideo
+            ucTabSearch.Keyword = filter.Keyword
+        End If
+        pnProduct.Visible = True
+        fltr.ItemCollection = ItemsCollection
+        fltr.ItemCollectionCount = ItemsCollectionCount
+        Dim ucStoreBrowser As controls_store_browser = Me.Master.FindControl("ucStoreBrowser")
+
+        If ucStoreBrowser IsNot Nothing Then
+            If Not ItemsCollection Is Nothing AndAlso ItemsCollection.Count > 0 Then
+                ucStoreBrowser.ItemCount = ItemsCollection.Count
+                objMetaTag.MetaDescription = SetMetaDescription(objMetaTag.MetaDescription, ItemsCollection(0).ItemName)
+                divNoresult.Visible = False
+            Else
+                ucStoreBrowser.ItemCount = 0
+                ''display did you mean
+                If (GetQueryString("brandid") Is Nothing And GetQueryString("price") Is Nothing And GetQueryString("rating") Is Nothing And Not String.IsNullOrEmpty(Keywords)) Then
+                    'Dim kwDidYouMean As String = luceneHelper.SuggestSimilar(Keywords)
+                    Dim kwDidYouMean As String = String.Empty
+                    If (Utility.ConfigData.UseSolr) Then
+                        kwDidYouMean = SolrHelper.SpellWord(Keywords)
+                    Else
+                        kwDidYouMean = luceneHelper.SuggestSimilar(Keywords)
+                    End If
+                    If (Not String.IsNullOrEmpty(kwDidYouMean)) Then
+                        ltrMean.Text = "<a href=""/store/search-result.aspx?kw=" & Server.UrlEncode(kwDidYouMean) & "&F_All=Y&F_Search=Y"" class=""kw-similiar"" >" & kwDidYouMean & "</a>"
+                    Else
+                        divSuggest.Visible = False
+                    End If
+                    divNoresult.Visible = True
+
+                Else
+                    divSuggest.Visible = False
+                    divNoresult.Visible = True
+
+                End If
+                If (Not filter.HasPromotion) Then
+                    objMetaTag.MetaDescription = String.Empty
+                End If
+            End If
+        Else
+            divNoresult.Visible = True
+        End If
+        litParam.Text = String.Format("pageIndex:{0}, pageSize:{1}, departmentId:""{2}"", pagesizetruth:0, listheight:0, queryString:""{3}"", defaultFilter:""{4}""", filter.pg, filter.MaxPerPage, filter.DepartmentId, queryString.Replace(",", "|"), filterProperty_replaceKw.Replace(":", "="))
+
+    End Sub
+    Private Shared Function IsKeywordSKU(ByVal keyword As String) As Boolean
+        keyword = keyword.Trim()
+        If (keyword.Contains(" ")) Then
+            Return False
+        End If
+        If (IsNumeric(keyword)) Then
+            Return True
+        End If
+        For Each s As String In keyword.ToCharArray
+            If (IsNumeric(s)) Then
+                Return True
+            End If
+        Next
+
+        Return False
+    End Function
+
+    Private Function BuildQueryString(ByVal filter As DepartmentFilterFields) As String
+        Dim result As String = "kw=" & filter.Keyword & "&F_All=Y&F_Search=Y"
+        If (filter.BrandId > 0) Then
+            result = result & "&brandid=" & filter.BrandId
+        End If
+        If Not (String.IsNullOrEmpty(filter.PriceRange)) Then
+            result = result & "&price=" & filter.PriceRange
+        End If
+
+        If Not (String.IsNullOrEmpty(filter.RatingRange)) Then
+            result = result & "&rating=" & filter.RatingRange
+        End If
+        If Not (String.IsNullOrEmpty(filter.SortBy)) Then
+            result = result & "&sort=" & filter.SortBy
+        End If
+
+        Return result
+    End Function
+    <WebMethod()>
+    Public Shared Function GetData(ByVal pageIndex As Integer, ByVal pageSize As Integer, ByVal queryString As String, ByVal defaultFilter As String) As String
+
+        defaultFilter = defaultFilter.Replace("=", ":")
+
+        ' Dim result As String() = New String(3) {}
+        Dim isAllowMore As Integer = 0
+        Dim filter As New DepartmentFilterFields()
+        Dim m_BrandCode As String = String.Empty
+        Dim m_BrandID As String = String.Empty
+        Dim m_CategoryID As String = String.Empty
+        If queryString.Length > 1 Then
+            For Each s As String In queryString.Split("&")
+                Try
+                    Dim arr As String() = s.Split("=")
+                    Dim key As String = arr(0)
+                    Dim value As String = arr(1).Replace("|", ",")
+
+                    Select Case key.ToLower()
+                        Case "currentkeyword"
+                            filter.Keyword = value.Replace("%26", "&")
+                        Case "sort"
+                            filter.SortBy = value
+                        Case "brand"
+                            m_BrandCode = value
+                        Case "brandid"
+                            m_BrandID = value
+                        Case "price"
+                            filter.PriceRange = value
+                        Case "rating"
+                            filter.RatingRange = value
+                        Case "departmentid"
+                            filter.DepartmentId = value
+                        Case "collectionid"
+                            filter.CollectionId = value
+                        Case "toneid"
+                            filter.ToneId = value
+                        Case "shadeid"
+                            filter.ShadeId = value
+                    End Select
+                Catch ex As Exception
+
+                End Try
+            Next
+        End If
+        If Not String.IsNullOrEmpty(m_BrandID) Then
+            filter.BrandId = CInt(m_BrandID)
+        ElseIf Not String.IsNullOrEmpty(m_BrandCode) Then
+            Dim Brand As StoreBrandRow = StoreBrandRow.GetByURLCode(m_BrandCode)
+            filter.BrandId = Brand.BrandId
+        End If
+
+
+        filter.pg = pageIndex
+        filter.MaxPerPage = pageSize
+        Dim luceneHelper As New LuceneHelper()
+        Dim ItemsCollectionCount As Integer = 0
+        Dim ItemsCollection As StoreItemCollection = Nothing
+        If Utility.ConfigData.UseSolr Then
+            ItemsCollection = SolrHelper.SearchItem(filter.Keyword, filter.SortBy, filter.SortOrder, filter.pg, filter.MaxPerPage, ItemsCollectionCount, filter.DepartmentId, filter.BrandId, filter.PriceRange, filter.RatingRange, True, String.Empty, filter.CollectionId, filter.ToneId, filter.ShadeId, defaultFilter)
+        Else
+            ItemsCollection = luceneHelper.SearchItemInLucene(filter.Keyword, filter.SortBy, filter.SortOrder, filter.pg, filter.MaxPerPage, ItemsCollectionCount, filter.BrandId, filter.PriceRange, filter.RatingRange, True, String.Empty)
+        End If
+        Dim totalPage As Integer = 0
+        If ItemsCollection.Count > 0 Then
+            totalPage = ItemsCollectionCount \ filter.MaxPerPage
+            If (ItemsCollectionCount Mod filter.MaxPerPage > 0) Then
+                totalPage = totalPage + 1
+            End If
+            If (filter.pg < totalPage) Then
+                isAllowMore = 1
+            Else
+                isAllowMore = 0
+            End If
+
+            Dim orderId As Integer
+            If filter.MemberId > 0 Then
+                orderId = HttpContext.Current.Session("OrderId")
+                If orderId < 1 Then
+                    orderId = Utility.Common.GetOrderIdFromCartCookie()
+                End If
+                '' isInternational = CBool(DB.ExecuteScalar("Select coalesce(IsInternational,[dbo].[fc_IsMemberInternational](MemberId)) from Member where MemberId=" & filter.MemberId))
+            End If
+            Dim ItemList As List(Of Product) = SitePage.GetProductData(ItemsCollection, pageIndex, pageSize, MemberRow.CheckMemberIsInternational(filter.MemberId, orderId), False)
+            Dim objReturn As New JsonReturnItem
+            objReturn.AllowMore = isAllowMore
+            objReturn.ItemList = ItemList
+            Return JsonConvert.SerializeObject(objReturn)
+        End If
+        Return Nothing
+    End Function
+    Private Shared Sub LogSearch(ByVal keyword As String)
+        Dim strPath As String = Utility.ConfigData.LogSearchFilePath
+        Dim sContents As String = ""
+        Try
+            If Core.FileExists(strPath) = True Then
+                sContents = Core.OpenFile(strPath)
+            End If
+            sContents = sContents & Date.Now() & "[" & keyword & "]" & vbCrLf
+            Core.WriteFile(strPath, sContents)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    <WebMethod()>
+    Public Shared Function RedirectSearchPage(ByVal queryString As String) As Object
+        queryString = queryString.ToLower()
+        Dim strKw As String = String.Empty, url As String = String.Empty
+        If Not String.IsNullOrEmpty(queryString) Then
+            'strKw = Utility.Common.CheckSearchKeyword(queryString.Trim())
+            strKw = queryString.Trim()
+        End If
+
+        If strKw.Length > 50 Then
+            Return "{ ""url"" : ""/store/search-result.aspx""}"
+        End If
+
+        LogSearch(strKw)
+
+        If strKw.Length < 1 Then
+            'HttpContext.Current.Response.Redirect(HttpContext.Current.Request.UrlReferrer.ToString)
+            url = HttpContext.Current.Request.UrlReferrer.ToString()
+        Else
+            HttpContext.Current.Session("DepartmentURLCode") = Nothing
+            ''check redirect keyword
+            If (Not HttpContext.Current.Request.Form("LookupKeyword") = Nothing) Then
+                url = "/store/search-result.aspx?kw=" & HttpContext.Current.Server.UrlEncode(strKw) & "&searchkw=1&F_All=Y&F_Search=Y"
+            Else
+                Dim qString As String = String.Empty
+                Dim dt As DataTable = KeywordFilter.BuildQueryString(strKw)
+
+                If dt.Rows.Count > 0 Then
+                    For index = 0 To dt.Rows.Count - 1
+                        qString = qString & dt.Rows(index)(0) + "&"
+                    Next
+                    qString = qString.Substring(0, qString.Length - 1)
+                End If
+
+                url = "/store/search-result.aspx?kw=" & HttpContext.Current.Server.UrlEncode(strKw) & "&" & qString & "&F_All=Y&F_Search=Y"
+            End If
+        End If
+        Return "{ ""url"" : """ + url + """}"
+    End Function
+    <WebMethod()>
+    Public Shared Function getSearch(ByVal queryString As String) As Object
+
+        Return SolrHelper.buildSearch(queryString.Trim().ToLower().Replace("*", "").Replace("?", "").Replace("#", "").Replace("""", "").Replace(" or ", "").Replace(" and ", ""), False, KeywordSynonymRow.CheckBuyInBulkSynonym(queryString.Trim()), True)
+    End Function
+    Public Class JsonReturnItem
+        Public AllowMore As Integer = 0
+        Public ItemList As List(Of Product) = Nothing
+    End Class
+    <WebMethod()>
+    Public Shared Function GetSearchVideo(ByVal pageIndex As Integer, ByVal pageSize As Integer, ByVal keyword As String, ByVal countItemInRow As Integer, ByVal countProduct As Integer, ByVal countArticle As Integer, ByVal rawURL As String) As String()
+        Dim luceneHelper As New LuceneHelper
+        Dim xmlVideo As String = String.Empty
+        Dim htmlTab As String = String.Empty
+
+        'If (countItemInRow > 0) Then
+        '    Dim countItemInLastRow As Integer = pageSize Mod countItemInRow
+        '    If countItemInLastRow > 0 Then
+        '        Dim countMore As Integer = countItemInRow - countItemInLastRow
+        '        pageSize = pageSize + countMore
+        '    End If
+        'End If
+        Dim result As Object() = New String(4) {}
+        Dim TotalRelatedVideo As Integer = 0
+        Dim isAllowMore As Integer = 0
+        Dim lstVideo As VideoCollection = luceneHelper.SearchVideoInLucene(keyword, pageIndex, pageSize, TotalRelatedVideo, True)
+        If lstVideo.Count > 0 Then
+            If (lstVideo.Count < TotalRelatedVideo) Then
+                isAllowMore = 1
+            End If
+            '' xmlVideo = GetVideoXMLData(lstVideo, 0)
+            HttpContext.Current.Session("videoCountPageSizeRender") = 0
+            HttpContext.Current.Session("videoListRender") = lstVideo
+            xmlVideo = Utility.Common.RenderUserControl("~/controls/resource-center/video/video-list.ascx")
+            HttpContext.Current.Session("videoCountPageSizeRender") = Nothing
+            HttpContext.Current.Session("videoListRender") = Nothing
+
+
+            HttpContext.Current.Session("ActiveTabRender") = "video"
+            HttpContext.Current.Session("CountProductGender") = countProduct
+            HttpContext.Current.Session("CountVideoGender") = TotalRelatedVideo
+            HttpContext.Current.Session("CountArticleGender") = countArticle
+            HttpContext.Current.Session("KeywordRender") = keyword
+            HttpContext.Current.Session("RawURLTabRender") = rawURL
+            htmlTab = Utility.Common.RenderUserControl("~/controls/layout/tab-search.ascx")
+            HttpContext.Current.Session("RawURLTabRender") = Nothing
+            HttpContext.Current.Session("ActiveTabRender") = Nothing
+            HttpContext.Current.Session("CountProductGender") = Nothing
+            HttpContext.Current.Session("CountVideoGender") = Nothing
+            HttpContext.Current.Session("CountArticleGender") = Nothing
+            HttpContext.Current.Session("KeywordRender") = Nothing
+        End If
+        result(0) = xmlVideo
+        result(1) = TotalRelatedVideo.ToString()
+        result(2) = htmlTab
+        result(3) = pageSize.ToString()
+        result(4) = isAllowMore.ToString()
+        Return result
+    End Function
+    <WebMethod()>
+    Public Shared Function GetMoreVideo(ByVal pageIndex As Integer, ByVal pageSize As Integer, ByVal keyword As String) As String()
+        pageIndex = pageIndex + 1
+        Dim luceneHelper As New LuceneHelper
+        Dim xmlVideo As String = String.Empty
+        Dim result As Object() = New String(3) {}
+        Dim TotalRelatedVideo As Integer = 0
+        Dim isAllowMore As Integer = 0
+        Dim lstVideo As VideoCollection = luceneHelper.SearchVideoInLucene(keyword, pageIndex, pageSize, TotalRelatedVideo, True)
+        If lstVideo.Count > 0 Then
+            Dim countItemIndex As Integer = ((pageIndex - 1) * pageSize)
+            If ((countItemIndex + lstVideo.Count) < TotalRelatedVideo) Then
+                isAllowMore = 1
+            End If
+            '' xmlVideo = GetVideoXMLData(lstVideo, 0)
+            HttpContext.Current.Session("videoCountPageSizeRender") = countItemIndex
+            HttpContext.Current.Session("videoListRender") = lstVideo
+            xmlVideo = Utility.Common.RenderUserControl("~/controls/resource-center/video/video-list.ascx")
+            HttpContext.Current.Session("videoCountPageSizeRender") = Nothing
+            HttpContext.Current.Session("videoListRender") = Nothing
+        End If
+        result(0) = xmlVideo
+        result(1) = isAllowMore.ToString()
+        result(2) = pageIndex.ToString()
+        result(3) = pageSize.ToString()
+        Return result
+    End Function
+    <WebMethod()>
+    Public Shared Function LoadFullWidthVideoResize(ByVal countModRow As Integer, ByVal pageIndex As Integer, ByVal pageSize As Integer, ByVal keyword As String) As String()
+        pageIndex = pageIndex + 1
+        Dim luceneHelper As New LuceneHelper
+        Dim xmlVideo As String = String.Empty
+        Dim result As Object() = New String(3) {}
+        Dim TotalRelatedVideo As Integer = 0
+        Dim isAllowMore As Integer = 0
+        Dim countRemove As Integer = 0
+        Dim countVideo As Integer = 0
+        Dim lstVideo As VideoCollection = luceneHelper.SearchVideoInLucene(keyword, pageIndex, pageSize, TotalRelatedVideo, True)
+        countVideo = lstVideo.Count
+        If Not lstVideo Is Nothing AndAlso lstVideo.Count > 0 AndAlso countModRow > 0 Then
+            ''remove nhugn item bi du , vi page truoc do da co
+            countRemove = 1
+            While (countRemove <= countModRow AndAlso lstVideo.Count() > 0)
+                lstVideo.RemoveAt(0)
+                countRemove = countRemove + 1
+            End While
+
+        End If
+        If lstVideo.Count > 0 Then
+
+            Dim countItemIndex As Integer = ((pageIndex - 1) * pageSize)
+            If ((countItemIndex + countVideo) < TotalRelatedVideo) Then
+                isAllowMore = 1
+            End If
+            HttpContext.Current.Session("VideoIndexRender") = (countItemIndex + 1) & "," & (countItemIndex + countModRow + lstVideo.Count)
+            HttpContext.Current.Session("videoCountPageSizeRender") = countItemIndex + countModRow
+            HttpContext.Current.Session("videoListRender") = lstVideo
+            xmlVideo = Utility.Common.RenderUserControl("~/controls/resource-center/video/video-list.ascx")
+            HttpContext.Current.Session("videoCountPageSizeRender") = Nothing
+            HttpContext.Current.Session("videoListRender") = Nothing
+            HttpContext.Current.Session("VideoIndexRender") = Nothing
+            result(0) = xmlVideo
+            result(1) = isAllowMore.ToString()
+
+        Else
+            result(0) = String.Empty
+            result(1) = "0"
+
+        End If
+        result(2) = pageIndex.ToString()
+        result(3) = pageSize.ToString()
+        Return result
+    End Function
+
+End Class

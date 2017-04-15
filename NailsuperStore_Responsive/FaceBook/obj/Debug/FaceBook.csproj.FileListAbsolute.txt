@@ -1,0 +1,4 @@
+D:\Projects\NailsuperStore_Responsive\FaceBook\bin\Debug\FaceBook.dll
+D:\Projects\NailsuperStore_Responsive\FaceBook\bin\Debug\FaceBook.pdb
+D:\Projects\NailsuperStore_Responsive\FaceBook\obj\Debug\FaceBook.dll
+D:\Projects\NailsuperStore_Responsive\FaceBook\obj\Debug\FaceBook.pdb

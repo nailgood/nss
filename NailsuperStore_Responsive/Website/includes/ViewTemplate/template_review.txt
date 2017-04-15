@@ -1,0 +1,76 @@
+﻿<table border="0" cellspacing="4" cellpadding="1" width="80%">
+    <tr>
+        <td style="text-align:left" valign="top">
+            <span class="bold">Product Comments</span> <span class="red">*</span>:
+        </td>
+        <td style="text-align:left" class="reviewbd">
+            <div class="prComment">
+                The most useful comments contain specific examples about:
+                <ul>
+                <li>How you use the product</li>
+                <li>Things that are great about it</li>
+                <li>Things that aren't so great about it</li>
+                </ul>
+            </div>
+            <div class="bgArea">
+               <textarea id="#txtComments#" onkeyup="ShowComment(this)" name="#txtComments#" style="width:495px;border:none" rows="6">@txtComments@</textarea>
+              
+            </div>
+            <div class="prComment">
+				<i>Please do not include: HTML, references to other retailers, pricing, personal information, or any profane, inflammatory or copyrighted comments. Also, if you were given this product as a gift or otherwise compensated in exchange for writing this review,  you are REQUIRED to disclose it in your comments above.</i>
+               
+                
+            </div>
+            
+        </td>
+    </tr>
+    <tr>
+     <td></td>
+		<td>
+			
+		<div id="dvCommentError" style="display:@DisplayCommentError@;color:red" class="commentReview">
+            	@dvCommentError@
+           </div>
+          
+		</td>
+    </tr>
+	<tr>
+		<td align="left" valign="top" class="bold">Product Suggestions:</td>
+		<td class="reviewbd">
+			<div class="prComment">
+				<ul>
+					<li>How would you improve this product?</li>
+					<li>What information do you wish you had before buying this item?</li>
+				</ul>
+			</div>
+			<div class="bgArea">
+				<textarea id="#txtSuggestion#" name="#txtSuggestion#" style="width:495px;border:none" rows="6">@txtSuggestion@</textarea>
+			</div>
+			<div class="prComment">
+				<i>Please do not include: HTML, references to other retailers, pricing, personal information, or any profane, inflammatory or copyrighted comments. Also, if you were given this product as a gift or otherwise compensated in exchange for writing this review,  you are REQUIRED to disclose it in your comments above.</i>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<div class="bold" style="margin-top:10px;padding:2px;background-color:#DDDDDD"><span id="lblPros">Pros</span>:</div>
+			<div style="padding-left:90px"><input id="#ProsEasyToUse#" type="checkbox" name="#ProsEasyToUse#" @ProsEasyToUse@ /><label for="#ProsEasyToUse#">Easy To Use</label></div>
+			<div style="padding-left:90px"><input id="#ProsHighQuality#" type="checkbox" name="#ProsHighQuality#" @ProsHighQuality@ /><label for="#ProsHighQuality#">High Quality</label></div>
+			<div style="padding-left:90px"><input id="#ProsGoodValue#" type="checkbox" name="#ProsGoodValue#" @ProsGoodValue@ /><label for="#ProsGoodValue#">Good Value</label></div>
+			<div style="padding-left:90px"><input id="#ProsLongLasting#" type="checkbox" name="#ProsLongLasting#" @ProsLongLasting@ /><label for="ProsLongLasting#">Long Lasting</label></div>
+			<div class="bold" style="margin-top:10px;padding:2px;background-color:#DDDDDD"><span id="lblCons">Cons</span>:</div>
+			<div style="padding-left:90px"><input id="#ConsDifficultToUse#" type="checkbox" name="#ConsDifficultToUse#" @ConsDifficultToUse@ /><label for="#ConsDifficultToUse#">Difficult To Use</label></div>
+			<div style="padding-left:90px"><input id="#ConsPoorQuality#" type="checkbox" name="#ConsPoorQuality#" @ConsPoorQuality@ /><label for="#ConsPoorQuality#">Poor Quality</label></div>
+			<div style="padding-left:90px"><input id="#ConsExpensive#" type="checkbox" name="#ConsExpensive#" @ConsExpensive@ /><label for="#ConsExpensive#">Expensive</label></div>
+			<div style="padding-left:90px"><input id="#ConsDoesNotWork#" type="checkbox" name="#ConsDoesNotWork#" @ConsDoesNotWork@ /><label for="#ConsDoesNotWork#">Does Not Work</label></div>
+			<div class="bold" style="margin-top:10px;padding:2px;background-color:#DDDDDD"><span id="lblExperience-Level">Experience Level</span>:</div>
+			<div style="padding-left:90px"><input id="#ExperienceLevelStudent#" type="checkbox" name="#ExperienceLevelStudent#" @ExperienceLevelStudent@ /><label for="#ExperienceLevelStudent#">Student</label></div>
+			<div style="padding-left:90px"><input id="#ExperienceLevel1#" type="checkbox" name="#ExperienceLevel1#" @ExperienceLevel1@ /><label for="#ExperienceLevel1#">1+ Years</label></div>
+			<div style="padding-left:90px"><input id="#ExperienceLevel3#" type="checkbox" name="#ExperienceLevel3#" @ExperienceLevel3@ /><label for="#ExperienceLevel3#">3+ Years</label></div>
+			<div style="padding-left:90px"><input id="#ExperienceLevel5#" type="checkbox" name="#ExperienceLevel5#" @ExperienceLevel5@ /><label for="#ExperienceLevel5#">5+ Years</label></div>
+        </td>
+	</tr>
+	<tr>
+		<td colspan="2"></td>
+	</tr>
+</table>

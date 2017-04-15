@@ -1,0 +1,4 @@
+D:\Projects\NailsuperStore_Responsive\CssJscriptOptimizer\bin\Debug\CssJscriptOptimizer.dll
+D:\Projects\NailsuperStore_Responsive\CssJscriptOptimizer\bin\Debug\CssJscriptOptimizer.pdb
+D:\Projects\NailsuperStore_Responsive\CssJscriptOptimizer\obj\Debug\CssJscriptOptimizer.dll
+D:\Projects\NailsuperStore_Responsive\CssJscriptOptimizer\obj\Debug\CssJscriptOptimizer.pdb

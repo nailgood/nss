@@ -1,0 +1,17 @@
+8.0
+15
+1       SQLCHAR       0       10       ""      1     Offer_No                      SQL_Latin1_General_CP1_CI_AS
+2       SQLCHAR       0       7        ""      2     Line_No                       SQL_Latin1_General_CP1_CI_AS
+3       SQLCHAR       0       10       ""      3     Status                        SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR       0       10       ""      4     Type                          SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR       0       20       ""      5     Discount_No                   SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR       0       30       ""      6     Description                   SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR       0       12       ""      7     Standard_Price_Including_VAT  SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR       0       12       ""      8     Standard_Price                SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR       0       12       ""      9     Disc_Percentage               SQL_Latin1_General_CP1_CI_AS
+10      SQLCHAR       0       12       ""      10    Discount_Amount               SQL_Latin1_General_CP1_CI_AS
+11      SQLCHAR       0       12       ""      11    Offer_Price                   SQL_Latin1_General_CP1_CI_AS
+12      SQLCHAR       0       12       ""      12    Offer_Price_Including_VAT     SQL_Latin1_General_CP1_CI_AS
+13      SQLCHAR       0       35       ""      13    Primary_Key                   SQL_Latin1_General_CP1_CI_AS
+14      SQLCHAR       0       10       ""      14    Currency_Code                 SQL_Latin1_General_CP1_CI_AS
+15      SQLCHAR       0       10       "\r\n"  15    Unit_of_Measure               SQL_Latin1_General_CP1_CI_AS

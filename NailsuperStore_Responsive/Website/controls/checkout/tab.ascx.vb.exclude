@@ -1,0 +1,71 @@
+﻿Imports DataLayer
+Imports Components
+Imports System.Data.SqlClient
+Imports System.Collections.Generic
+Partial Class controls_checkout_tab
+    Inherits ModuleControl
+    Public Overrides Property Args() As String
+        Get
+            Return ""
+        End Get
+        Set(ByVal Value As String)
+        End Set
+    End Property
+    Public Cart As ShoppingCart = Nothing
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Cart Is Nothing Then
+            Dim orderId As Integer = Session("OrderId")
+            If orderId < 1 Then
+                orderId = Utility.Common.GetOrderIdFromCartCookie()
+            End If
+            If orderId > 0 Then
+                Cart = New ShoppingCart(DB, orderId, False)
+            End If
+        End If
+        BindData()
+    End Sub
+    Private Function CheckAllowFreegift() As Boolean
+        Dim countFreeGift As Integer = DB.ExecuteScalar("SELECT count(fg.ItemId) FROM FreeGift fg left join StoreItem si on(si.ItemId=fg.ItemId)   WHERE fg.IsActive = 1 And si.IsActive = 1 ")
+        If countFreeGift > 0 Then
+            Return True
+        End If
+        Return False
+
+
+    End Function
+    Private Sub BindData()
+        If Cart Is Nothing Then
+            Me.Visible = False
+            Exit Sub
+        End If
+        Dim allowFreeGift As Boolean = CheckAllowFreegift()
+
+        If Me.Request.RawUrl.Contains("/store/reward-point.aspx") Then
+            If allowFreeGift Then
+                ltrContent.Text = "<li><a href='/store/free-gift.aspx?act=checkout'>Free Gift</a></li>"
+            End If
+            ltrContent.Text &= "<li><a onclick='GoFreeSample()'>Free Samples</a></li>"
+            ltrContent.Text &= "<li class='active'><a >Redeem Reward Points</a></li>"
+        ElseIf Me.Request.RawUrl.Contains("/store/free-sample.aspx") Then
+            If allowFreeGift Then
+                ltrContent.Text &= "<li><a href='/store/free-gift.aspx?act=checkout'>Free Gift</a></li>"
+            End If
+            ltrContent.Text &= "<li class='active'><a>Free Samples</a></li>"
+            If Not MemberRow.MemberInGroupWHS(Cart.Order.MemberId) Then
+                ltrContent.Text &= "<li><a href='/store/reward-point.aspx'>Redeem Reward Points</a></li>"
+            End If
+        ElseIf Me.Request.RawUrl.Contains("/store/free-gift.aspx") Then
+            If allowFreeGift Then
+                ltrContent.Text = "<li class='active'><a >Free Gift</a></li>"
+            End If
+            ltrContent.Text &= "<li><a onclick='GoFreeSample()'>Free Samples</a></li>"
+            If Not MemberRow.MemberInGroupWHS(Cart.Order.MemberId) Then
+                ltrContent.Text &= "<li><a href='/store/reward-point.aspx'>Redeem Reward Points</a></li>"
+            End If
+
+
+        Else
+            Me.Visible = False
+        End If
+    End Sub
+End Class

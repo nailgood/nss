@@ -1,0 +1,13 @@
+8.0
+11
+1       SQLCHAR       0       10       ""      1     Discount_No                    SQL_Latin1_General_CP1_CI_AS
+2       SQLCHAR       0       30       ""      2     Description                    SQL_Latin1_General_CP1_CI_AS
+3       SQLCHAR       0       10       ""      3     Status                         SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR       0       10       ""      4     Price_Group                    SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR       0       12       ""      5     Disc_Percent_From_Std_Price    SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR       0       10       ""      6     Rounding_Method                SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR       0       11       ""      7     Last_Date_Modified             SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR       0       10       ""      8     Disc_Validation_Period_ID      SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR       0       30       ""      9     Disc_Validation_Descr          SQL_Latin1_General_CP1_CI_AS
+10      SQLCHAR       0       11       ""      10    Disc_Starting_Date             SQL_Latin1_General_CP1_CI_AS
+11      SQLCHAR       0       11       "\r\n"  11    Disc_Ending_Date               SQL_Latin1_General_CP1_CI_AS

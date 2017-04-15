@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<item>
+  <error orig="Violation of UNIQUE KEY constraint 'Admin_Username_Unique'. Cannot insert duplicate key in object 'Admin'." 
+         map="An admin user with the same Username already exists in the system. Please choose a different username and try again." />
+
+  <error orig="Violation of UNIQUE KEY constraint 'IX_StoreItem'. Cannot insert duplicate key in object 'StoreItem'." 
+         map="An Item with the Item# already exists in the system. Please choose a different item# and try again." />
+
+  <error orig="DELETE statement conflicted with COLUMN REFERENCE constraint 'AdminGroup_AdminAdminGroup_FK1'." 
+         map="Selected Group cannot be removed, because there is at least one admin user that belong to this group. Please disassocitate all admin users from this group and try again." />
+
+  <error orig="Violation of UNIQUE KEY constraint 'IX_ContentToolSection'"
+         map="A section for the same folder already exits in the database. Please change the folder and try again." />
+
+  <error orig="DELETE statement conflicted with COLUMN REFERENCE constraint 'StoreDepartment_StoreDepartmentItem_FK1'."
+         map="The selected department cannot be removed because it currently contains items." />
+
+  <error orig="Main department cannot be deleted"
+         map="The main department cannot be removed." />
+
+  <error orig="Violation of PRIMARY KEY constraint 'PK_StoreCollectionItem'."
+         map="That item already exists in this collection." />
+
+  <error orig="Violation of PRIMARY KEY constraint 'PK_RelatedItem'."
+         map="That item already exists in these related items." />
+
+	<error orig="'PK_SalesCategoryItem'"
+		   map="This item is already included in this sales category."></error>
+
+	<error orig="'IX_Employer'"
+		   map="An employer with this name already exists."></error>
+</item>

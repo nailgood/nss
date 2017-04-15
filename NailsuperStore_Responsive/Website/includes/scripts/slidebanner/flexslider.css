@@ -1,0 +1,100 @@
+/*
+ * jQuery FlexSlider v1.8
+ * http://www.woothemes.com/flexslider/
+ *
+ * Copyright 2012 WooThemes
+ * Free to use under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+
+/* Browser Resets */
+.flex-container a:active,
+.flexslider a:active,
+.flex-container a:focus,
+.flexslider a:focus  {outline: none;}
+.flexslider .slides, .flex-control-nav, .flex-direction-nav {margin: 0; padding: 0; list-style: none;}
+
+/* FlexSlider Necessary Styles
+*********************************/
+.flexslider {margin: 0; padding: 0;}
+.flexslider .slides > li {display: none; -webkit-backface-visibility: hidden;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.flexslider .slides img {max-width: 100%; display: block;}
+.flex-pauseplay span {text-transform: capitalize;}
+
+/* Clearfix for the .slides element */
+.flexslider .slides:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;}
+.flexslider .slides {}
+.flexslider .slides {display: block; height: 1%;}
+
+/* No JavaScript Fallback */
+/* If you are not using another script, such as Modernizr, make sure you
+ * include js that eliminates this class on page load */
+.no-js .slides > li:first-child {display: block;}
+
+#main-banner
+{
+    width: 100%;
+    margin: 20px auto 0px auto;
+    text-align: center;
+    z-index: 999;
+    position: relative;
+    
+}
+
+#main-banner .padding
+{
+    padding: 0 ;
+    margin: 0 auto;
+    max-width: 1115px;
+    position: relative;
+}
+
+#main-banner .flexslider img
+{
+    border: none;
+    max-width: 100%;
+}
+
+#main-banner .flexslider-container
+{
+    position: relative;
+}
+
+#main-banner .flex-control-nav
+{
+    position: absolute;
+    width: 100%;
+    bottom: 14px;
+}
+#main-banner .flex-control-nav li
+{
+    display: inline;
+    padding: 4px 5px;
+    text-align: center;
+}
+.flex-control-nav li a
+{
+    font: 12px/18px Arial;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: url('images/pager.png') no-repeat left bottom;
+    color: #000;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.flex-control-nav li a:hover
+{
+    color: #fff;
+    background: url('images/pager.png') no-repeat left top;
+}
+
+.flex-control-nav li a.active
+{
+    color: #fff;
+    background: url('images/pager.png') no-repeat left top;
+}
+

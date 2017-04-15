@@ -1,0 +1,12 @@
+8.0
+10
+1       SQLCHAR       0       20       ""      1     Offer_No                      SQL_Latin1_General_CP1_CI_AS
+2       SQLCHAR       0       7        ""      2     Line_No                       SQL_Latin1_General_CP1_CI_AS
+3       SQLCHAR       0       20       ""      3     Mix_Match_No                  SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR       0       30       ""      4     Description                   SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR       0       12       ""      5     Standard_Price_Including_VAT  SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR       0       12       ""      6     Standard_Price                SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR       0       12       ""      7     Deal_Price                    SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR       0       7        ""      8     No_Items_Needed               SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR       0       10       ""      9     Disc_Type                     SQL_Latin1_General_CP1_CI_AS
+10      SQLCHAR       0       10       "\r\n"  10    Status                        SQL_Latin1_General_CP1_CI_AS

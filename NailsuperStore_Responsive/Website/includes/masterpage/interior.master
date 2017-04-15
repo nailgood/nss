@@ -1,0 +1,114 @@
+﻿<%@ Master Language="VB" CodeFile="interior.master.vb" Inherits="MasterPage_Interior" ClientIDMode="Static" %>
+
+<%@ Register Src="~/controls/layout/header.ascx" TagName="header" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/footer.ascx" TagName="footer" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/metatag.ascx" TagName="metatag" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/menu/customer-service.ascx" TagName="CustomerService" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/bread-crumb.ascx" TagName="BreadCrumb" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/menu/shop-by-design.ascx" TagName="ShopDesign" TagPrefix="uc" %>
+<%@ Register Src="~/controls/layout/google-analytics.ascx" TagName="ga" TagPrefix="uc" %>
+<!DOCTYPE html>
+<html class="no-js" lang="en" ng-app="app">
+<head id="Head1" runat="server">
+    <asp:Literal ID="ltIndexFollow" runat="server"></asp:Literal>
+    <asp:Literal ID="ltrCanonical" runat="server"></asp:Literal>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <%-- <uc:metatag ID="metatag" runat="server" />--%>
+    <title></title>
+
+    <asp:Literal ID="ltrMetaSocialNetwork" runat="server"></asp:Literal>
+    <meta name="author" content="Kevin Huynh, The Nail Superstore" />
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css' />
+    <%--<link rel="stylesheet" type="text/css" href="/includes/Theme/css/bootstrap.css" />--%>
+    <%--<link rel="stylesheet" type="text/css" href="/includes/Theme/css/page.css" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/product.css" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/resource-center.css" />--%>
+    <%--<link rel="stylesheet" type="text/css" href="/includes/Theme/css/default.css?t=2015" />Edit css.xml--%>
+    <%--<link rel="stylesheet" type="text/css" href="/includes/Theme/css/tip.css" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/pager.css" />
+    <link rel="stylesheet" type="text/css" href="/includes/Theme/css/pageinfo.css" />
+    <link href="/includes/scripts/nyroModal/styles/nyroModal.full.css" rel="stylesheet" type="text/css" />
+    <link href="/includes/scripts/qtip/qtip.css" rel="stylesheet" type="text/css" />--%>
+    <asp:Literal ID="litCSS" runat="server"></asp:Literal>
+    <asp:Literal ID="litScript" runat="server"></asp:Literal>
+
+   <%-- <script type="text/javascript" src="/includes/scripts/jquery-1.7.1.min.js"></script>Edit css.xml--%>
+    <asp:Literal ID="ltriPadScrollBar" runat="server"></asp:Literal>
+    <asp:ContentPlaceHolder ID="cphHead" runat="server"></asp:ContentPlaceHolder>
+    <uc:ga ID="ga" runat="server" />
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0&appId=203982539670006";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <form id="formMain" runat="server" class="row-offcanvas row-offcanvas-left">
+        <asp:ScriptManager runat="server" EnablePageMethods="true" ID="MainSM" runat="server" ScriptMode="Release" LoadScriptsBeforeUI="true"></asp:ScriptManager>
+
+        <uc:header ID="ucHeader" runat="server" />
+        <div id="main-page" class="<%=ContainerCss %>">
+            <div id="main">
+                <div id="cus-service" class="sidebar-offcanvas" role="navigation"></div>
+                <div id="left-page" class="hidden-xs hidden-sm">
+                    <asp:PlaceHolder ID="phdLeft" runat="server"></asp:PlaceHolder>
+                </div>
+                <div id="content-page">
+                    <uc:BreadCrumb ID="BreadCrumb" runat="server" />
+                    <CT:ErrorMessage ID="ErrorPlaceHolder" runat="server" />
+            <center>
+                <div id="loading" class="bg-loading" style="display:none;">
+                    Please wait...<br />
+                    <img src="/includes/theme/images/loader.gif" alt="Waiting" />
+                </div>
+            </center>
+
+                    <asp:ContentPlaceHolder ID="cphContent" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <!-- Begin footer -->
+        <uc:footer ID="ucFooter" runat="server" />
+        <!-- End footer -->
+    </form>
+
+    <asp:Literal ID="litScriptCustom" runat="server"></asp:Literal>
+</body>
+<%--script type="text/javascript" src="/includes/scripts/jquery.lazyload.min.js" ></script>
+    <script type="text/javascript" src="/includes/scripts/layout.js" defer="defer"></script>
+    <script type="text/javascript" src="/includes/scripts/command.js" defer="defer"></script> Edit css.xml--%>
+<script language="javascript">
+    $(function () {
+        LayzyLoading();
+    })
+
+    var prm = Sys.WebForms.PageRequestManager.getInstance();
+    prm.add_endRequest(function () {
+        LayzyLoading();
+    });
+
+    function LayzyLoading() {
+        $("img.lazy").show().lazyload({
+            threshold: 100,
+            effect: "fadeIn",
+            failure_limit: 1
+        });
+    }
+</script>
+
+<%-- <script type="text/javascript" src="/includes/scripts/Common.js" defer="defer"></script>
+    <script src="/includes/scripts/qtip/jquery.qtip.min.js" type="text/javascript" defer="defer"></script>  
+    <script src="/includes/scripts/qtip/qtip.js" type="text/javascript" defer="defer"></script>--%>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <script type="text/javascript" src="/includes/scripts/html5.js"></script>
+        <script type="text/javascript" src="/includes/scripts/respond.js"></script>
+    <![endif]-->
+<%--   <script src="/includes/scripts/nyroModal/js/jquery.nyroModal-1.6.2.min.js" type="text/javascript" defer="defer"></script>
+    <script type="text/javascript" src="/includes/scripts/bootstrap.min.js" defer="defer"></script>--%>
+</html>

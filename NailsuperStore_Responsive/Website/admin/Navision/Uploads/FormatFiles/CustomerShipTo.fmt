@@ -1,0 +1,22 @@
+8.0
+20
+1       SQLCHAR       0       20       ""      1     Cust_No                      SQL_Latin1_General_CP1_CI_AS
+2       SQLCHAR       0       10       ""      2     Code                         SQL_Latin1_General_CP1_CI_AS
+3       SQLCHAR       0       30       ""      3     Cust_Name                    SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR       0       30       ""      4     Cust_Name_2                  SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR       0       30       ""      5     Address                      SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR       0       30       ""      6     Address_2                    SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR       0       30       ""      7     City                         SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR       0       30       ""      8     Contact                      SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR       0       30       ""      9     Phone                        SQL_Latin1_General_CP1_CI_AS
+10      SQLCHAR       0       10       ""      10    Shipment_Method_Code         SQL_Latin1_General_CP1_CI_AS
+11      SQLCHAR       0       10       ""      11    Shipping_Agent_Code          SQL_Latin1_General_CP1_CI_AS
+12      SQLCHAR       0       10       ""      12    Country_Code                 SQL_Latin1_General_CP1_CI_AS
+13      SQLCHAR       0       11       ""      13    Last_Date_Modified           SQL_Latin1_General_CP1_CI_AS
+14      SQLCHAR       0       10       ""      14    Location_Code                SQL_Latin1_General_CP1_CI_AS
+15      SQLCHAR       0       30       ""      15    Fax_No                       SQL_Latin1_General_CP1_CI_AS
+16      SQLCHAR       0       20       ""      16    Post_Code                    SQL_Latin1_General_CP1_CI_AS
+17      SQLCHAR       0       30       ""      17    County                       SQL_Latin1_General_CP1_CI_AS
+18      SQLCHAR       0       80       ""      18    Email                        SQL_Latin1_General_CP1_CI_AS
+19      SQLCHAR       0       80       ""      19    Home_Page                    SQL_Latin1_General_CP1_CI_AS
+20      SQLCHAR       0       10       "\r\n"  20    Shipping_Agent_Service_Code  SQL_Latin1_General_CP1_CI_AS

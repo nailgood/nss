@@ -1,0 +1,882 @@
+Option Explicit On
+
+'Author: Lam Le
+'Date: 9/28/2009 9:48:47 AM
+
+Imports System
+Imports System.Data
+Imports System.Data.SqlClient
+Imports System.Diagnostics
+Imports System.Text
+Imports System.Data.Common
+Imports Microsoft.Practices
+Imports Microsoft.Practices.EnterpriseLibrary.Data
+Imports Microsoft.Practices.EnterpriseLibrary.Common
+Imports Components
+Imports Utility
+Namespace DataLayer
+
+    Public Class StoreItemReviewRow
+        Inherits StoreItemReviewRowBase
+        Public Shared cachePrefixKey As String = "StoreItemReview_"
+        Public Sub New()
+            MyBase.New()
+        End Sub 'New
+
+        Public Sub New(ByVal DB As Database)
+            MyBase.New(DB)
+        End Sub 'New
+
+        Public Sub New(ByVal DB As Database, ByVal ReviewId As Integer)
+            MyBase.New(DB, ReviewId)
+        End Sub 'New
+
+        Public Sub New(ByVal DB As Database, ByVal itemId As Integer, ByVal MemberId As Integer)
+            MyBase.New(DB, itemId, MemberId)
+        End Sub 'New
+
+        'Shared function to get one row
+        Public Shared Function GetRow(ByVal DB As Database, ByVal ReviewId As Integer) As StoreItemReviewRow
+            Dim row As StoreItemReviewRow
+
+            row = New StoreItemReviewRow(DB, ReviewId)
+            row.Load()
+
+            Return row
+        End Function
+        Public Shared Sub GetReviewData(ByVal _Database As Database, ByVal ItemId As Integer, ByRef count As Integer, ByRef averageStars As Double, Optional ByVal departmentId As Integer = 0)
+            Dim reader As SqlDataReader = Nothing
+            Try
+                Dim keyCount As String = String.Format(cachePrefixKey & "GetReviewDataCount_{0}_{1}", departmentId, ItemId)
+                Dim keyAverage As String = String.Format(cachePrefixKey & "GetReviewDataAverage_{0}_{1}", departmentId, ItemId)
+                Dim cacheResult As Object = CacheUtils.GetCache(keyCount)
+                If Not cacheResult Is Nothing Then
+                    count = Integer.Parse(cacheResult.ToString())
+                    cacheResult = CacheUtils.GetCache(keyAverage)
+                    averageStars = Double.Parse(cacheResult.ToString())
+                    Exit Sub
+                End If
+                Dim db As EnterpriseLibrary.Data.Database = DatabaseFactory.CreateDatabase()
+                Dim sp As String = "sp_StoreItem_GetReviewItemDataV2"
+                Dim cmd As DbCommand = db.GetStoredProcCommand(sp)
+                db.AddInParameter(cmd, "ItemId", DbType.Int32, ItemId)
+                db.AddInParameter(cmd, "DepartmentId", DbType.Int32, departmentId)
+                reader = db.ExecuteReader(cmd)
+                If reader.Read() Then
+                    If IsDBNull(reader.Item("CountReview")) Then
+                        count = 0
+                    Else
+                        count = Convert.ToInt32(reader.Item("CountReview"))
+                    End If
+                    If IsDBNull(reader.Item("AverageStars")) Then
+                        averageStars = Nothing
+                    Else
+                        averageStars = Convert.ToDouble(reader.Item("AverageStars"))
+                    End If
+                End If
+                Core.CloseReader(reader)
+                CacheUtils.SetCache(keyCount, count)
+                CacheUtils.SetCache(keyAverage, averageStars)
+            Catch ex As Exception
+                Core.CloseReader(reader)
+            End Try
+        End Sub
+        Public Shared Sub GetInfoCartItemId(ByVal CartItemId As Integer, ByRef isFirstReview As Boolean, ByRef MemberId As Integer, ByRef ItemId As Integer, ByRef Image As String, ByRef ShortDesc As String, ByRef ItemName As String)
+            Dim reader As SqlDataReader = Nothing
+            Dim db As EnterpriseLibrary.Data.Database = DatabaseFactory.CreateDatabase()
+            Dim sp As String = "sp_StoreItemReview_GetInfoCartId"
+            Dim cmd As DbCommand = db.GetStoredProcCommand(sp)
+            db.AddInParameter(cmd, "CartItemId", DbType.Int32, CartItemId)
+            db.AddInParameter(cmd, "ItemId", DbType.Int32, ItemId)
+            reader = db.ExecuteReader(cmd)
+            With reader
+                If .Read() Then
+                    ItemId = Convert.ToInt32(.Item("Itemid"))
+                    ItemName = .Item("ItemName")
+                    isFirstReview = .Item("IsFirstReview")
+                    Try
+                        Image = .Item("Image")
+                    Catch
+
+                    End Try
+                    Try
+                        ShortDesc = .Item("ShortDesc")
+                    Catch
+                        ShortDesc = Nothing
+                    End Try
+                    Try
+                        MemberId = Convert.ToInt32(.Item("MemberId"))
+                    Catch
+                        MemberId = 0
+                    End Try
+                End If
+            End With
+            reader = db.ExecuteReader(cmd)
+            Core.CloseReader(reader)
+        End Sub
+        Public Shared Sub GetReviewAuthorData(ByVal MemberId As Integer, ByRef SalonName As String, ByRef state As String, ByRef country As String)
+            Dim reader As SqlDataReader = Nothing
+            Try
+
+                Dim db As EnterpriseLibrary.Data.Database = DatabaseFactory.CreateDatabase()
+                Dim sp As String = "sp_Member_GetReviewAddress"
+                Dim cmd As DbCommand = db.GetStoredProcCommand(sp)
+                db.AddInParameter(cmd, "MemberID", DbType.Int32, MemberId)
+                reader = db.ExecuteReader(cmd)
+                If reader.Read() Then
+
+                    If IsDBNull(reader.Item("SalonName")) Then
+                        SalonName = String.Empty
+                    Else
+                        SalonName = Convert.ToString(reader.Item("SalonName"))
+                    End If
+                    If IsDBNull(reader.Item("StateName")) Then
+                        state = String.Empty
+                    Else
+                        state = Convert.ToString(reader.Item("StateName"))
+                    End If
+                    If IsDBNull(reader.Item("CountryName")) Then
+                        country = String.Empty
+                    Else
+                        country = Convert.ToString(reader.Item("CountryName"))
+                    End If
+                End If
+                Core.CloseReader(reader)
+            Catch ex As Exception
+                Core.CloseReader(reader)
+                Components.Email.SendError("ToError500", "GetReviewAuthorData", "MemberId=" & MemberId & "<br>Exception: " & ex.ToString() + "")
+
+            End Try
+        End Sub
+        Public Shared Function GetRow(ByVal DB As Database, ByVal ItemId As Integer, ByVal MemberId As Integer) As StoreItemReviewRow
+            Dim row As StoreItemReviewRow
+            Dim key As String = String.Format(cachePrefixKey & "GetRow_{0}_{1}", ItemId, MemberId)
+            row = CType(CacheUtils.GetCache(key), StoreItemReviewRow)
+            If Not row Is Nothing Then
+                Return row
+            End If
+            row = New StoreItemReviewRow(DB, ItemId, MemberId)
+            row.LoadByMemberAndItem()
+            CacheUtils.SetCache(key, row)
+            Return row
+        End Function
+        Public Shared Function AllowAddPoint(ByVal _Database As Database, ByVal reviewId As Integer) As Boolean
+            Dim result As Integer = 0
+            Try
+                Dim sp As String = "[dbo].[fc_StoreItemReview_IsAllowAddPoint]"
+                Dim cmd As SqlCommand = _Database.CreateCommand(sp)
+                cmd.Parameters.Add(_Database.InParam("ReviewId", SqlDbType.Int, 0, reviewId))
+                cmd.Parameters.Add(_Database.ReturnParam("result", SqlDbType.Int))
+                cmd.ExecuteNonQuery()
+                result = CInt(cmd.Parameters("result").Value)
+            Catch ex As Exception
+
+            End Try
+            If (result = 1) Then
+                Return True
+            End If
+            Return False
+        End Function
+        Public Shared Sub RemoveRow(ByVal DB As Database, ByVal ReviewId As Integer)
+            Dim row As StoreItemReviewRow
+            row = New StoreItemReviewRow(DB, ReviewId)
+            row.Remove()
+            Utility.CacheUtils.ClearCacheWithPrefix(cachePrefixKey)
+            '------------------------------------------------------------------------
+        End Sub
+        Public Shared Function GetCartItemIdForReviewItemDetail(ByVal _Database As Database, ByVal itemId As Integer, ByVal memberId As Integer) As Integer
+            Dim result As Integer = 0
+            Dim r As SqlDataReader = Nothing
+            Try
+                Dim sp As String = "sp_StoreItemReview_GetCartItemId"
+                Dim cmd As SqlCommand = _Database.CreateCommand(sp)
+                cmd.Parameters.Add(_Database.InParam("MemberId", SqlDbType.Int, 0, memberId))
+                cmd.Parameters.Add(_Database.InParam("ItemId", SqlDbType.Int, 0, itemId))
+                r = cmd.ExecuteReader()
+                If (r.Read()) Then
+                    result = r.GetValue(0)
+                End If
+                Core.CloseReader(r)
+            Catch ex As Exception
+                Core.CloseReader(r)
+            End Try
+            Return result
+        End Function
+
+        'Custom Methods
+
+    End Class
+
+    Public MustInherit Class StoreItemReviewRowBase
+        Private m_DB As Database
+        Private m_ReviewId As Integer = Nothing
+        Private m_ItemId As Integer = Nothing
+        Private m_MemberId As Integer = Nothing
+        Private m_CartItemId As Integer = Nothing
+        Private m_ReviewTitle As String = Nothing
+        Private m_FirstName As String = Nothing
+        Private m_LastName As String = Nothing
+        Private m_NumStars As Integer = Nothing
+        Private m_DateAdded As DateTime = Nothing
+        Private m_IsRecommendFriend As Boolean = Nothing
+        Private m_IsActive As Boolean = Nothing
+        Private m_IsFeatured As Boolean = Nothing
+        Private m_IsExported As Boolean = Nothing
+        Private m_Comment As String = Nothing
+        Private m_IsFacebook As Boolean = Nothing
+        Private m_IsAddPoint As Boolean = Nothing
+        Private m_ItemName As String = Nothing
+        Private m_Image As String = Nothing
+        Private m_URLCode As String = Nothing
+        Public baseCachePrefixKey As String = "StoreItemReview_"
+        Private m_SKU As String = String.Empty
+        Private m_NameCollection As String = String.Empty
+        Private m_IsFirstReview As Boolean = Nothing
+
+        Public Property ReviewId() As Integer
+            Get
+                Return m_ReviewId
+            End Get
+            Set(ByVal Value As Integer)
+                m_ReviewId = Value
+            End Set
+        End Property
+
+        Public Property ItemId() As Integer
+            Get
+                Return m_ItemId
+            End Get
+            Set(ByVal Value As Integer)
+                m_ItemId = Value
+            End Set
+        End Property
+
+        Public Property MemberId() As Integer
+            Get
+                Return m_MemberId
+            End Get
+            Set(ByVal Value As Integer)
+                m_MemberId = Value
+            End Set
+        End Property
+        Public Property CartItemId() As Integer
+            Get
+                Return m_CartItemId
+            End Get
+            Set(ByVal Value As Integer)
+                m_CartItemId = Value
+            End Set
+        End Property
+
+        Public Property ReviewTitle() As String
+            Get
+                Return m_ReviewTitle
+            End Get
+            Set(ByVal Value As String)
+                m_ReviewTitle = Value
+            End Set
+        End Property
+        Public Property FirstName() As String
+            Get
+                Return m_FirstName
+            End Get
+            Set(ByVal Value As String)
+                m_FirstName = Value
+            End Set
+        End Property
+        Public Property LastName() As String
+            Get
+                Return m_LastName
+            End Get
+            Set(ByVal Value As String)
+                m_LastName = Value
+            End Set
+        End Property
+        Public Property NumStars() As Integer
+            Get
+                Return m_NumStars
+            End Get
+            Set(ByVal Value As Integer)
+                m_NumStars = Value
+            End Set
+        End Property
+
+        Public Property DateAdded() As DateTime
+            Get
+                Return m_DateAdded
+            End Get
+            Set(ByVal Value As DateTime)
+                m_DateAdded = Value
+            End Set
+        End Property
+
+        Public Property IsRecommendFriend() As Boolean
+            Get
+                Return m_IsRecommendFriend
+            End Get
+            Set(ByVal Value As Boolean)
+                m_IsRecommendFriend = Value
+            End Set
+        End Property
+
+        Public Property IsActive() As Boolean
+            Get
+                Return m_IsActive
+            End Get
+            Set(ByVal Value As Boolean)
+                m_IsActive = Value
+            End Set
+        End Property
+
+        Public Property IsFeatured() As Boolean
+            Get
+                Return m_IsFeatured
+            End Get
+            Set(ByVal Value As Boolean)
+                m_IsFeatured = Value
+            End Set
+        End Property
+
+        Public Property IsExported() As Boolean
+            Get
+                Return m_IsExported
+            End Get
+            Set(ByVal Value As Boolean)
+                m_IsExported = Value
+            End Set
+        End Property
+
+        Public Property Comment() As String
+            Get
+                Return m_Comment
+            End Get
+            Set(ByVal Value As String)
+                m_Comment = Value
+            End Set
+        End Property
+        Public Property IsFacebook() As Boolean
+            Get
+                Return m_IsFacebook
+            End Get
+            Set(ByVal Value As Boolean)
+                m_IsFacebook = Value
+            End Set
+        End Property
+        Public Property IsAddPoint() As Boolean
+            Get
+                Return m_IsAddPoint
+            End Get
+            Set(ByVal Value As Boolean)
+                m_IsAddPoint = Value
+            End Set
+        End Property
+        Public Property ItemName() As String
+            Get
+                Return m_ItemName
+            End Get
+            Set(ByVal Value As String)
+                m_ItemName = Value
+            End Set
+        End Property
+        Public Property Image() As String
+            Get
+                Return m_Image
+            End Get
+            Set(ByVal Value As String)
+                m_Image = Value
+            End Set
+        End Property
+        Public Property URLCode() As String
+            Get
+                Return m_URLCode
+            End Get
+            Set(ByVal Value As String)
+                m_URLCode = Value
+            End Set
+        End Property
+
+        Public Property SKU() As String
+            Get
+                Return m_SKU
+            End Get
+            Set(ByVal Value As String)
+                m_SKU = Value
+            End Set
+        End Property
+        Public Property NameCollection() As String
+            Get
+                Return m_NameCollection
+            End Get
+            Set(ByVal Value As String)
+                m_NameCollection = Value
+            End Set
+        End Property
+        Public Property IsFirstReview() As Boolean
+            Get
+                Return m_IsFirstReview
+            End Get
+            Set(ByVal Value As Boolean)
+                m_IsFirstReview = Value
+            End Set
+        End Property
+        Public Property DB() As Database
+            Get
+                DB = m_DB
+            End Get
+            Set(ByVal Value As Database)
+                m_DB = Value
+            End Set
+        End Property
+
+        Public Sub New()
+        End Sub 'New
+
+        Public Sub New(ByVal DB As Database)
+            m_DB = DB
+        End Sub 'New
+
+        Public Sub New(ByVal DB As Database, ByVal ReviewId As Integer)
+            m_DB = DB
+            m_ReviewId = ReviewId
+        End Sub 'New
+
+        Public Sub New(ByVal DB As Database, ByVal ItemId As Integer, ByVal MemberId As Integer)
+            m_DB = DB
+            m_ItemId = ItemId
+            m_MemberId = MemberId
+        End Sub 'New
+        Protected Overridable Sub LoadByMemberAndItem()
+            Dim r As SqlDataReader = Nothing
+            Try
+                Dim SQL As String
+                SQL = "Select sir.*, si.ItemName, si.UrlCode, si.Image from StoreItemReview sir inner join StoreItem si on sir.ItemId = si.ItemId WHERE sir.ItemId = " & ItemId & " and MemberId = " & MemberId
+                r = m_DB.GetReader(SQL)
+                If r.Read Then
+                    Me.Load(r)
+                End If
+                Core.CloseReader(r)
+            Catch ex As Exception
+                Core.CloseReader(r)
+            End Try
+        End Sub
+
+        Protected Overridable Sub Load()
+            '------------------------------------------------------------------------
+            'Author: Lam Le
+            'Date: September 28, 2009 09:48:47 AM
+            '------------------------------------------------------------------------
+            Dim reader As SqlDataReader = Nothing
+            Try
+                Dim db As EnterpriseLibrary.Data.Database = DatabaseFactory.CreateDatabase()
+                Dim SP_STOREITEMREVIEW_GETOBJECT As String = "sp_StoreItemReview_GetObject"
+                Dim cmd As DbCommand = db.GetStoredProcCommand(SP_STOREITEMREVIEW_GETOBJECT)
+                db.AddInParameter(cmd, "ReviewId", DbType.Int32, ReviewId)
+                reader = CType(db.ExecuteReader(cmd), SqlDataReader)
+                If reader.Read() Then
+                    Me.Load(reader)
+                End If
+                Core.CloseReader(reader)
+            Catch ex As Exception
+                Core.CloseReader(reader)
+            End Try
+            
+            '------------------------------------------------------------------------
+        End Sub
+
+        Protected Overridable Sub Load(ByVal reader As SqlDataReader)
+            If (Not reader Is Nothing And Not reader.IsClosed) Then
+                If (Not reader.IsDBNull(reader.GetOrdinal("ReviewId"))) Then
+                    m_ReviewId = Convert.ToInt32(reader("ReviewId"))
+                Else
+                    m_ReviewId = 0
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("ItemId"))) Then
+                    m_ItemId = Convert.ToInt32(reader("ItemId"))
+                Else
+                    m_ItemId = 0
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("MemberId"))) Then
+                    m_MemberId = Convert.ToInt32(reader("MemberId"))
+                Else
+                    m_MemberId = 0
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("CartItemId"))) Then
+                    m_CartItemId = Convert.ToInt32(reader("CartItemId"))
+                Else
+                    m_CartItemId = 0
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("ReviewTitle"))) Then
+                    m_ReviewTitle = reader("ReviewTitle").ToString()
+                Else
+                    m_ReviewTitle = ""
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("FirstName"))) Then
+                    m_FirstName = reader("FirstName").ToString()
+                Else
+                    m_FirstName = ""
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("LastName"))) Then
+                    m_LastName = reader("LastName").ToString()
+                Else
+                    m_LastName = ""
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("NumStars"))) Then
+                    m_NumStars = Convert.ToInt32(reader("NumStars"))
+                Else
+                    m_NumStars = 0
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("DateAdded"))) Then
+                    m_DateAdded = Convert.ToDateTime(reader("DateAdded"))
+                Else
+                    m_DateAdded = DateTime.Now
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("IsRecommendFriend"))) Then
+                    m_IsRecommendFriend = Convert.ToBoolean(reader("IsRecommendFriend"))
+                Else
+                    m_IsRecommendFriend = False
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("IsActive"))) Then
+                    m_IsActive = Convert.ToBoolean(reader("IsActive"))
+                Else
+                    m_IsActive = False
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("IsFeatured"))) Then
+                    m_IsFeatured = Convert.ToBoolean(reader("IsFeatured"))
+                Else
+                    m_IsFeatured = False
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("IsExported"))) Then
+                    m_IsExported = Convert.ToBoolean(reader("IsExported"))
+                Else
+                    m_IsExported = False
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("Comment"))) Then
+                    m_Comment = reader("Comment").ToString()
+                Else
+                    m_Comment = ""
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("IsFacebook"))) Then
+                    m_IsFacebook = Convert.ToBoolean(reader("IsFacebook"))
+                Else
+                    m_IsFacebook = False
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("IsAddPoint"))) Then
+                    m_IsAddPoint = Convert.ToBoolean(reader("IsAddPoint"))
+                Else
+                    m_IsAddPoint = False
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("ItemName"))) Then
+                    m_ItemName = reader("ItemName").ToString()
+                Else
+                    m_ItemName = ""
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("Image"))) Then
+                    m_Image = reader("Image").ToString()
+                Else
+                    m_Image = ""
+                End If
+                If (Not reader.IsDBNull(reader.GetOrdinal("URLCode"))) Then
+                    m_URLCode = reader("URLCode").ToString()
+                Else
+                    m_URLCode = ""
+                End If
+                Try
+                    If (Not reader.IsDBNull(reader.GetOrdinal("IsFirstReview"))) Then
+                        m_IsFirstReview = Convert.ToBoolean(reader("IsFirstReview"))
+                    Else
+                        m_IsFirstReview = False
+                    End If
+                Catch
+
+                End Try
+            End If
+        End Sub
+
+        Public Shared Function GetItemReviews1(ByVal DB1 As Database, ByVal filter As DepartmentFilterFields) As StoreItemReviewCollection
+            Dim r As SqlDataReader = Nothing
+            Dim c As New StoreItemReviewCollection
+            Try
+
+                Dim db As EnterpriseLibrary.Data.Database = DatabaseFactory.CreateDatabase()
+
+                Dim SP As String = "sp_StoreItem_GetItemReviews1"
+                Dim cmd As DbCommand = db.GetStoredProcCommand(SP)
+
+                db.AddInParameter(cmd, "ItemId", DbType.String, filter.ItemId)
+                db.AddInParameter(cmd, "DepartmentId", DbType.String, filter.DepartmentId)
+                db.AddInParameter(cmd, "CurrentPage", DbType.Int32, filter.pg)
+                db.AddInParameter(cmd, "PageSize", DbType.Int32, filter.MaxPerPage)
+                db.AddInParameter(cmd, "SortField", DbType.String, filter.SortBy)
+
+                db.AddInParameter(cmd, "SortExp", DbType.String, filter.SortOrder)
+                db.AddOutParameter(cmd, "TotalRecords", DbType.Int16, 1)
+                r = db.ExecuteReader(cmd)
+                While r.Read
+                    Dim item As New StoreItemReviewRow(DB1)
+                    item.ItemId = r.Item("ItemId")
+                    item.MemberId = Convert.ToInt32(r.Item("MemberId"))
+                    item.ReviewId = Convert.ToInt32(r.Item("ReviewId"))
+                    item.ReviewTitle = Convert.ToString(r.Item("ReviewTitle"))
+                    item.FirstName = Convert.ToString(r.Item("FirstName"))
+                    item.LastName = Convert.ToString(r.Item("LastName"))
+                    item.NumStars = Convert.ToInt32(r.Item("NumStars"))
+                    If r.Item("CartItemId") Is Convert.DBNull Then
+                        item.CartItemId = Nothing
+                    Else
+                        item.CartItemId = Convert.ToInt32(r.Item("CartItemId"))
+                    End If
+                    If r.Item("DateAdded") Is Convert.DBNull Then
+                        item.DateAdded = Nothing
+                    Else
+                        item.DateAdded = Convert.ToDateTime(r.Item("DateAdded"))
+                    End If
+                    If r.Item("Comment") Is Convert.DBNull Then
+                        item.Comment = Nothing
+                    Else
+                        item.Comment = Convert.ToString(r.Item("Comment"))
+                    End If
+                    If r.Item("SKU") Is Convert.DBNull Then
+                        item.SKU = Nothing
+                    Else
+                        item.SKU = Convert.ToString(r.Item("SKU"))
+                    End If
+                    If r.Item("ItemNameNew") Is Convert.DBNull Then
+                        item.NameCollection = Nothing
+                    Else
+                        item.NameCollection = Convert.ToString(r.Item("ItemNameNew"))
+                    End If
+                    item.IsRecommendFriend = Convert.ToBoolean(r.Item("IsRecommendFriend"))
+                    c.Add(item)
+                End While
+                If Not r.IsClosed Then
+                    r.Close()
+                End If
+                c.TotalRecords = CInt(cmd.Parameters("@TotalRecords").Value)
+            Catch ex As Exception
+                Core.CloseReader(r)
+                Components.Email.SendError("ToError500", "GetItemReviews1(ItemId=" & filter.ItemId.ToString() & ",DepartmentId=" & filter.DepartmentId.ToString() & ",filter.pg=" & filter.pg & ",filter.MaxPerPage=" & filter.MaxPerPage.ToString() & ",filter.SortBy" & filter.SortBy.ToString() & ", filter.SortOrder=" & filter.SortOrder, ex.Message & ",Stack trace:" & ex.StackTrace)
+
+
+            End Try
+            Return c
+        End Function
+
+        Public Shared Function GetListItemReviewsNarrowSearch(ByVal filter As DepartmentFilterFields, ByVal pros As String, ByVal cons As String, ByVal exp As String, ByVal urlcode As String) As StoreItemReviewCollection
+
+            Dim c As New StoreItemReviewCollection
+            Dim db As EnterpriseLibrary.Data.Database = DatabaseFactory.CreateDatabase()
+
+            Dim SP As String = "sp_StoreItem_GetListItemReviewsNarrowSearch"
+
+            Dim cmd As DbCommand = db.GetStoredProcCommand(SP)
+
+            db.AddInParameter(cmd, "CurrentPage", DbType.Int32, filter.pg)
+            db.AddInParameter(cmd, "PageSize", DbType.Int32, filter.MaxPerPage)
+            db.AddInParameter(cmd, "Pros", DbType.String, pros)
+            db.AddInParameter(cmd, "Cons", DbType.String, cons)
+            db.AddInParameter(cmd, "ExpLevel", DbType.String, exp)
+            db.AddInParameter(cmd, "DepartmentId", DbType.Int32, filter.DepartmentId)
+            db.AddInParameter(cmd, "URLCode", DbType.String, urlcode)
+            ''narrow search rating
+            If Not filter.RatingRange = String.Empty Then
+                Dim low As Double = Common.GetMinMaxValue(filter.RatingRange, False)
+                Dim high As Double = Common.GetMinMaxValue(filter.RatingRange, True)
+                db.AddInParameter(cmd, "LowStar", DbType.Int32, Convert.ToInt32(low))
+                db.AddInParameter(cmd, "HighStar", DbType.Int32, Convert.ToInt32(high))
+            End If
+            Dim ds As DataSet = db.ExecuteDataSet(cmd)
+            Dim dt As DataTable = ds.Tables(0)
+            For i As Integer = 0 To dt.Rows.Count() - 1
+                Dim dr As DataRow = dt.Rows(i)
+                Dim item As New StoreItemReviewRow()
+                item.ItemId = Convert.ToInt32(dr("ItemId"))
+                item.MemberId = Convert.ToInt32(dr("MemberId"))
+                item.ReviewId = Convert.ToInt32(dr("ReviewId"))
+                item.ReviewTitle = Convert.ToString(dr("ReviewTitle"))
+                item.FirstName = Convert.ToString(dr.Item("FirstName"))
+                ' item.LastName = Convert.ToString(r.Item("LastName"))
+                item.NumStars = Convert.ToInt32(dr("NumStars"))
+
+                If dr("CartItemId") Is Convert.DBNull Then
+                    item.CartItemId = Nothing
+                Else
+                    item.CartItemId = Convert.ToInt32(dr("CartItemId"))
+                End If
+                If dr("DateAdded") Is Convert.DBNull Then
+                    item.DateAdded = Nothing
+                Else
+                    item.DateAdded = Convert.ToDateTime(dr("DateAdded"))
+                End If
+                If dr("Comment") Is Convert.DBNull Then
+                    item.Comment = Nothing
+                Else
+                    item.Comment = Convert.ToString(dr("Comment"))
+                End If
+                If dr("ItemName") Is Convert.DBNull Then
+                    item.ItemName = Nothing
+                Else
+                    item.ItemName = Convert.ToString(dr("ItemName"))
+                End If
+                If dr("Image") Is Convert.DBNull Then
+                    item.Image = Nothing
+                Else
+                    item.Image = Convert.ToString(dr("Image"))
+                End If
+                If dr("URLCode") Is Convert.DBNull Then
+                    item.URLCode = Nothing
+                Else
+                    item.URLCode = Convert.ToString(dr("URLCode"))
+                End If
+                item.IsRecommendFriend = Convert.ToBoolean(dr("IsRecommendFriend"))
+                c.Add(item)
+            Next
+            c.TotalRecords = Convert.ToInt32(ds.Tables(1).Rows(0)(0))
+            Return c
+        End Function
+        Public Shared Function CountRating(ByVal filter As DepartmentFilterFields, ByVal Type As String) As List(Of String)
+            Dim cacheName As String = String.Empty
+            Dim lst As New List(Of String)
+            cacheName = "CountRatingReview" & filter.PageParams & "_" & IIf(Not filter.RatingRange Is Nothing, filter.RatingRange, "")
+            lst = CType(CacheUtils.GetCache(cacheName), List(Of String))
+            If lst IsNot Nothing Then
+                Return lst
+            Else
+                lst = New List(Of String)
+            End If
+            Try
+                Dim dr As SqlDataReader
+                Dim db As EnterpriseLibrary.Data.Database = DatabaseFactory.CreateDatabase()
+                Try
+                    Dim sp As String = "sp_GetCountRatingReview"
+                    Dim cmd As DbCommand = db.GetStoredProcCommand(sp)
+                    db.AddInParameter(cmd, "typeReview", DbType.String, Type)
+                    db.AddInParameter(cmd, "DepartmentId", DbType.String, filter.DepartmentId)
+                    dr = db.ExecuteReader(cmd)
+                    Dim val As Integer = 0
+                    While dr.Read()
+                        val = ReplaceStar(dr(0))
+                        lst.Add(val)
+                    End While
+                    cacheName = "CountRatingReview_" & filter.PageParams & "_" & IIf(Not filter.RatingRange Is Nothing, filter.RatingRange, "")
+                    CacheUtils.SetCache(cacheName, lst)
+                    Core.CloseReader(dr)
+                Catch ex As Exception
+                    Core.CloseReader(dr)
+                End Try
+
+            Catch ex As Exception
+                Email.SendError("ToError500", "CountRatingReview" & filter.PageParams, "<br>Exception:" & ex.ToString())
+            End Try
+ 
+            Return lst
+        End Function
+        Private Shared Function ReplaceStar(str As String) As Integer
+            Dim val As Integer = 0
+            Try
+                val = str.Replace("(0,3)-", "").Replace("(3,4)-", "").Replace("(4,0)-", "")
+            Catch
+
+            End Try
+            Return val
+        End Function
+        Public Overridable Function Insert() As Integer
+            Try
+                Dim db As EnterpriseLibrary.Data.Database = DatabaseFactory.CreateDatabase()
+                Dim SP_STOREITEMREVIEW_INSERT As String = "sp_StoreItemReview_Insert"
+                Dim cmd As DbCommand = db.GetStoredProcCommand(SP_STOREITEMREVIEW_INSERT)
+
+                db.AddOutParameter(cmd, "ReviewId", DbType.Int32, 32)
+                db.AddInParameter(cmd, "ItemId", DbType.Int32, ItemId)
+                db.AddInParameter(cmd, "MemberId", DbType.Int32, MemberId)
+                db.AddInParameter(cmd, "CartItemId", DbType.Int32, CartItemId)
+                db.AddInParameter(cmd, "ReviewTitle", DbType.String, ReviewTitle)
+                db.AddInParameter(cmd, "FirstName", DbType.String, FirstName)
+                db.AddInParameter(cmd, "LastName", DbType.String, LastName)
+                db.AddInParameter(cmd, "NumStars", DbType.Int32, NumStars)
+                db.AddInParameter(cmd, "DateAdded", DbType.DateTime, DateAdded)
+                db.AddInParameter(cmd, "IsRecommendFriend", DbType.Boolean, IsRecommendFriend)
+                db.AddInParameter(cmd, "IsActive", DbType.Boolean, IsActive)
+                db.AddInParameter(cmd, "IsFeatured", DbType.Boolean, IsFeatured)
+                db.AddInParameter(cmd, "IsExported", DbType.Boolean, IsExported)
+                db.AddInParameter(cmd, "Comment", DbType.String, Comment)
+
+
+                db.ExecuteNonQuery(cmd)
+
+                ReviewId = Convert.ToInt32(db.GetParameterValue(cmd, "ReviewId"))
+                Utility.CacheUtils.ClearCacheWithPrefix(baseCachePrefixKey)
+                Return ReviewId
+
+            Catch ex As Exception
+
+            End Try
+
+        End Function
+
+        Public Overridable Sub Update()
+            Try
+                Dim db As EnterpriseLibrary.Data.Database = DatabaseFactory.CreateDatabase()
+                Dim SP_STOREITEMREVIEW_UPDATE As String = "sp_StoreItemReview_Update"
+                Dim cmd As DbCommand = db.GetStoredProcCommand(SP_STOREITEMREVIEW_UPDATE)
+
+                db.AddInParameter(cmd, "ReviewId", DbType.Int32, ReviewId)
+                db.AddInParameter(cmd, "ItemId", DbType.Int32, ItemId)
+                db.AddInParameter(cmd, "MemberId", DbType.Int32, MemberId)
+                db.AddInParameter(cmd, "ReviewTitle", DbType.String, ReviewTitle)
+                db.AddInParameter(cmd, "FirstName", DbType.String, FirstName)
+                db.AddInParameter(cmd, "LastName", DbType.String, LastName)
+                db.AddInParameter(cmd, "NumStars", DbType.Int32, NumStars)
+                db.AddInParameter(cmd, "DateAdded", DbType.DateTime, DateAdded)
+                db.AddInParameter(cmd, "IsRecommendFriend", DbType.Boolean, IsRecommendFriend)
+                db.AddInParameter(cmd, "IsActive", DbType.Boolean, IsActive)
+                db.AddInParameter(cmd, "IsFeatured", DbType.Boolean, IsFeatured)
+                db.AddInParameter(cmd, "IsExported", DbType.Boolean, IsExported)
+                db.AddInParameter(cmd, "Comment", DbType.String, Comment)
+                db.AddInParameter(cmd, "IsFacebook", DbType.Boolean, IsFacebook)
+                db.AddInParameter(cmd, "IsAddPoint", DbType.Boolean, IsAddPoint)
+                db.ExecuteNonQuery(cmd)
+                '------------------------------------------------------------------------
+                ' ''clear cache item review
+                Utility.CacheUtils.ClearCacheWithPrefix(baseCachePrefixKey)
+
+                CacheUtils.ClearCacheWithPrefix(StoreItemRowBase.cachePrefixKey, DepartmentTabItemRowBase.cachePrefixKey, ShopSaveItemRowBase.cachePrefixKey, SalesCategoryItemRow.cachePrefixKey, DepartmentTabItemRow.cachePrefixKey)
+            Catch ex As Exception
+
+            End Try
+
+        End Sub 'Update
+
+        Public Sub Remove()
+            Dim db As EnterpriseLibrary.Data.Database = DatabaseFactory.CreateDatabase()
+
+            Dim SP_STOREITEMREVIEW_DELETE As String = "sp_StoreItemReview_Delete"
+
+            Dim cmd As DbCommand = db.GetStoredProcCommand(SP_STOREITEMREVIEW_DELETE)
+
+            db.AddInParameter(cmd, "ReviewId", DbType.Int32, ReviewId)
+
+            db.ExecuteNonQuery(cmd)
+
+        End Sub 'Remove
+    End Class
+
+    Public Class StoreItemReviewCollection
+        Inherits GenericCollection(Of StoreItemReviewRow)
+        Public Sub New()
+        End Sub
+
+        Private m_TotalRecords As Integer
+
+        Public Property TotalRecords() As Integer
+            Get
+                Return m_TotalRecords
+            End Get
+            Set(ByVal value As Integer)
+                m_TotalRecords = value
+            End Set
+        End Property
+    End Class
+
+End Namespace
+
+

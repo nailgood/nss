@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <css name="/includes/scripts/soon/soon.css">
+    <page url="/sweepstake/result.aspx"></page>
+    <page url="/service/policy.aspx" custom="true"></page>
+  </css>
+  <css name="/includes/theme/css/bootstrap.css">
+    <page url="/popup/emailme.aspx"></page>
+    <page url="/includes/popup/product-video.aspx"></page>
+    <page url="/includes/popup/review.aspx"></page>
+    <page url="/includes/popup/shop-design-video.aspx"></page>
+    <page url="/includes/popup/special-offer.aspx"></page>
+    <page url="/includes/masterpage/checkout.master"></page>
+  </css>
+  <css name="/includes/theme/css/checkout-master.css">
+    <page url="/includes/masterpage/checkout.master"></page>
+    <page url="/store/free-gift.aspx"></page>
+    <page url="/store/free-sample.aspx"></page>
+  </css>
+  <css name="/includes/theme/css/default.css">
+    <page url="/includes/masterpage/checkout.master"></page>
+    <page url="/includes/masterpage/interior-right.master"></page>
+    <page url="/includes/masterpage/interior.master"></page>
+    <page url="/includes/masterpage/main.master"></page>
+    <page url="/includes/popup/emailme.aspx"></page>
+    <page url="/includes/popup/free-item.aspx"></page>
+    <page url="/includes/popup/product-video.aspx"></page>
+    <page url="/includes/popup/review.aspx"></page>
+    <page url="/includes/popup/shop-design-video.aspx"></page>
+    <page url="/includes/popup/special-offer.aspx"></page>
+  </css>
+  <css name="/includes/theme/css/cart.css">
+    <page url="/includes/masterpage/checkout.master"></page>
+    <page url="/store/free-gift.aspx"></page>
+    <page url="/store/free-sample.aspx"></page>
+    <page url="/includes/popup/free-item.aspx"></page>
+  </css>
+  <css name="/includes/theme/css/effect.css">
+    <page url="/store/"></page>
+    <page url="/members/"></page>
+    <page url="/video/"></page>
+    <page url="/news/"></page>
+    <page url="/shop-design/"></page>
+  </css>
+  
+  <css name="/includes/theme/css/mixmatchpopup.css">
+    <page url="/includes/popup/free-item.aspx"></page>
+    <page url="/includes/popup/special-offer.aspx"></page>
+  </css>
+  <css name="/includes/theme/css/pager.css">
+    <page url="/includes/masterpage/interior-right.master"></page>
+  </css>
+  
+  <css name="/includes/theme/css/tip.css">
+    <page url="/tips/"></page>
+    <page url="/contact/"></page>
+  </css>
+  <css name="/includes/theme/css/resource-center.css">
+    <page url="/includes/popup/gallery-detail.aspx"></page>
+    <page url="/shop-design/detail.aspx"></page>
+  </css>
+  <css name="/includes/theme/css/shopdesign.css">
+    <page url="/shop-design/detail.aspx"></page>
+    <page url="/shop-design/list.aspx"></page>
+  </css>
+  <css name="/includes/theme/css/videopopup.css">
+    <page url="/includes/popup/emailme.aspx"></page>
+    <page url="/includes/popup/product-video.aspx"></page>
+    <page url="/includes/popup/review.aspx"></page>
+    <page url="/includes/popup/shop-design-video.aspx"></page>
+  </css>
+  <css name="/includes/scripts/datepicker/jquery-ui.css">
+    <page url="/members/reminders/edit.aspx"></page>
+  </css>
+  <css name="/includes/scripts/qtip/qtip.css">
+    <page url="/includes/masterpage/checkout.master"></page>
+    <page url="/includes/masterpage/interior-right.master"></page>
+    <page url="/store/free-gift.aspx"></page>
+    <page url="/store/free-sample.aspx"></page>
+  </css>
+  <css name="/includes/scripts/nyroModal/styles/nyroModal.full.css">
+    <page url="/includes/masterpage/checkout.master"></page>
+    <page url="/includes/masterpage/interior-right.master"></page>
+    <page url="/store/free-gift.aspx"></page>
+    <page url="/store/free-sample.aspx"></page>
+    <page url="/store/landing-page.aspx"></page>
+  </css>
+  <script name="/includes/scripts/jquery-1.7.1.min.js">
+    <page url="/includes/masterpage/checkout.master"></page>
+    <page url="/includes/masterpage/interior-right.master"></page>
+    <page url="/includes/masterpage/interior.master"></page>
+    <page url="/includes/masterpage/main.master"></page>
+    <page url="/includes/popup/special-offer.aspx"></page>
+    <page url="/includes/popup/free-item.aspx"></page>
+  </script>
+  
+  <script name="/includes/scripts/jquery-1.11.1.min.js">
+    <page url="/includes/popup/product-video.aspx"></page>
+    <page url="/includes/popup/shop-design-video.aspx"></page>
+  </script>
+  <script name="/includes/scripts/bxslider/jquery.bxslider.js">
+    <page url="/includes/masterpage/main.master" defer="true"></page>
+    <page url="/includes/masterpage/interior.master" defer="true"></page>
+  </script>
+  <script name="/includes/scripts/layout.js">
+    <page url="/includes/masterpage/checkout.master" custom="true"></page>
+    <page url="/includes/masterpage/interior-right.master"></page>
+    <page url="/includes/masterpage/interior.master" defer="true" custom="true"></page>
+    <page url="/includes/masterpage/main.master" defer="true" custom="true"></page>
+    <page url="/includes/popup/free-item.aspx"></page>
+    <page url="/includes/popup/special-offer.aspx" custom="true"></page>
+  </script>
+  <script name="/includes/scripts/bootstrap.min.js">
+    <page url="/includes/masterpage/checkout.master" custom="true"></page>
+    <page url="/includes/masterpage/interior-right.master"></page>
+    <page url="/includes/masterpage/main.master" async="true" defer="true" custom="true"></page>
+    <page url="/includes/scripts/tinymce/plugins/tinyfilemanager.net/tinyfilemanager.net/dialog.aspx"></page>
+  </script>
+  <script name="/includes/scripts/tinymce/plugins/tinyfilemanager.net/tinyfilemanager.net/js/bootstrap.min.js">
+    <page url="/includes/scripts/tinymce/plugins/tinyfilemanager.net/tinyfilemanager.net/dialog.aspx"></page>
+  </script>
+  <script name="/includes/scripts/tinymce/plugins/tinyfilemanager.net/tinyfilemanager.net/css/bootstrap-lightbox.min.css">
+    <page url="/includes/scripts/tinymce/plugins/tinyfilemanager.net/tinyfilemanager.net/dialog.aspx"></page>
+  </script>
+  <script name="/includes/scripts/tinymce/plugins/tinyfilemanager.net/tinyfilemanager.net/css/style.css">
+    <page url="/includes/scripts/tinymce/plugins/tinyfilemanager.net/tinyfilemanager.net/dialog.aspx"></page>
+  </script>
+  <script name="/includes/scripts/tinymce/plugins/tinyfilemanager.net/tinyfilemanager.net/css/dropzone.css">
+    <page url="/includes/scripts/tinymce/plugins/tinyfilemanager.net/tinyfilemanager.net/dialog.aspx"></page>
+  </script>
+  <script name="/includes/scripts/number2word.js">
+    <page url="/includes/popup/free-item.aspx"></page>
+  </script>
+  <script name="/includes/scripts/command.js">
+    <page url="/includes/masterpage/checkout.master" defer="true" custom="true"></page>
+    <page url="/includes/masterpage/interior-right.master"></page>
+    <page url="/includes/masterpage/interior.master" custom="true" defer="true"></page>
+    <page url="/includes/masterpage/main.master" defer="true"></page>
+  </script>
+  <script name="/includes/scripts/Common.js">
+    <page url="/includes/masterpage/checkout.master" defer="true"></page>
+    <page url="/includes/masterpage/interior-right.master"></page>
+    <page url="/store/free-gift.aspx" defer="true"></page>
+    <page url="/store/free-sample.aspx" defer="true"></page>
+    <page url="/members/login.aspx"></page>
+  </script>
+  <script name="/includes/scripts/effect.js">
+    <page url="/store/"></page>
+    <page url="/members/"></page>
+    <page url="/video/" custom="true"></page>
+    <page url="/video/detail.aspx" custom="true"></page>
+    <page url="/video-detail.aspx" custom="true"></page>
+    <page url="/news/"></page>
+    <page url="/shop-design/"></page>
+    <page url="/includes/masterpage/main.master" async="true" defer="true"></page>
+  </script>
+  <script name="/includes/scripts/jquery.creditCardValidator.js">
+    <page url="/store/payment.aspx"></page>
+    <page url="/store/submitorder.aspx"></page>
+  </script>
+  <script name="/includes/scripts/jquery.lazyload.min.js">
+    <page url="/includes/masterpage/interior.master" custom="true"></page>
+    <page url="/store/free-gift.aspx" defer="true" custom="true"></page>
+    <page url="/store/free-sample.aspx" defer="true" custom="true"></page>
+  </script>
+
+  <script name="/includes/scripts/jquery.maskedinput.js">
+    <page url="/contact/pricematch.aspx"></page>
+    <page url="/members/address.aspx"></page>
+    <page url="/members/addressbook/edit.aspx"></page>
+    <page url="/service/requestcatalog.aspx"></page>
+    <page url="/store/billing.aspx"></page>
+    <page url="/store/billingint.aspx"></page>
+    <page url="/contact/billinginquiry.aspx"></page>
+    <page url="/contact/damagedshipment.aspx"></page>
+    <page url="/contact/generalquestion.aspx"></page>
+    <page url="/contact/priceadjustmentrequest.aspx"></page>
+    <page url="/contact/returnauthorizationrequest.aspx"></page>
+    <page url="/contact/itemnotreceived.aspx"></page>
+    <page url="/contact/ReturnOrderStatus.aspx"></page>
+    <page url="/contact/submitanidea.aspx"></page>
+    <page url="/contact/wholesaleinquiry.aspx"></page>
+
+  </script>
+  <script name="/includes/scripts/popup.js">
+    <page url="/members/nail-art-trends/gallery.aspx"></page>
+    <page url="/members/referfriend/refer.aspx"></page>
+  </script>
+
+  <script name="/includes/scripts/datepicker/jquery-ui.js">
+    <page url="/members/reminders/edit.aspx"></page>
+  </script>
+
+  <script name="/includes/scripts/nyroModal/js/jquery.nyroModal-1.6.2.min.js">
+    <page url="/includes/masterpage/checkout.master"></page>
+    <page url="/includes/masterpage/interior-right.master"></page>
+    <page url="/store/free-gift.aspx"></page>
+    <page url="/store/free-sample.aspx"></page>
+    <page url="/store/landing-page.aspx"></page>
+  </script>
+  <script name="/includes/scripts/qtip/jquery.qtip.min.js">
+    <page url="/includes/masterpage/checkout.master" defer="true" custom="true"></page>
+    <page url="/includes/masterpage/interior-right.master" defer="true" custom="true"></page>
+    <page url="/store/free-gift.aspx" defer="true" custom="true"></page>
+    <page url="/store/free-sample.aspx" defer="true" custom="true"></page>
+    <page url="/store/landing-page.aspx"></page>
+  </script>
+  
+  <script name="/includes/scripts/qtip/qtip.js">
+    <page url="/includes/masterpage/checkout.master"></page>
+    <page url="/includes/masterpage/interior-right.master"></page>
+    <page url="/store/free-gift.aspx"></page>
+    <page url="/store/free-sample.aspx"></page>
+  </script>
+  <script name="/includes/video/swfobject.js">
+    <page url="/video/share.aspx"></page>
+    <page url="/video/detail.aspx" custom="true"></page>
+  </script>
+  <script name="/includes/scripts/ZeroClipboard/ZeroClipboard.js">
+    <page url="/members/referfriend/refer.aspx"></page>
+    <page url="/video/detail.aspx"></page>
+  </script>
+  <script name="/includes/scripts/soon/soon.min.js">
+    <page url="/service/policy.aspx" custom="true"></page>
+  </script>
+  <script name="/includes/scripts/angular.min.js">
+    <page url="/video/detail.aspx"></page>
+    <page url="/members/referfriend/refer.aspx"></page>
+  </script>
+  <script name="/includes/scripts/ZeroClipboard/clipboard.min.js">
+    <page url="/video/detail.aspx"></page>
+    <page url="/members/referfriend/refer.aspx"></page>
+  </script>
+  <script name="/includes/scripts/ZeroClipboard/ngclipboard.min.js">
+    <page url="/video/detail.aspx"></page>
+    <page url="/members/referfriend/refer.aspx"></page>
+  </script>
+  <script name="/includes/scripts/siteSeal/godaddy-seal.js">
+    <page url="/includes/masterpage/checkout.master" defer="true" custom="true"></page>
+    <page url="/includes/masterpage/main.master" defer="true" custom="true"></page>
+  </script>
+</root>

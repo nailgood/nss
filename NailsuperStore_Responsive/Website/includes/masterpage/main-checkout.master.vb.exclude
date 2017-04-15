@@ -1,0 +1,68 @@
+﻿Imports Components
+Imports DataLayer
+Imports System.Data
+
+Partial Class Masterpage_MainCheckout
+    Inherits System.Web.UI.MasterPage
+    Public ContainerCss As String = "container"
+
+    Private Sub MasterPage_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim form As HtmlForm = CType(Me.FindControl("formMain"), HtmlForm)
+        form.Action = HttpContext.Current.Request.RawUrl
+
+
+
+        If Not IsPostBack Then
+       
+            If Request.RawUrl.Contains("?act=checkout") Then
+                divCheckoutBar.Visible = True
+            Else
+                divCheckoutBar.Visible = False
+                ucTab.Visible = False
+            End If
+            GenerateClass(form)
+            SetIndexFollow()
+        End If
+    End Sub
+    Private Sub GenerateClass(ByRef form As HtmlForm)
+        Dim CssClass As String = String.Empty
+        Dim act As String = String.Empty
+        If Not Request.QueryString("act") Is Nothing Then
+            act = Request.QueryString("act")
+        End If
+        If Request.FilePath.Contains("free-sample.aspx") AndAlso act = "checkout" Then
+            CssClass = "freesample-checkout"
+        ElseIf Request.FilePath.Contains("free-gift.aspx") AndAlso act = "checkout" Then
+            CssClass = "freegift-checkout"
+        Else
+            Try
+                CssClass = HttpContext.Current.Request.FilePath
+                CssClass = CssClass.Substring(CssClass.LastIndexOf("/") + 1)
+                CssClass = CssClass.Replace(".aspx", "")
+            Catch ex As Exception
+
+            End Try
+
+        End If
+        form.Attributes("class") = CssClass
+
+    End Sub
+    Protected Overloads Sub OnInit(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
+
+    End Sub
+
+    Private Sub SetIndexFollow()
+        Try
+            Dim path = Request.Path
+            Dim row As ContentToolPageRow = ContentToolPageRow.GetRowByURL(path)
+            If Not row.IsIndexed Or Not row.IsFollowed Then
+                Dim sp As New SitePage()
+                sp.SetIndexFollow(row, ltIndexFollow, False)
+            End If
+        Catch
+
+        End Try
+       
+    End Sub
+End Class
+

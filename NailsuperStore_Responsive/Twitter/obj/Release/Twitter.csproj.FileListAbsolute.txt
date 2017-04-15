@@ -1,0 +1,7 @@
+D:\Project\NailsuperStore_Responsive\Twitter\bin\Release\Twitter.dll
+D:\Project\NailsuperStore_Responsive\Twitter\bin\Release\Twitter.pdb
+D:\Project\NailsuperStore_Responsive\Twitter\bin\Release\Hammock.dll
+D:\Project\NailsuperStore_Responsive\Twitter\bin\Release\Hammock.Extras.dll
+D:\Project\NailsuperStore_Responsive\Twitter\obj\Release\Twitter.dll
+D:\Project\NailsuperStore_Responsive\Twitter\obj\Release\Twitter.pdb
+D:\Project\NailsuperStore_Responsive\Twitter\obj\Release\Twitter.csprojResolveAssemblyReference.cache

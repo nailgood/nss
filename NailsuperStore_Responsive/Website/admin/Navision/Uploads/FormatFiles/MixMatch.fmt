@@ -1,0 +1,17 @@
+8.0
+15
+1       SQLCHAR       0       20       ""      1     Mix_Match_No                  SQL_Latin1_General_CP1_CI_AS
+2       SQLCHAR       0       30       ""      2     Description                   SQL_Latin1_General_CP1_CI_AS
+3       SQLCHAR       0       10       ""      3     Status                        SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR       0       10       ""      4     Price_Group                   SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR       0       10       ""      5     Currency_Code                 SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR       0       10       ""      6     Disc_Validation_Period_ID     SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR       0       30       ""      7     Disc_Validation_Descr         SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR       0       11       ""      8     Disc_Starting_Date            SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR       0       11       ""      9     Disc_Ending_Date              SQL_Latin1_General_CP1_CI_AS
+10      SQLCHAR       0       10       ""      10    Discount_Type                 SQL_Latin1_General_CP1_CI_AS
+11      SQLCHAR       0       10       ""      11    Same_Diff_MM_Lines            SQL_Latin1_General_CP1_CI_AS
+12      SQLCHAR       0       7        ""      12    No_Lines_to_Trigger           SQL_Latin1_General_CP1_CI_AS
+13      SQLCHAR       0       7        ""      13    No_Non_Mandatory              SQL_Latin1_General_CP1_CI_AS
+14      SQLCHAR       0       7        ""      14    No_Mandatory                  SQL_Latin1_General_CP1_CI_AS
+15      SQLCHAR       0       7        "\r\n"  15    No_Times_Applicable           SQL_Latin1_General_CP1_CI_AS
